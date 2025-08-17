@@ -1,0 +1,939 @@
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+.custom-blocks-section_d1-{{ section.id }}{
+width: 100%;
+padding-block: {{ section.settings.section_padding_block }}px;
+padding-top: {{ section.settings.section_padding_top }}px;
+background-color: {{ section.settings.section_background_color }};
+  padding-inline: {{ section.settings.container_padding_inline }}px;
+}
+.custom-blocks-container-{{ section.id }}{
+    width: 100%;
+    display: flex;
+    gap: {{ section.settings.container_gap }}px;
+    margin: 0 auto;
+  
+}
+.custom-A-block-{{ section.id }}{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.a_block_gap }}px;
+}
+.custom-A-block-image-{{ section.id }}{
+    width: 100%;
+    height: auto;
+    padding-inline: {{ section.settings.left_image_padding_inline }}px;
+}
+.custom-A-block-image-{{ section.id }} img{
+    width: 100%;
+    height: 100%;
+}
+.A-block-footer-{{ section.id }}{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.a_footer_gap }}px;
+}
+.A-block-icon-{{ section.id }}{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: {{ section.settings.icon_margin_top }}px;
+}
+.A-block-icon-{{ section.id }} img{
+    width: {{ section.settings.icon_width }}px;
+    height: {{ section.settings.icon_height }}px;
+    margin: 0 auto;
+}
+.A-block-description-{{ section.id }}{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.description_gap }}px;
+}
+.A-block-description-{{ section.id }} p{
+    font-size: {{ section.settings.testimonial_font_size }}px;
+    line-height: 1;
+    color: {{ section.settings.testimonial_text_color }};
+    text-align: center;
+    font-weight: 400;
+    padding-block: {{ section.settings.testimonial_padding_block }}px;
+}
+.author-name-{{ section.id }}{
+    width: auto;
+    margin: 0 auto;
+    display: flex;
+    gap: {{ section.settings.author_name_gap }}px;
+    align-items: center;
+    justify-content: center;
+}
+.author-name-{{ section.id }} span{
+    width: {{ section.settings.divider_width }}px;
+    height: {{ section.settings.divider_height }}px;
+    background-color: {{ section.settings.divider_color }};
+}
+.author-name-{{ section.id }} h3{
+    font-size: {{ section.settings.author_name_font_size }}px;
+    font-family: jost,sans-serif;
+    color: {{ section.settings.author_name_color }};
+    text-transform: uppercase;
+}
+.author-job-{{ section.id }}{
+    width: 100%;
+    text-align: center;
+    font-size: {{ section.settings.author_job_font_size }}px;
+    font-family: jost,sans-serif;
+    color: {{ section.settings.author_job_color }};
+}
+.custom-B-block-{{ section.id }}{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.b_block_gap }}px;
+}
+.B-block-header-{{ section.id }}{
+display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.b_header_gap }}px;
+    width: 100%;
+    padding-bottom: {{ section.settings.b_header_padding_bottom }}px;
+}
+.B-block-subtitle-{{ section.id }}{
+width: 100%;
+  font-size: {{ section.settings.subtitle_font_size }}px;
+    font-family: jost,sans-serif;
+    color: {{ section.settings.subtitle_color }};
+    text-transform: uppercase;
+    text-align: center;
+}
+.B-block-header-{{ section.id }} h2{
+    width: 100%;
+  font-size: {{ section.settings.title_font_size }}px;
+    font-family: jost,sans-serif;
+    color: {{ section.settings.title_color }};
+    text-transform: uppercase;
+    text-align: center;
+}
+.B-header-image-{{ section.id }}{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.B-header-image-{{ section.id }} img{
+    width: {{ section.settings.separator_width }}px;
+    max-height: {{ section.settings.separator_height }}px;
+    height: 100%;
+    }
+    .B-block-image-{{ section.id }}{
+        padding-inline: {{ section.settings.right_image_padding_inline }}px;
+    }
+    .B-block-image-{{ section.id }} img{
+        width: 100%;
+        height: 100%;
+    }
+    @media (max-width:767px) {
+        .custom-blocks-section_d1-{{ section.id }}{
+            padding-block: {{ section.settings.mobile_section_padding_block }}px;
+            padding-top: {{ section.settings.mobile_section_padding_top }}px;
+        }
+        .custom-blocks-container-{{ section.id }}{
+            flex-direction:column;
+            gap: {{ section.settings.mobile_container_gap }}px;
+            padding-inline: {{ section.settings.mobile_container_padding_inline }}px;
+        }
+        .custom-A-block-{{ section.id }}{
+            width:100%;
+            gap: {{ section.settings.mobile_a_block_gap }}px;
+        }
+        .custom-B-block-{{ section.id }}{
+            width:100%;
+            gap: {{ section.settings.mobile_b_block_gap }}px;
+        }
+        .custom-A-block-image-{{ section.id }}{
+            padding-inline: {{ section.settings.mobile_left_image_padding_inline }}px;
+        }
+        .B-block-image-{{ section.id }}{
+            padding-inline: {{ section.settings.mobile_right_image_padding_inline }}px;
+        }
+        .A-block-footer-{{ section.id }}{
+            gap: {{ section.settings.mobile_a_footer_gap }}px;
+        }
+        .B-block-header-{{ section.id }}{
+            gap: {{ section.settings.mobile_b_header_gap }}px;
+            padding-bottom: {{ section.settings.mobile_b_header_padding_bottom }}px;
+        }
+        .A-block-description-{{ section.id }}{
+            gap: {{ section.settings.mobile_description_gap }}px;
+        }
+        .A-block-icon-{{ section.id }}{
+            margin-top: {{ section.settings.mobile_icon_margin_top }}px;
+        }
+        .A-block-icon-{{ section.id }} img{
+            width: {{ section.settings.mobile_icon_width }}px;
+            height: {{ section.settings.mobile_icon_height }}px;
+        }
+        .A-block-description-{{ section.id }} p{
+            font-size: {{ section.settings.mobile_testimonial_font_size }}px;
+            padding-block: {{ section.settings.mobile_testimonial_padding_block }}px;
+        }
+        .author-name-{{ section.id }}{
+            gap: {{ section.settings.mobile_author_name_gap }}px;
+        }
+        .author-name-{{ section.id }} span{
+            width: {{ section.settings.mobile_divider_width }}px;
+            height: {{ section.settings.mobile_divider_height }}px;
+        }
+        .author-name-{{ section.id }} h3{
+            font-size: {{ section.settings.mobile_author_name_font_size }}px;
+        }
+        .author-job-{{ section.id }}{
+            font-size: {{ section.settings.mobile_author_job_font_size }}px;
+        }
+        .B-block-subtitle-{{ section.id }}{
+            font-size: {{ section.settings.mobile_subtitle_font_size }}px;
+        }
+        .B-block-header-{{ section.id }} h2{
+            font-size: {{ section.settings.mobile_title_font_size }}px;
+        }
+        .B-header-image-{{ section.id }} img{
+            width: {{ section.settings.mobile_separator_width }}px;
+            max-height: {{ section.settings.mobile_separator_height }}px;
+        }
+    }
+</style>
+    <section class="custom-blocks-section_d1-{{ section.id }} ">
+        <div class="custom-blocks-container-{{ section.id }} xo-container-width">
+         <div class="custom-A-block-{{ section.id }}">
+            <div class="custom-A-block-image-{{ section.id }}">
+                <img src="{{ section.settings.left_image | img_url: 'master' }}" alt="{{ section.settings.left_image.alt }}">
+            </div>
+            <div class="A-block-footer-{{ section.id }}">
+                <div class="A-block-icon-{{ section.id }}">
+                    <img src="{{ section.settings.icon_image | img_url: 'master' }}" alt="{{ section.settings.icon_image.alt }}">
+                </div>
+                <div class="A-block-description-{{ section.id }}">
+                    <p>{{ section.settings.testimonial_text }}</p>
+                    <div class="author-name-{{ section.id }}">
+                        <span></span>
+                        <h3>{{ section.settings.author_name }}</h3>
+                        <span></span>
+                    </div>
+                    <div class="author-job-{{ section.id }}">{{ section.settings.author_job }}</div>
+                </div>
+            </div>
+         </div> <!--A-block--> 
+         <div class="custom-B-block-{{ section.id }}">
+            <div class="B-block-header-{{ section.id }}">
+                <div class="B-block-subtitle-{{ section.id }}">{{ section.settings.subtitle }}</div>
+                <h2>{{ section.settings.title }}</h2>
+                <div class="B-header-image-{{ section.id }}"><img src="{{ section.settings.separator_image | img_url: 'master' }}" alt="{{ section.settings.separator_image.alt }}"></div>
+            </div>
+            <div class="B-block-image-{{ section.id }}">
+                <img src="{{ section.settings.right_image | img_url: 'master' }}" alt="{{ section.settings.right_image.alt }}">
+            </div>
+         </div>
+        </div>
+    </section>
+{% schema %}
+{
+  "name": "Custom Blocks Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Desktop Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_block",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Section Padding Block",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Section Padding Top",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Container Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_gap",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Container Gap",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "container_padding_inline",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Container Padding Inline",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Desktop Left Block (A-Block) Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Block Image"
+    },
+    {
+      "type": "range",
+      "id": "left_image_padding_inline",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Left Image Padding Inline",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "a_block_gap",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop A-Block Gap",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "a_footer_gap",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop A-Block Footer Gap",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Desktop Icon Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_image",
+      "label": "Icon Image"
+    },
+    {
+      "type": "range",
+      "id": "icon_margin_top",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Icon Margin Top",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "icon_width",
+      "min": 40,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Icon Width",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "icon_height",
+      "min": 40,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Icon Height",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Desktop Testimonial Settings"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_text",
+      "label": "Testimonial Text",
+      "default": "Absolutely love the eco-friendly yoga mats! The grip is perfect, and I feel grounded in every pose. I wouldn't practice on anything else!"
+    },
+    {
+      "type": "range",
+      "id": "testimonial_font_size",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Testimonial Font Size",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "testimonial_text_color",
+      "label": "Testimonial Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "testimonial_padding_block",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Testimonial Padding Block",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "description_gap",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Description Gap",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Desktop Author Settings"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author Name",
+      "default": "Sara Lee"
+    },
+    {
+      "type": "text",
+      "id": "author_job",
+      "label": "Author Job Title",
+      "default": "Designer"
+    },
+    {
+      "type": "range",
+      "id": "author_name_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Author Name Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "author_name_color",
+      "label": "Author Name Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "author_job_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Author Job Font Size",
+      "default": 13
+    },
+    {
+      "type": "color",
+      "id": "author_job_color",
+      "label": "Author Job Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "author_name_gap",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Author Name Gap",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Desktop Divider Settings"
+    },
+    {
+      "type": "range",
+      "id": "divider_width",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Divider Width",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "divider_height",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Divider Height",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Right Block (B-Block) Settings"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Our Products"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What Our Customers Are Saying"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Subtitle Font Size",
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop Title Font Size",
+      "default": 42
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "b_block_gap",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop B-Block Gap",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "b_header_gap",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop B-Block Header Gap",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "b_header_padding_bottom",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop B-Block Header Padding Bottom",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Desktop Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "separator_image",
+      "label": "Separator Image"
+    },
+    {
+      "type": "range",
+      "id": "separator_width",
+      "min": 100,
+      "max": 400,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Separator Width",
+      "default": 245
+    },
+    {
+      "type": "range",
+      "id": "separator_height",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Separator Height",
+      "default": 30
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Block Image"
+    },
+    {
+      "type": "range",
+      "id": "right_image_padding_inline",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Right Image Padding Inline",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "MOBILE RESPONSIVE SETTINGS"
+    },
+    {
+      "type": "paragraph",
+      "content": "The following settings control how your section appears on mobile devices (screens smaller than 768px)"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding_block",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Section Padding Block",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Section Padding Top",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile Container Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_gap",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Container Gap",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_padding_inline",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Container Padding Inline",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Mobile Left Block (A-Block) Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_left_image_padding_inline",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Left Image Padding Inline",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_a_block_gap",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile A-Block Gap",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_a_footer_gap",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile A-Block Footer Gap",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Mobile Right Block (B-Block) Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_right_image_padding_inline",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Right Image Padding Inline",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_b_block_gap",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile B-Block Gap",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_b_header_gap",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile B-Block Header Gap",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_b_header_padding_bottom",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile B-Block Header Padding Bottom",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Mobile Icon Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_icon_margin_top",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Icon Margin Top",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_icon_width",
+      "min": 40,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Icon Width",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "mobile_icon_height",
+      "min": 40,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Icon Height",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Mobile Typography Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_testimonial_font_size",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Testimonial Font Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_testimonial_padding_block",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Testimonial Padding Block",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_gap",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Description Gap",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_author_name_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Author Name Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_author_job_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Author Job Font Size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_author_name_gap",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Author Name Gap",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_subtitle_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Subtitle Font Size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Title Font Size",
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Mobile Divider & Separator Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_divider_width",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Divider Width",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "mobile_divider_height",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Divider Height",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "mobile_separator_width",
+      "min": 100,
+      "max": 400,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Separator Width",
+      "default": 180
+    },
+    {
+      "type": "range",
+      "id": "mobile_separator_height",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Separator Height",
+      "default": 25
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Blocks Section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,713 @@
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .custom-collections-banner_d1{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-block: {{ section.settings.section_padding_top }}px {{ section.settings.section_padding_bottom }}px;
+        background-color: {{ section.settings.section_background_color }};
+    }
+    .collections-banner-container{
+        width: 100%;
+      
+        display: grid;
+        grid-template-columns: repeat({{ section.settings.grid_columns }}, 1fr);
+        gap: {{ section.settings.grid_gap }}px;
+    }
+    .banner-coantainer-card{
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-radius: {{ section.settings.card_border_radius }}px;
+        overflow: hidden;
+    }
+    .banner-coantainer-card:hover .collection-car-img{
+        transform: scale({{ section.settings.hover_scale }});
+        transition: {{ section.settings.transition_duration }}s;
+    }
+    .banner-card-image{
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        {% if section.settings.image_height_type == 'fixed' %}
+            height: {{ section.settings.image_fixed_height }}px;
+        {% else %}
+            height: auto;
+        {% endif %}
+    }
+    .banner-card-image img{
+        width: 100%;
+        {% if section.settings.image_height_type == 'fixed' %}
+            height: {{ section.settings.image_fixed_height }}px;
+        {% else %}
+            height: 100%;
+        {% endif %}
+        object-fit: {{ section.settings.image_object_fit }};
+        display: block;
+        transition: {{ section.settings.transition_duration }}s;
+    }
+    .banner-image-data{
+        width: auto;
+        padding-block: {{ section.settings.text_padding_vertical }}px;
+        padding-inline: {{ section.settings.text_padding_horizontal }}px;
+        display: flex;
+        flex-direction: column;
+        gap: {{ section.settings.text_gap }}px;
+        position: absolute;
+        bottom: {{ section.settings.text_position_bottom }}%;
+        left: {{ section.settings.text_position_left }}%;
+        {% if section.settings.text_alignment == 'center' %}
+            align-items: center;
+            text-align: center;
+        {% elsif section.settings.text_alignment == 'right' %}
+            align-items: flex-end;
+            text-align: right;
+        {% endif %}
+    }
+    .slanted-edge-container{
+        position: relative;
+        width: auto;
+        overflow: hidden;
+    }
+    .slanted-edge-subtitle{
+        text-transform: {% if section.settings.subtitle_uppercase %}uppercase{% else %}none{% endif %};
+        width: fit-content;
+        font-weight: {{ section.settings.subtitle_font_weight }};
+        padding-block: {{ section.settings.subtitle_padding_vertical }}px;
+        padding-left: {{ section.settings.subtitle_padding_left }}px;
+        padding-right: {{ section.settings.subtitle_padding_right }}px;
+        font-size: {{ section.settings.subtitle_font_size }}px;
+        color: {{ section.settings.subtitle_color }};
+        position: relative;
+        z-index: 2;
+        letter-spacing: {{ section.settings.subtitle_letter_spacing }}px;
+       
+          font-family: jost,sans-serif;
+    }
+    .slanted-edge-subtitle::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-top: {{ section.settings.slanted_edge_height }}px solid {{ section.settings.slanted_edge_color }};
+        border-right: {{ section.settings.slanted_edge_width }}px solid transparent;
+        z-index: -1;
+    }
+    .custom-collection-title{
+        background-color: transparent;
+       font-family: jost,sans-serif;
+        font-size: {{ section.settings.title_font_size }}px;
+        font-weight: {{ section.settings.title_font_weight }};
+        color: {{ section.settings.title_color }};
+        text-transform: {% if section.settings.title_uppercase %}uppercase{% else %}none{% endif %};
+        line-height: {{ section.settings.title_line_height }};
+        {% if section.settings.title_text_shadow %}
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        {% endif %}
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+        .collections-banner-container{
+            grid-template-columns: repeat({{ section.settings.grid_columns_mobile }}, 1fr);
+            gap: {{ section.settings.grid_gap_mobile }}px;
+        }
+        .banner-card-image{
+            {% if section.settings.image_height_type == 'fixed' %}
+                height: {{ section.settings.image_fixed_height_mobile }}px;
+            {% else %}
+                height: auto;
+            {% endif %}
+        }
+        .banner-card-image img{
+            {% if section.settings.image_height_type == 'fixed' %}
+                height: {{ section.settings.image_fixed_height_mobile }}px;
+            {% endif %}
+        }
+        .custom-collection-title{
+            font-size: {{ section.settings.title_font_size_mobile }}px;
+        }
+        .slanted-edge-subtitle{
+            font-size: {{ section.settings.subtitle_font_size_mobile }}px;
+        }
+    }
+</style>
+
+<section class="custom-collections-banner_d1">
+    <div class="collections-banner-container xo-container-width">
+        {% for block in section.blocks %}
+            <div class="banner-coantainer-card">
+                {% assign collection = collections[block.settings.select_collection] %}
+                    <a href="{{ collection.url }}" style="text-decoration: none; display:block;">
+                <div class="banner-card-image">
+                    {% if block.settings.card_image != blank %}
+                        {{ block.settings.card_image | image_url: width: 800 | image_tag: 
+                           class: 'collection-car-img', 
+                           alt: block.settings.card_image.alt | default: block.settings.card_title }}
+                    {% else %}
+                        <img class="collection-car-img" src="{{ 'placeholder-image.svg' | asset_url }}" alt="Placeholder">
+                    {% endif %}
+                </div>
+                    </a>
+
+                
+                <div class="banner-image-data">
+                    {% if block.settings.card_subtitle != blank %}
+                        <div class="slanted-edge-container">
+                            <div class="slanted-edge-subtitle">
+                                {{ block.settings.card_subtitle }}
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    {% if block.settings.card_title != blank %}
+                        <h3 class="custom-collection-title">{{ block.settings.card_title }}</h3>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Custom Collections Cards",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Section Settings"
+        },
+        {
+            "type": "color",
+            "id": "section_background_color",
+            "label": "Section Background Color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "range",
+            "id": "section_padding_top",
+            "label": "Top Padding",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "px",
+            "default": 10
+        },
+        {
+            "type": "range",
+            "id": "section_padding_bottom",
+            "label": "Bottom Padding",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "px",
+            "default": 10
+        },
+        {
+            "type": "header",
+            "content": "Container Settings"
+        },
+       
+        {
+            "type": "range",
+            "id": "container_padding",
+            "label": "Container Side Padding",
+            "min": 0,
+            "max": 50,
+            "step": 5,
+            "unit": "px",
+            "default": 10
+        },
+        {
+            "type": "header",
+            "content": "Grid Layout"
+        },
+        {
+            "type": "range",
+            "id": "grid_columns",
+            "label": "Grid Columns (Desktop)",
+            "min": 1,
+            "max": 4,
+            "step": 1,
+            "default": 2
+        },
+        {
+            "type": "range",
+            "id": "grid_columns_mobile",
+            "label": "Grid Columns (Mobile)",
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "default": 1
+        },
+        {
+            "type": "range",
+            "id": "grid_gap",
+            "label": "Grid Gap (Desktop)",
+            "min": 0,
+            "max": 50,
+            "step": 5,
+            "unit": "px",
+            "default": 20
+        },
+        {
+            "type": "range",
+            "id": "grid_gap_mobile",
+            "label": "Grid Gap (Mobile)",
+            "min": 0,
+            "max": 30,
+            "step": 5,
+            "unit": "px",
+            "default": 15
+        },
+        {
+            "type": "header",
+            "content": "Card Settings"
+        },
+       
+        {
+            "type": "range",
+            "id": "card_border_radius",
+            "label": "Card Border Radius",
+            "min": 0,
+            "max": 30,
+            "step": 2,
+            "unit": "px",
+            "default": 0
+        },
+        {
+            "type": "header",
+            "content": "Image Settings"
+        },
+        {
+            "type": "select",
+            "id": "image_height_type",
+            "label": "Image Height Type",
+            "options": [
+                {
+                    "value": "auto",
+                    "label": "Auto Height (Default)"
+                },
+                {
+                    "value": "fixed",
+                    "label": "Fixed Height"
+                }
+            ],
+            "default": "auto",
+            "info": "Choose between automatic height (maintains aspect ratio) or fixed height for consistent card sizes"
+        },
+        {
+            "type": "range",
+            "id": "image_fixed_height",
+            "label": "Fixed Height (Desktop)",
+            "min": 200,
+            "max": 600,
+            "step": 10,
+            "unit": "px",
+            "default": 300,
+            "info": "Only applies when 'Fixed Height' is selected"
+        },
+        {
+            "type": "range",
+            "id": "image_fixed_height_mobile",
+            "label": "Fixed Height (Mobile)",
+            "min": 150,
+            "max": 400,
+            "step": 10,
+            "unit": "px",
+            "default": 250,
+            "info": "Only applies when 'Fixed Height' is selected"
+        },
+        {
+            "type": "select",
+            "id": "image_object_fit",
+            "label": "Image Fit",
+            "options": [
+                {
+                    "value": "cover",
+                    "label": "Cover"
+                },
+                {
+                    "value": "contain",
+                    "label": "Contain"
+                },
+                {
+                    "value": "fill",
+                    "label": "Fill"
+                }
+            ],
+            "default": "cover",
+            "info": "Cover: fills container, may crop image. Contain: fits entire image. Fill: stretches to fill"
+        },
+        {
+            "type": "header",
+            "content": "Hover Effects"
+        },
+        {
+            "type": "range",
+            "id": "hover_scale",
+            "label": "Hover Scale Effect",
+            "min": 1.0,
+            "max": 1.3,
+            "step": 0.1,
+            "default": 1.1
+        },
+        {
+            "type": "range",
+            "id": "transition_duration",
+            "label": "Transition Duration",
+            "min": 0.1,
+            "max": 2.0,
+            "step": 0.1,
+            "unit": "s",
+            "default": 0.5
+        },
+        {
+            "type": "header",
+            "content": "Text Positioning"
+        },
+        {
+            "type": "range",
+            "id": "text_position_bottom",
+            "label": "Text Position from Bottom",
+            "min": 0,
+            "max": 50,
+            "step": 1,
+            "unit": "%",
+            "default": 16
+        },
+        {
+            "type": "range",
+            "id": "text_position_left",
+            "label": "Text Position from Left",
+            "min": 0,
+            "max": 50,
+            "step": 1,
+            "unit": "%",
+            "default": 9
+        },
+        {
+            "type": "select",
+            "id": "text_alignment",
+            "label": "Text Alignment",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ],
+            "default": "left"
+        },
+        {
+            "type": "range",
+            "id": "text_padding_vertical",
+            "label": "Text Vertical Padding",
+            "min": 0,
+            "max": 20,
+            "step": 1,
+            "unit": "px",
+            "default": 5
+        },
+        {
+            "type": "range",
+            "id": "text_padding_horizontal",
+            "label": "Text Horizontal Padding",
+            "min": 0,
+            "max": 20,
+            "step": 1,
+            "unit": "px",
+            "default": 5
+        },
+        {
+            "type": "range",
+            "id": "text_gap",
+            "label": "Gap Between Title & Subtitle",
+            "min": 0,
+            "max": 30,
+            "step": 2,
+            "unit": "px",
+            "default": 10
+        },
+        {
+            "type": "header",
+            "content": "Title Styling"
+        },
+        {
+            "type": "color",
+            "id": "title_color",
+            "label": "Title Color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "range",
+            "id": "title_font_size",
+            "label": "Title Font Size (Desktop)",
+            "min": 16,
+            "max": 60,
+            "step": 2,
+            "unit": "px",
+            "default": 36
+        },
+        {
+            "type": "range",
+            "id": "title_font_size_mobile",
+            "label": "Title Font Size (Mobile)",
+            "min": 14,
+            "max": 40,
+            "step": 2,
+            "unit": "px",
+            "default": 24
+        },
+        {
+            "type": "select",
+            "id": "title_font_weight",
+            "label": "Title Font Weight",
+            "options": [
+                {
+                    "value": "300",
+                    "label": "Light"
+                },
+                {
+                    "value": "400",
+                    "label": "Normal"
+                },
+                {
+                    "value": "500",
+                    "label": "Medium"
+                },
+                {
+                    "value": "600",
+                    "label": "Semi Bold"
+                },
+                {
+                    "value": "700",
+                    "label": "Bold"
+                },
+                {
+                    "value": "800",
+                    "label": "Extra Bold"
+                }
+            ],
+            "default": "400"
+        },
+        {
+            "type": "range",
+            "id": "title_line_height",
+            "label": "Title Line Height",
+            "min": 1.0,
+            "max": 2.0,
+            "step": 0.1,
+            "default": 1.2
+        },
+        {
+            "type": "checkbox",
+            "id": "title_uppercase",
+            "label": "Title Uppercase",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "title_text_shadow",
+            "label": "Title Text Shadow",
+            "default": false
+        },
+        {
+            "type": "header",
+            "content": "Subtitle Styling"
+        },
+        {
+            "type": "color",
+            "id": "subtitle_color",
+            "label": "Subtitle Text Color",
+            "default": "rgba(0, 0, 0, 0.6)"
+        },
+        
+        {
+            "type": "range",
+            "id": "subtitle_font_size",
+            "label": "Subtitle Font Size (Desktop)",
+            "min": 10,
+            "max": 24,
+            "step": 1,
+            "unit": "px",
+            "default": 14
+        },
+        {
+            "type": "range",
+            "id": "subtitle_font_size_mobile",
+            "label": "Subtitle Font Size (Mobile)",
+            "min": 8,
+            "max": 20,
+            "step": 1,
+            "unit": "px",
+            "default": 12
+        },
+        {
+            "type": "select",
+            "id": "subtitle_font_weight",
+            "label": "Subtitle Font Weight",
+            "options": [
+                {
+                    "value": "300",
+                    "label": "Light"
+                },
+                {
+                    "value": "400",
+                    "label": "Normal"
+                },
+                {
+                    "value": "500",
+                    "label": "Medium"
+                },
+                {
+                    "value": "600",
+                    "label": "Semi Bold"
+                },
+                {
+                    "value": "700",
+                    "label": "Bold"
+                },
+                {
+                    "value": "800",
+                    "label": "Extra Bold"
+                }
+            ],
+            "default": "700"
+        },
+        {
+            "type": "range",
+            "id": "subtitle_letter_spacing",
+            "label": "Subtitle Letter Spacing",
+            "min": 0,
+            "max": 8,
+            "step": 1,
+            "unit": "px",
+            "default": 4
+        },
+        {
+            "type": "checkbox",
+            "id": "subtitle_uppercase",
+            "label": "Subtitle Uppercase",
+            "default": true
+        },
+        {
+            "type": "range",
+            "id": "subtitle_padding_vertical",
+            "label": "Subtitle Vertical Padding",
+            "min": 4,
+            "max": 20,
+            "step": 1,
+            "unit": "px",
+            "default": 8
+        },
+        {
+            "type": "range",
+            "id": "subtitle_padding_left",
+            "label": "Subtitle Left Padding",
+            "min": 4,
+            "max": 20,
+            "step": 1,
+            "unit": "px",
+            "default": 8
+        },
+        {
+            "type": "range",
+            "id": "subtitle_padding_right",
+            "label": "Subtitle Right Padding",
+            "min": 10,
+            "max": 40,
+            "step": 2,
+            "unit": "px",
+            "default": 20
+        },
+        {
+            "type": "header",
+            "content": "Slanted Edge Effect"
+        },
+        {
+            "type": "color",
+            "id": "slanted_edge_color",
+            "label": "Slanted Edge Background Color",
+            "default": "#72866D"
+        },
+        {
+            "type": "range",
+            "id": "slanted_edge_height",
+            "label": "Slanted Edge Height",
+            "min": 20,
+            "max": 50,
+            "step": 2,
+            "unit": "px",
+            "default": 32
+        },
+        {
+            "type": "range",
+            "id": "slanted_edge_width",
+            "label": "Slanted Edge Width",
+            "min": 10,
+            "max": 40,
+            "step": 2,
+            "unit": "px",
+            "default": 24
+        }
+    ],
+    "blocks": [
+        {
+            "type": "collection_card",
+            "name": "Collection Card",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "card_image",
+                    "label": "Card Image"
+                },
+                {
+                    "type": "text",
+                    "id": "card_title",
+                    "label": "Card Title",
+                    "default": "Collection Title"
+                },
+                {
+                    "type": "text",
+                    "id": "card_subtitle",
+                    "label": "Card Subtitle",
+                    "default": "New Arrivals"
+                },
+                {
+                "type": "collection",
+                "id": "select_collection",
+                "label": "Add Collection"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Custom Collections Cards",
+            "blocks": [
+                {
+                    "type": "collection_card"
+                },
+                {
+                    "type": "collection_card"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

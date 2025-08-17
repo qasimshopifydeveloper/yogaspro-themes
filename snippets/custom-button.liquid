@@ -1,0 +1,156 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+BUTTON COMPONENT
+----------------------------------------------------------------------------------------------------------------------
+
+Generate a button (or link styled as a button). It supports wide range of attributes that can be used to customize
+the appearance and functionality of the button.
+
+********************************************
+Supported variables
+********************************************
+
+* content: the content of the button
+* href: an optional link to set. If href is provided, then an "a" tag is generated, otherwise a "button"
+* size: can be "sm". If none is set, the default "base" size is used.
+* background: an optional background color to use that override the default
+* text_color: an optional text color to use that override the default
+* style: "solid", "outline" or "link". If none is set "solid" is assumed
+* stretch: if passed to true, a full width button is generated
+* subdued: when using the "outline" mode, this reduced the importance of the button
+* type: when href is empty, can be either "button" or "submit" (default to button if none is set)
+* name: when the button is a real button, allow to set the name attribute that is submitted
+* icon: the name of an optional icon to render along the button
+* disabled: if set to true, the button is disabled
+* form: the form ID that this button is linked to
+* external: if set to true and that a href is passed, it opens into a new window
+* aria_controls: the ID of the element controlled
+* focusable: if set to false, a tabindex="-1" is added to ensure the button is not focusable
+* block: an optional block to output theme editor attributes
+{%- endcomment -%}
+<style>
+ .button.no-hover:hover {
+  background: inherit !important;
+  color: inherit !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+.my-custom-button{
+padding:9px !important;
+border-radius:50% !important;
+color:black;
+background:white;
+transition:0.4s;
+}
+.my-custom-button:hover{
+background:black;
+color:white;
+}
+</style>
+{% liquid
+  capture class_attribute
+    if style == 'link'
+      echo 'link'
+    else
+      echo 'button'
+
+      if size != blank and size != 'base'
+        echo ' button-' | append: size
+      endif
+
+      if style == 'outline'
+        echo ' button--outline'
+      endif
+
+      if subdued
+        echo ' button--subdued'
+      endif
+
+      if stretch
+        echo ' w-full'
+      endif
+    endif
+  endcapture
+
+  capture style_attribute
+    if style != 'link'
+      if background != blank and background != 'rgba(0,0,0,0)'
+        echo '--button-background: ' | append: background.rgb | append: ';'
+        echo '--button-outline-color: ' | append: background.rgb | append: ';'
+      endif
+
+      if text_color != blank and text_color != 'rgba(0,0,0,0)'
+        echo '--button-text-color: ' | append: text_color.rgb | append: ';'
+      endif
+    endif
+  endcapture
+
+  capture attributes
+    if class_attribute != blank
+      echo ' class="' | append: class_attribute | append: '"'
+    endif
+
+    if style_attribute != blank
+      echo ' style="' | append: style_attribute | append: '"'
+    endif
+
+    if aria_controls
+      echo ' aria-controls="' | append: aria_controls | append: '"'
+    endif
+
+    if disabled
+      if href
+        echo ' role="link" aria-disabled="true"'
+      else
+        echo ' disabled'
+      endif
+    endif
+
+    if name
+      echo ' name="' | append: name | append: '"'
+    endif
+
+    if form
+      echo ' form="' | append: form | append: '"'
+    endif
+
+    if href
+      echo ' href="' | append: href | append: '"'
+    endif
+
+    if external and href != blank
+      echo ' target="_blank"'
+    endif
+
+    if focusable == false
+      echo ' tabindex="-1"'
+    endif
+  endcapture
+%}
+
+{%- capture button_content -%}
+  {% if icon != blank %}
+    <div class="text-with-icon">
+      {%- render 'icon' with icon -%}
+      {{- content -}}
+    </div>
+  {%- else -%}
+    {{- content -}}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if href != blank -%}
+  <a {{ attributes }} {{ block.shopify_attributes }}>
+    {{- button_content -}}
+  </a>
+{%- else -%}
+  <button  class="my-custom-button" >
+ <svg width="20" height="20" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<path d="M12,0C9.1,0,6.7,2.4,6.7,5.3v1h10.5v-1C17.2,2.4,14.9,0,12,0z M12,1.8c1.6,0,3,1.1,3.4,2.7H8.6C9,2.9,10.4,1.8,12,1.8" fill="currentColor"></path>
+<g>
+<path d="M17.6,6.2c0.9,0,1.6,0.7,1.6,1.6v12.9c0,0.9-0.7,1.6-1.6,1.6H6.4c-0.9,0-1.6-0.7-1.6-1.6V7.8c0-0.9,0.7-1.6,1.6-1.6H17.6 M17.6,4.5H6.4C4.5,4.5,3,6,3,7.8v12.9C3,22.5,4.5,24,6.4,24h11.3c1.8,0,3.3-1.5,3.3-3.3V7.8C21,6,19.5,4.5,17.6,4.5L17.6,4.5z" fill="currentColor"></path>
+  </g>
+  <path d="M14.8,8.8H9.2c-0.4,0-0.7-0.3-0.7-0.7v0c0-0.4,0.3-0.7,0.7-0.7h5.7c0.4,0,0.7,0.3,0.7,0.7v0C15.5,8.5,15.2,8.8,14.8,8.8z" fill="currentColor"></path>
+ </svg>
+  </button>
+{%- endif -%}

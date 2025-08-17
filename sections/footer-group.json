@@ -1,0 +1,184 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "custom_footer_7rQByH": {
+      "type": "Custom-footer",
+      "blocks": {
+        "logo_tHPiPT": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo.webp",
+            "logoImg_link": "shopify://collections/frontpage",
+            "description": "Sustainably crafted yoga gear for a mindful practice.",
+            "address_label": "כתובת:",
+            "address": "בית אשל 27, תל אביב-יפו",
+            "address_link": "https://www.waze.com/he/live-map/directions/tel-aviv?to=place.ws.il.2476.27",
+            "opening_hours_label": "שעות <br> פעילות:",
+            "opening_hours": "ראשון - חמישי: 11:00-18:00 <br> שישי: 11:00-15:00",
+            "opening_hours_link": "https://maps.app.goo.gl/2oWWNrFTVgXibvjC8",
+            "phone_label": "טלפון:",
+            "phone": "054-2206065",
+            "email_label": "דוא\"ל:",
+            "email": "yogas@yogas.co.il"
+          }
+        },
+        "links_yUXNYt": {
+          "type": "links",
+          "settings": {
+            "heading": "Info",
+            "menu": "infor"
+          }
+        },
+        "links_VxXYXY": {
+          "type": "links",
+          "settings": {
+            "heading": "Services",
+            "menu": "services"
+          }
+        },
+        "media_nanQTt": {
+          "type": "media",
+          "settings": {
+            "heading": "Instagram",
+            "image_1": "shopify://shop_images/instagram7.webp",
+            "image_2": "shopify://shop_images/instagram2.webp",
+            "image_3": "shopify://shop_images/instagram5.webp",
+            "image_4": "shopify://shop_images/instagram1.webp",
+            "image_5": "shopify://shop_images/instagram6.webp",
+            "image_6": "shopify://shop_images/instagram4.webp"
+          }
+        }
+      },
+      "block_order": [
+        "logo_tHPiPT",
+        "links_yUXNYt",
+        "links_VxXYXY",
+        "media_nanQTt"
+      ],
+      "name": "Custom Footer",
+      "settings": {
+        "footer_bg_color": "#72866d",
+        "heading_font": "assistant_n4",
+        "body_font": "assistant_n4",
+        "container_padding_horizontal": 20,
+        "section_padding_top": 0,
+        "section_padding_bottom": 30,
+        "grid_columns": 4,
+        "mobile_grid_columns": 1,
+        "grid_gap": 30,
+        "mobile_grid_gap": 30,
+        "grid_padding_top": 30,
+        "grid_padding_bottom": 30,
+        "logo_max_width": 140,
+        "logo_margin_bottom": 25,
+        "description_text_color": "#ffffff66",
+        "description_font_size": 16,
+        "description_margin_bottom": 14,
+        "info_label_color": "#ffffff66",
+        "info_text_color": "#ffffff",
+        "info_font_size": 16,
+        "info_item_spacing": 10,
+        "info_label_spacing": 10,
+        "logo_info_gap": 5,
+        "link_title_color": "#ffffff",
+        "link_title_font_size": 18,
+        "link_title_font_weight": 500,
+        "link_title_padding_top": 10,
+        "link_title_padding_bottom": 10,
+        "link_title_margin_bottom": 15,
+        "show_underline": true,
+        "underline_color": "#ffffff66",
+        "underline_width": 60,
+        "underline_height": 1,
+        "underline_spacing": 5,
+        "link_text_color": "#ffffff66",
+        "link_hover_color": "#ffffff",
+        "link_font_size": 16,
+        "link_font_weight": 500,
+        "link_spacing": 4,
+        "link_item_padding": 5,
+        "link_hover_transform": 10,
+        "link_transition_duration": 0.5,
+        "media_grid_columns": 3,
+        "media_grid_gap": 10,
+        "media_border_radius": 0,
+        "media_hover_transition": 0.3,
+        "show_bottom_bar": true,
+        "bottom_border_color": "#ffffff66",
+        "bottom_border_width": 1,
+        "bottom_padding_top": 20,
+        "bottom_padding_bottom": 10,
+        "bottom_margin_top": 30,
+        "bottom_items_gap": 20,
+        "payment_image": "shopify://shop_images/paymet.png",
+        "payment_image_width": 200,
+        "mobile_bottom_direction": "column",
+        "mobile_text_align": "center",
+        "mobile_payment_align": "center",
+        "mobile_logo_align": "center",
+        "mobile_links_align": "center",
+        "mobile_center_underline": false
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "title": "Newsletter",
+            "content": "<p>Sign up to our newsletter to receive exclusive offers.</p>",
+            "button_background": "",
+            "button_text_color": ""
+          }
+        },
+        "links": {
+          "type": "links",
+          "settings": {
+            "menu": "footer",
+            "show_menu_title": true,
+            "menu_title": ""
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "title": "About",
+            "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme editor.</p>",
+            "enable_follow_on_shop": true
+          }
+        }
+      },
+      "block_order": [
+        "newsletter",
+        "links",
+        "text"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "show_social_media": true,
+        "show_payment_icons": true,
+        "show_country_selector": true,
+        "show_country_name": true,
+        "show_country_flag": true,
+        "show_locale_selector": true
+      }
+    }
+  },
+  "order": [
+    "custom_footer_7rQByH",
+    "footer"
+  ]
+}

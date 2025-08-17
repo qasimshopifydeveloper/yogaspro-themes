@@ -1,0 +1,86 @@
+  <button id="back-to-top" class="back-to-top-btn" aria-label="Back to top"> 
+    <img src="https://cdn.shopify.com/s/files/1/0653/4499/5398/files/back_1.png?v=1749900379" height="" width="" alt="" loading="">
+    <span>BACK TO TOP</span>
+  </button> 
+  <style>
+    .back-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9999; 
+  transition: all 0.3s ease;
+  opacity: 0;
+  overflow:hidden;
+  visibility: hidden;
+  transform: translateY(20px);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0 0 20px #eeee;
+} 
+.back-to-top-btn span { 
+  font-size: 8px;
+  max-width: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  top: 40px;
+}
+.back-to-top-btn:hover span{ 
+  top: -8px;
+}
+.back-to-top-btn img{
+  position: relative;
+  top: 18px;
+  width:100%;
+  max-width:20px; 
+  transition: all 0.3s ease;
+}
+.back-to-top-btn:hover img{ 
+  top: -14px;
+}
+.back-to-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+} 
+.back-to-top-btn:hover { 
+  transform: translateY(-2px); 
+} 
+.back-to-top-btn:active {
+  transform: translateY(0);
+} 
+  </style>
+    <script>
+        function hidePreloader() {
+            const preloader = document.getElementById('preloader');
+            
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            }, 500);
+        }
+        window.addEventListener('load', hidePreloader);
+  document.addEventListener('DOMContentLoaded', function() {
+    const backToTopBtn = document.getElementById('back-to-top'); 
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 700) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    }); 
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  });
+  </script>

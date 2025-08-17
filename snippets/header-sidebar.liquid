@@ -1,0 +1,292 @@
+{% comment %} {%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+HEADER SIDEBAR COMPONENT
+----------------------------------------------------------------------------------------------------------------------
+
+This snippet the navigation sidebar for the header. It is used for both the mobile menu and for the desktop menu when
+the merchant configures the drawer mode.
+
+********************************************
+Supported variables
+********************************************
+
+* menu: the menu to render
+* color_scheme: the color scheme to use for the sidebar
+* show_dividers: whether dividers are shown for the collapsible
+* open_second_level_menus: if true, second level dropdown are open by default
+{%- endcomment -%}
+
+{%- comment -%}
+IMPLEMENTATION NOTE: while being a drawer, the sidebar has a completely different structure for the content. We are
+therefore using a different structure for the Shadow DOM template
+{%- endcomment -%}
+<template id="header-sidebar-template" class="mar-menu-wd">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content" class="mar-width">
+      <header part="header">
+        <dialog-close-button class="contents">
+          <button type="button" class="mar-btn" part="close-button tap-area" aria-label="{{ 'general.accessibility.close' | t | escape }}">
+            {% comment %} {%- render 'icon' with 'close', width: 16 -%} {% endcomment %}
+          
+              
+
+<svg xmlns="http://www.w3.org/2000/svg" width="2.3rem" height="18" viewBox="0 0 23 18" fill="#fff">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M23 2H0V0H23V2Z" fill="#fff"></path>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 10H0V8H12V10Z" fill="#fff"></path>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M17 18H0V16H17V18Z" fill="#fff"></path>
+</svg>
+
+            
+             
+        
+          </button>
+          
+        </dialog-close-button>
+      </header>
+
+      <div part="panel-list">
+        <slot name="main-panel"></slot>
+
+        {%- if menu.levels > 0 -%}
+          <slot name="collapsible-panel"></slot>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</template>
+
+<header-sidebar id="sidebar-menu" class="header-sidebar drawer drawer--sm color-scheme color-scheme--{{ color_scheme.id }}" template="header-sidebar-template" open-from="left">
+  {%- comment -%}We are using a Shadow DOM where each panel has a slot, so we can directly render each level individually{%- endcomment -%}
+
+  {%- comment -%}Panel 1 is the first level{%- endcomment -%}
+ 
+
+  {%- comment -%}Panel 2 holds all the second levels{%- endcomment -%}
+  {%- if menu.levels > 0 -%}
+    <header-sidebar-collapsible-panel class="header-sidebar__collapsible-panel mar-menu2" slot="collapsible-panel">
+       <header part="header" class="mar-bg-clr">
+        <dialog-close-button class="contents">
+          {% comment %} <button type="button" class="mar-btn" part="close-button tap-area" aria-label="{{ 'general.accessibility.close' | t | escape }}">
+            {% comment %} {%- render 'icon' with 'close', width: 16 -%} {% endcomment %}
+          
+              
+
+<svg xmlns="http://www.w3.org/2000/svg" width="2.3rem" height="18" viewBox="0 0 23 18" fill="#fff">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M23 2H0V0H23V2Z" fill="#fff"></path>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 10H0V8H12V10Z" fill="#fff"></path>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M17 18H0V16H17V18Z" fill="#fff"></path>
+</svg>
+
+            
+             
+        
+          </button> {% endcomment %}
+          
+        </dialog-close-button>
+      </header>
+      <div class="header-sidebar__scroller">
+        {%- for link in menu.links -%}
+          {%- if link.links.size > 0 -%}
+            <div id="header-panel-{{ forloop.index }}" class="header-sidebar__sub-panel" hidden>
+              <button type="button" class="header-sidebar__back-button link-faded {% if show_dividers %}is-divided{% endif %} text-with-icon {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %} md:hidden" data-action="close-panel">
+                {%- render 'icon' with 'chevron-left', width: 12, direction_aware: true -%}
+                {{- link.title -}}
+              </button>
+
+              <ul class="header-sidebar__linklist {% if show_dividers %}divide-y{% endif %} unstyled-list" role="list">
+                {%- for sub_link in link.links -%}
+                  <li>
+                    {%- if sub_link.links.size > 0 -%}
+                      <accordion-disclosure>
+                        <details class="accordion__disclosure group" {% if open_second_level_menus %}open{% endif %}>
+                          <summary class="header-sidebar__linklist-button {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %}">
+                            {{- sub_link.title -}}
+                            <span class="animated-plus group-expanded:rotate" aria-hidden="true"></span>
+                          </summary>
+
+                          <div class="header-sidebar__nested-linklist">
+                            {%- for sub_sub_link in sub_link.links -%}
+                              <a href="{{ sub_sub_link.url }}" class="link-faded-reverse">{{ sub_sub_link.title }}</a>
+                            {%- endfor -%}
+                          </div>
+                        </details>
+                      </accordion-disclosure>
+                    {%- else -%}
+                      <a href="{{ sub_link.url }}" class="header-sidebar__linklist-button {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %}">
+                        {{- sub_link.title -}}
+                      </a>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+
+              {%- liquid
+                assign link_title_downcase = link.title | strip | downcase
+                assign mega_menu_block = ''
+
+                for block in section.blocks
+                  assign menu_item_downcase = block.settings.menu_item | strip | downcase
+
+                  if menu_item_downcase == link_title_downcase
+                    assign mega_menu_block = block
+                    break
+                  endif
+
+                endfor
+              -%}
+
+              {%- capture mega_menu_content -%}
+                {%- render 'mega-menu-images', context: 'sidebar', block: mega_menu_block -%}
+              {%- endcapture -%}
+
+              {%- if mega_menu_content != blank -%}
+                <div class="header-sidebar__promo scroll-area bleed md:unbleed">
+                  {{- mega_menu_content -}}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </header-sidebar-collapsible-panel>
+  {%- endif -%}
+</header-sidebar> {% endcomment %}
+
+
+<!-- Sidebar Menu -->
+<div id="sidebar-menu" class="sidebar">
+  <!-- Close Header -->
+  <div id="close-drawer" class="xo-menu-hamburger-style1__tablist">
+    <svg xmlns="http://www.w3.org/2000/svg" width="2.3rem" height="18" viewBox="0 0 23 18" fill="#fff">
+      <path d="M23 2H0V0H23V2Z" fill="#fff"></path>
+      <path d="M12 10H0V8H12V10Z" fill="#fff"></path>
+      <path d="M17 18H0V16H17V18Z" fill="#fff"></path>
+    </svg>
+    <span class="xo-menu-hamburger-style1__tablist-item">Menu</span>
+  </div>
+
+  <!-- Drawer Content -->
+  <div class="mar-menu">
+    <ul>
+      {%- for link in menu.links -%}
+        <li class="{%- if link.links != blank -%} has-children {% endif %} as-menu mar-child">
+          <a href="{{ link.url }}" title="{{ link.title }}" class="mar-as">
+            {{ link.title }}
+          </a>
+
+          <!-- Check if any block is assigned to this parent -->
+          {%- assign has_block = false -%}
+          {%- for block in section.blocks -%}
+            {% if block.settings.parent_link == link.title %}
+              {%- assign has_block = true -%}
+            {% endif %}
+          {%- endfor -%}
+
+          {%- if has_block -%}
+            <!-- Arrow to open child drawer -->
+            <button class="submenu-toggle" data-target="submenu-{{ forloop.index }}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+
+            <!-- Child drawer -->
+            <div id="submenu-{{ forloop.index }}" class="submenu-drawer">
+              <button class="back-btn xo-menu-hamburger-style1__tablist">
+                <svg xmlns="http://www.w3.org/2000/svg" width="2.3rem" height="18" viewBox="0 0 23 18" fill="#fff">
+                  <path d="M23 2H0V0H23V2Z" fill="#fff"></path>
+                  <path d="M12 10H0V8H12V10Z" fill="#fff"></path>
+                  <path d="M17 18H0V16H17V18Z" fill="#fff"></path>
+                </svg>
+                <span class="xo-menu-hamburger-style1__tablist-item">Menu</span>
+              </button>
+
+              <div class="submenu-sections">
+                {%- for block in section.blocks -%}
+                  {% if block.settings.parent_link == link.title %}
+
+                    {% case block.type %}
+                      
+                      {% when 'menu_item' %}
+                        <div class="submenu-section">
+                          {% for i in (1..5) %}
+                            {% capture menu_key %}menu_{{ i }}{% endcapture %}
+                            {% assign menu_handle = block.settings[menu_key] %}
+                            {% if menu_handle != blank %}
+                              {% assign menu_links = linklists[menu_handle].links %}
+
+                              {% if linklists[menu_handle].title != blank %}
+                                <h4 class="mar-h4">{{ linklists[menu_handle].title }}</h4>
+                              {% endif %}
+
+                              <ul class="mar-sub-child">
+                                {% for menu_link in menu_links %}
+                                  <li>
+                                    <a href="{{ menu_link.url }}" title="{{ menu_link.title }}">
+                                      {{ menu_link.title }}
+                                    </a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            {% endif %}
+                          {% endfor %}
+                        </div>
+
+                      {% when 'menu_image' %}
+                        <div class="submenu-section menu-image-block">
+                          {% for i in (1..5) %}
+                            {% capture img_key %}image_{{ i }}{% endcapture %}
+                            {% capture title_key %}title_{{ i }}{% endcapture %}
+                            {% capture link_key %}link_{{ i }}{% endcapture %}
+
+                            {% assign img = block.settings[img_key] %}
+                            {% assign ttl = block.settings[title_key] %}
+                            {% assign lnk = block.settings[link_key] %}
+
+                            {% if img != blank or ttl != blank %}
+                              <div class="menu-image-item">
+                                {% if lnk != blank %}
+                                
+                                  <a href="{{ lnk }}" class="mar-img-box">
+                                {% endif %}
+
+                                {% if img != blank %}
+                                    <div class="mar-img-b">
+                                  <img src="{{ img | image_url: width: 400 }}" alt="{{ ttl }}">
+                                  </div>
+                                {% endif %}
+                                {% if ttl != blank %}
+                                  <h4 class="mar-h4">{{ ttl }}</h4>
+                                {% endif %}
+
+                                {% if lnk != blank %}
+                                  </a>
+                                {% endif %}
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+                        </div>
+
+                    {% endcase %}
+
+                  {% endif %}
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Overlay -->
+<div id="drawer-overlay" class="overlay"></div>
+
