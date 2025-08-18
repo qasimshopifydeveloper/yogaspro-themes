@@ -1646,10 +1646,20 @@ span.mar-flx {
     z-index: 9;
 }
  .quick-gally-slider .mar-nxt {
-    right: 1.2rem;
+    right: -3.2rem;
+     opacity: 0;
 }
  .quick-gally-slider .mar-prev {
     left: 1.2rem;
+     opacity: 0;
+}
+.product-gallery__media img:hover .quick-gally-slider .mar-nxt {
+    right: 1.2rem;
+     opacity: 1;
+}
+.product-gallery__media img:hover .quick-gally-slider .mar-prev {
+    left: 1.2rem;
+    opacity: 1;
 }
 @media only screen and (max-width: 768px){
     .mar-quick-model .quick-buy-modal__gallery-wrapper {
