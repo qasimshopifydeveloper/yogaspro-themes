@@ -1740,32 +1740,26 @@ document.addEventListener("mouseleave", function (e) {
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  // Loop through each carousel on the page
-  document.querySelectorAll(".product-gallery__carousel-with-arrows").forEach(function (gallery) {
-    const carousel = gallery.querySelector("scroll-carousel"); // the scrollable container
-    const prevBtn = gallery.querySelector(".mar-arow1");
-    const nextBtn = gallery.querySelector(".mar-arow2");
+  const galleries = document.querySelectorAll(".mar-quick-model .product-gallery__media");
+  console.log("Found galleries:", galleries.length);
 
-    if (carousel && prevBtn && nextBtn) {
-      const slide = carousel.querySelector(".product-gallery__media");
+  galleries.forEach(gallery => {
+    const img = gallery.querySelector("img");
+    console.log("Found image:", img);
 
-      // Get slide width dynamically (first slide)
-      const slideWidth = slide ? slide.offsetWidth : 300; // fallback 300px
+    gallery.addEventListener("mousemove", function (e) {
+      const rect = gallery.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
 
-      prevBtn.addEventListener("click", function () {
-        carousel.scrollBy({
-          left: -slideWidth,
-          behavior: "smooth"
-        });
-      });
+      img.style.transformOrigin = `${x}% ${y}%`;
+      img.style.transform = "scale(1.5)";
+    });
 
-      nextBtn.addEventListener("click", function () {
-        carousel.scrollBy({
-          left: slideWidth,
-          behavior: "smooth"
-        });
-      });
-    }
+    gallery.addEventListener("mouseleave", function () {
+      img.style.transformOrigin = "center center";
+      img.style.transform = "scale(1)";
+    });
   });
 });
 </script>
