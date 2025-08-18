@@ -1554,3 +1554,25 @@ span.discount-badge-mar
 
 
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const carousel = document.querySelector(".product-gallery__carousel");
+  const prevBtn = document.querySelector(".mar-arow1");
+  const nextBtn = document.querySelector(".mar-arow2");
+
+  if (carousel && prevBtn && nextBtn) {
+    // Get width of one slide
+    const slideWidth = carousel.querySelector(".product-gallery__media").offsetWidth;
+
+    // Scroll left
+    prevBtn.addEventListener("click", () => {
+      carousel.scrollBy({ left: -slideWidth, behavior: "smooth" });
+    });
+
+    // Scroll right
+    nextBtn.addEventListener("click", () => {
+      carousel.scrollBy({ left: slideWidth, behavior: "smooth" });
+    });
+  }
+});
+</script>
