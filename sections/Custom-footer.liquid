@@ -28,7 +28,7 @@
         width: 100%;
         display: flex;
         justify-content: flex-start;
-        margin-bottom: {{ section.settings.logo_margin_bottom | default: 20 }}px;
+        margin-bottom: {{ section.settings.logo_margin_bottom | default: 24 }}px;
     }
     .logo-block-image img{
         width: 100%;
@@ -542,8 +542,8 @@
             "label": "Logo Bottom Margin (px)",
             "min": 0,
             "max": 50,
-            "step": 5,
-            "default": 20
+            "step": 1,
+            "default": 24
         },
         {
             "type": "color",
