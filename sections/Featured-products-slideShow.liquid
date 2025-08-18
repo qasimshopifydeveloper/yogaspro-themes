@@ -618,9 +618,9 @@
                                 </button>
 
                                <quick-buy-modal handle="{{ product.handle }}?view=quick-view&variant={{ product.selected_or_first_available_variant.id }}" 
-                 class="quick-buy-modal modal mar-quick-model" 
-                 id="{{ quick_buy_id }}">
-</quick-buy-modal>
+                                                class="quick-buy-modal modal mar-quick-model" 
+                                                id="{{ quick_buy_id }}">
+                                </quick-buy-modal>
 
                                 <div class="button-banner">
                                     <div class="button-banner-inner">
@@ -1444,5 +1444,8 @@
 .mar-quick-model::part(content){
     max-width: 80%;
         border-radius: 10px;
+}
+.mar-quick-model::part(body) {
+    padding: 0;
 }
 </style>
