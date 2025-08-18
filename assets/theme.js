@@ -5872,28 +5872,21 @@ export {
 
 
 // Mar Js
-{% if template.page == 'landing-page' %}
-<script>
-  function toggleHeaderClass() {
-    const header = document.querySelector('.header');
+function toggleHeaderClass() {
+  const header = document.querySelector('.header');
 
-    if (!header) return;
-
-    if (window.scrollY === 0) {
-      header.classList.add('mar-no-bg');
-    } else {
-      header.classList.remove('mar-no-bg');
-    }
+  if (window.scrollY === 0) {
+    header.classList.add('mar-no-bg');
+  } else {
+    header.classList.remove('mar-no-bg');
   }
+}
 
-  // Run on load
-  toggleHeaderClass();
+// Run on load
+toggleHeaderClass();
 
-  // Run on scroll
-  window.addEventListener('scroll', toggleHeaderClass);
-</script>
-{% endif %}
-
+// Run on scroll
+window.addEventListener('scroll', toggleHeaderClass);
 
 
 
