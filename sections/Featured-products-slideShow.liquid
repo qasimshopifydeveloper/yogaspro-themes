@@ -1740,12 +1740,9 @@ document.addEventListener("mouseleave", function (e) {
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const galleries = document.querySelectorAll(".mar-quick-model .product-gallery__media");
-  console.log("Found galleries:", galleries.length);
-
-  galleries.forEach(gallery => {
-    const img = gallery.querySelector("img");
-    console.log("Found image:", img);
+  function initZoom(gallery) {
+    const img = gallery.querySelector("img, picture img");
+    if (!img) return;
 
     gallery.addEventListener("mousemove", function (e) {
       const rect = gallery.getBoundingClientRect();
@@ -1760,6 +1757,15 @@ document.addEventListener("DOMContentLoaded", function () {
       img.style.transformOrigin = "center center";
       img.style.transform = "scale(1)";
     });
+  }
+
+  // run once at page load
+  document.querySelectorAll(".mar-quick-model .product-gallery__media").forEach(initZoom);
+
+  // if Slick is used, re-bind zoom after slide change
+  $('.your-slider-class').on('afterChange', function () {
+    document.querySelectorAll(".mar-quick-model .product-gallery__media").forEach(initZoom);
   });
 });
+
 </script>
