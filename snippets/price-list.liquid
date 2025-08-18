@@ -65,9 +65,10 @@ Supported variables
       {{- variant.compare_at_price | money -}}
     {%- endif -%}
   </compare-at-price>
-
+{% if product.template_suffix = 'quick-view' %}
   {%- assign discount = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price -%}
   <span class="discount-badge">Save {{ discount | round }}%</span>
+{% endif %}
 {%- endif -%}
 
   {%- elsif line_item != blank -%}
