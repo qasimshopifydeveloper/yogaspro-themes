@@ -255,10 +255,10 @@
 }
 
 /* Hover effects matching grid-manue-links */
-.logo-footer-info a:hover {
+{% comment %} .logo-footer-info a:hover {
     transform: translateX({{ section.settings.link_hover_transform | default: 10 }}px);
     color: {{ section.settings.link_hover_color | default: 'white' }} !important;
-}
+} {% endcomment %}
 
 /* Fix for address link if it's wrapped in a span */
 .logo-footer-info span a {
