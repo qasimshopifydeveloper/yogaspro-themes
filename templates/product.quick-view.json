@@ -41,6 +41,15 @@
             "show_below_gallery": false
           }
         },
+        "inventory_KkdQ3E": {
+          "type": "inventory",
+          "settings": {
+            "show_in_stock_quantity": true,
+            "low_inventory_threshold": 0,
+            "show_progress_bar": true,
+            "progress_bar_max_value": 50
+          }
+        },
         "quantity_selector": {
           "type": "quantity_selector",
           "settings": {}
@@ -62,6 +71,7 @@
         "price",
         "variant_picker",
         "description_NpPmkT",
+        "inventory_KkdQ3E",
         "quantity_selector",
         "buy_buttons"
       ],
