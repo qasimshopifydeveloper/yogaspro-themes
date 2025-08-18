@@ -89,7 +89,7 @@
         "info_font_size": 16,
         "info_item_spacing": 10,
         "info_label_spacing": 10,
-        "logo_info_gap": 5,
+        "logo_info_gap": 0,
         "link_title_color": "#ffffff",
         "link_title_font_size": 18,
         "link_title_font_weight": 500,
