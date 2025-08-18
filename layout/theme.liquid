@@ -101,4 +101,24 @@
     </main>
   </body>
   {% render 'back-to-top' %}
+
+  {% if page.template_suffix == 'landing-page' %}
+    <script>
+      function toggleHeaderClass() {
+  const header = document.querySelector('.header');
+
+  if (window.scrollY === 0) {
+    header.classList.add('mar-no-bg');
+  } else {
+    header.classList.remove('mar-no-bg');
+  }
+}
+
+// Run on load
+toggleHeaderClass();
+
+// Run on scroll
+window.addEventListener('scroll', toggleHeaderClass);
+    </script>
+  {% endif %}
 </html>
