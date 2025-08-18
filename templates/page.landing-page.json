@@ -415,7 +415,7 @@
         "mobile_icon_width": 60,
         "mobile_icon_height": 60,
         "mobile_testimonial_font_size": 18,
-        "mobile_testimonial_padding_block": 15,
+        "mobile_testimonial_padding_block": 43,
         "mobile_description_gap": 15,
         "mobile_author_name_font_size": 14,
         "mobile_author_job_font_size": 12,
