@@ -48,7 +48,7 @@ Supported variables
           <a href="{{ product.url }}" class="product-title h6">{{ product.title }}</a>
 
           {%- if product.selected_or_first_available_variant != nil -%}
-            {% render 'quick-view-price', product: product, variant: product.selected_or_first_available_variant, hide_unit_price: true, context: 'card' %}
+            {% render 'price-list', product: product, variant: product.selected_or_first_available_variant, hide_unit_price: true, context: 'card' %}
           {%- endif -%}
         </div>
       </div>
