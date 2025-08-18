@@ -24,10 +24,6 @@
             "show_taxes_notice": false
           }
         },
-        "description_quick_view_K98mVj": {
-          "type": "description-quick-view",
-          "settings": {}
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -57,7 +53,6 @@
       "block_order": [
         "title",
         "price",
-        "description_quick_view_K98mVj",
         "variant_picker",
         "quantity_selector",
         "buy_buttons"
