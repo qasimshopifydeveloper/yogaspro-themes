@@ -1703,39 +1703,58 @@ padding-bottom: 2rem;
 .product-gallery__media img {
   transition: transform 0.2s ease;
   cursor: zoom-in;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-/* Zoom icon */
-.product-gallery__media::after {
-  content: "🔍"; /* You can replace with an SVG icon if needed */
+/* Zoom icon overlay */
+.product-gallery__media .zoom-icon {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  font-size: 22px;
-  color: rgba(0, 0, 0, 0.7);
-  background: rgba(255, 255, 255, 0.8);
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 50%;
-  padding: 4px 6px;
-  pointer-events: none; /* so it won’t block mouse events */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.product-gallery__media:hover::after {
-  opacity: 1; /* Show icon only on hover */
+.product-gallery__media:hover .zoom-icon {
+  opacity: 1;
 }
 </style>
 
+<!-- ===== Add zoom icon inside your product gallery media ===== -->
 <script>
-/* ===== Zoom Effect Script ===== */
 document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll('.product-gallery__media img').forEach(function(img) {
+  document.querySelectorAll('.product-gallery__media').forEach(function(media) {
+    // Add zoom icon only once
+    if (!media.querySelector('.zoom-icon')) {
+      const icon = document.createElement('div');
+      icon.className = 'zoom-icon';
+      icon.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      `;
+      media.appendChild(icon);
+    }
+
+    // Zoom effect
+    const img = media.querySelector('img');
     img.addEventListener('mousemove', function(e) {
       const rect = this.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 100;
       const y = ((e.clientY - rect.top) / rect.height) * 100;
       this.style.transformOrigin = `${x}% ${y}%`;
-      this.style.transform = "scale(2)"; // Zoom level
+      this.style.transform = "scale(2)";
     });
 
     img.addEventListener('mouseleave', function() {
