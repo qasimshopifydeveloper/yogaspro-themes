@@ -66,8 +66,7 @@ Supported variables
     {%- endif -%}
   </compare-at-price>
 
-  {%- assign discount = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price -%}
-  <span class="discount-badge">Save {{ discount | round }}%</span>
+
 
 {%- endif -%}
 
