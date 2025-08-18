@@ -1692,3 +1692,48 @@ padding-bottom: 2rem;
 
 
 
+<!-- ====== Product Gallery with Zoom Follow Cursor ====== -->
+<div class="mar-quick-model">
+  <div class="product-gallery__media">
+    <img src="https://via.placeholder.com/800x600" alt="Demo Product">
+  </div>
+</div>
+
+<style>
+.mar-quick-model .product-gallery__media {
+  position: relative;
+  overflow: hidden; /* keep zoom inside */
+}
+
+.mar-quick-model .product-gallery__media img {
+  transition: transform 0.2s ease;
+  will-change: transform;
+  transform-origin: center center; /* default */
+  cursor: zoom-in;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const galleries = document.querySelectorAll(".mar-quick-model .product-gallery__media");
+
+  galleries.forEach(gallery => {
+    const img = gallery.querySelector("img");
+
+    gallery.addEventListener("mousemove", function (e) {
+      const rect = gallery.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      // zoom + follow cursor
+      img.style.transformOrigin = `${x}% ${y}%`;
+      img.style.transform = "scale(1.5)";
+    });
+
+    gallery.addEventListener("mouseleave", function () {
+      img.style.transformOrigin = "center center";
+      img.style.transform = "scale(1)";
+    });
+  });
+});
+</script>
