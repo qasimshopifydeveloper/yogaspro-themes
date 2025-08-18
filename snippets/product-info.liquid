@@ -225,9 +225,7 @@ Supported variables
                   variant_image_options: block.settings.variant_image_options,
                   size_chart_page: block.settings.size_chart_page -%}
             {%- endif -%}
-            <div class="mar-quick-des">
-           {{ product.description }}
-            </div>
+          
           {%- when 'product_variations' -%}
             {%- liquid
               assign contains_product = false
