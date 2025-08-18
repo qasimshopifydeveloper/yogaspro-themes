@@ -382,7 +382,7 @@
         "author_name_color": "#000000",
         "author_job_font_size": 13,
         "author_job_color": "#000000",
-        "author_name_gap": 10,
+        "author_name_gap": 30,
         "divider_width": 30,
         "divider_height": 2,
         "divider_color": "#000000",
