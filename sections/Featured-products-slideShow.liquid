@@ -1731,6 +1731,7 @@ padding-bottom: 2rem;
 </style>
 
 <script>
+     if (window.matchMedia("(min-width: 769px)").matches) {
 /* === Zoom Effect Script (Works in Quick View too) === */
 document.addEventListener("mousemove", function (e) {
   // Check if cursor is over a gallery
@@ -1758,6 +1759,7 @@ document.addEventListener("mouseleave", function (e) {
   img.style.transformOrigin = "center center";
   img.style.transform = "scale(1)";
 }, true);
+}
 </script>
 
 
