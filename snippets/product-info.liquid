@@ -212,8 +212,9 @@ Supported variables
                 </div>
               {%- endif -%}
             {%- endif -%}
+            {%- assign product_description = product.description -%}
   <div class="prose">
-                  {{- product_description -}}
+                  {{- product_description -}} 
                 </div>
           {%- when 'variant_picker' -%}
             {%- if product != blank -%}
