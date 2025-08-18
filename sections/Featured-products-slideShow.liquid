@@ -558,7 +558,17 @@
                         <div class="custom-icons-container">
                             {% if product.variants.size > 1 %}
                             <div class="custom-icon-box">
-                               
+                                <button class="icon-button" onclick="location.href='{{ product.url }}'">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="20" version="1.1">
+                                        <g transform="matrix(1.3333333,0,0,-1.3333333,0,400)" id="g10">
+                                            <g transform="scale(0.1)" id="g12">
+                                                <path id="path14" style="fill-opacity:1;fill-rule:nonzero;stroke:none;" d="m 784.238,1668.15 c 92.879,-92.87 92.879,-243.43 0,-336.3 -92.883,-92.89 -243.437,-92.89 -336.316,0 -92.883,92.87 -92.883,243.43 0,336.3 92.879,92.89 243.433,92.89 336.316,0" fill="currentColor"></path>
+                                                <path id="path16" style="fill-opacity:1;fill-rule:nonzero;stroke:none;" d="m 2572.08,1668.15 c 92.88,-92.87 92.88,-243.43 0,-336.3 -92.87,-92.89 -243.44,-92.89 -336.31,0 -92.88,92.87 -92.88,243.43 0,336.3 92.87,92.89 243.44,92.89 336.31,0" fill="currentColor"></path>
+                                                <path id="path18" style="fill-opacity:1;fill-rule:nonzero;stroke:none;" d="m 1678.15,1668.15 c 92.89,-92.87 92.89,-243.43 0,-336.3 -92.87,-92.89 -243.43,-92.89 -336.3,0 -92.89,92.87 -92.89,243.43 0,336.3 92.87,92.89 243.43,92.89 336.3,0" fill="currentColor"></path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </button>
                                 <div class="button-banner">
                                     <div class="button-banner-inner">
                                         <span>More Options</span>
@@ -709,17 +719,7 @@
                         <div class="custom-icons-container">
                             <div class="custom-icon-box">
                                 {% if feture_product.variants.size > 1 %}
-                                <button class="icon-button" onclick="location.href='{{ feture_product.url }}'">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="20" version="1.1">
-                                        <g transform="matrix(1.3333333,0,0,-1.3333333,0,400)" id="g10">
-                                            <g transform="scale(0.1)" id="g12">
-                                                <path id="path14" style="fill-opacity:1;fill-rule:nonzero;stroke:none;" d="m 784.238,1668.15 c 92.879,-92.87 92.879,-243.43 0,-336.3 -92.883,-92.89 -243.437,-92.89 -336.316,0 -92.883,92.87 -92.883,243.43 0,336.3 92.879,92.89 243.433,92.89 336.316,0" fill="currentColor"></path>
-                                                <path id="path16" style="fill-opacity:1;fill-rule:nonzero;stroke:none;" d="m 2572.08,1668.15 c 92.88,-92.87 92.88,-243.43 0,-336.3 -92.87,-92.89 -243.44,-92.89 -336.31,0 -92.88,92.87 -92.88,243.43 0,336.3 92.87,92.89 243.44,92.89 336.31,0" fill="currentColor"></path>
-                                                <path id="path18" style="fill-opacity:1;fill-rule:nonzero;stroke:none;" d="m 1678.15,1668.15 c 92.89,-92.87 92.89,-243.43 0,-336.3 -92.87,-92.89 -243.43,-92.89 -336.3,0 -92.89,92.87 -92.89,243.43 0,336.3 92.87,92.89 243.43,92.89 336.3,0" fill="currentColor"></path>
-                                            </g>
-                                        </g>
-                                    </svg>
-                                </button>
+                               
                                 <div class="button-banner">
                                     <div class="button-banner-inner">
                                         <span>More Options</span>
