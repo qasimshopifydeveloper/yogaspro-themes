@@ -124,6 +124,7 @@
         transition: all {{ section.settings.link_transition_duration | default: 0.5 }}s ease;
         position: relative;
         display: block;
+        line-height: normal;
     }
     .grid-manue-links li:hover a{
         transform: translateX({{ section.settings.link_hover_transform | default: 10 }}px);
