@@ -80,15 +80,19 @@ Supported variables
         {%- endif -%}
 
         <buy-buttons class="buy-buttons {% if show_payment_button %}buy-buttons--has-dynamic{% endif %}" form="{{ form_id }}">
-            aaa
+          
           {%- if product.selected_or_first_available_variant.available == false or show_payment_button and atc_button_background == blank and atc_button_text_color == blank -%}
             {%- assign atc_button_style = 'outline' -%}
           {%- else -%}
             {%- assign atc_button_style = 'solid' -%}
           {%- endif -%}
-
+<div class="mar-flx">
+    <div class="mar-quantity">
+        </div>
+        <div class="mar-atc">
           {%- render 'button', content: button_content, type: 'submit', disabled: button_disabled, style: atc_button_style, background: atc_button_background, text_color: atc_button_text_color, stretch: true -%}
-
+</div>
+</div>
           {%- if show_payment_button -%}
             {{- form | payment_button -}}
 
