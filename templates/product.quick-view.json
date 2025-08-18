@@ -34,6 +34,13 @@
             "size_chart_page": ""
           }
         },
+        "description_NpPmkT": {
+          "type": "description",
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": false
+          }
+        },
         "quantity_selector": {
           "type": "quantity_selector",
           "settings": {}
@@ -54,6 +61,7 @@
         "title",
         "price",
         "variant_picker",
+        "description_NpPmkT",
         "quantity_selector",
         "buy_buttons"
       ],
