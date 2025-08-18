@@ -512,7 +512,7 @@ Supported variables
 
           {%- when 'button' -%}
             {%- if block.settings.text != blank -%}
-              {%- render 'button', href: block.settings.link, content: block.settings.text, stretch: block.settings.stretch, background: block.settings.background, text_color: block.settings.text_color -%}
+              {%- render 'buttons', href: block.settings.link, content: block.settings.text, stretch: block.settings.stretch, background: block.settings.background, text_color: block.settings.text_color -%}
             {%- endif -%}
 
           {%- when 'share_buttons' -%}
