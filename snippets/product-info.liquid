@@ -196,26 +196,10 @@ Supported variables
             <hr>
 
           {%- when 'description' -%}
-            {%- if product == blank -%}
-              {%- assign product_description = 'general.on_boarding.product_description' | t -%}
-            {%- else -%}
-              {%- assign product_description = product.description -%}
-            {%- endif -%}
+            <div class="mar-quick-des">
+           {{ product.description }}
+            </div>
 
-            {%- if product_description != blank -%}
-              {%- if block.settings.collapse_content -%}
-                {%- assign accordion_title = 'product.general.description' | t -%}
-                {%- render 'accordion', title: accordion_title, content: product_description, prose_content: true, block: block -%}
-              {%- else -%}
-                <div class="prose">
-                  {{- product_description -}}
-                </div>
-              {%- endif -%}
-            {%- endif -%}
-            {%- assign product_description = product.description -%}
-  <div class="prose">
-                  {{- product_description -}} 
-                </div>
           {%- when 'variant_picker' -%}
             {%- if product != blank -%}
               {%- render 'variant-picker',
