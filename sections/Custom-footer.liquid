@@ -84,7 +84,7 @@
         font-weight: {{ section.settings.link_title_font_weight | default: 500 }};
     }
     {% if section.settings.show_underline %}
-    .grid-link-title h2::after {
+    .grid-link-title h2::before {
         content: '';
         position: absolute;
         bottom: -{{ section.settings.underline_spacing | default: 5 }}px;
