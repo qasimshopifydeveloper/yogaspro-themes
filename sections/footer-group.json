@@ -68,8 +68,8 @@
       "name": "Custom Footer",
       "settings": {
         "footer_bg_color": "#72866d",
-        "heading_font": "assistant_n4",
-        "body_font": "assistant_n4",
+        "heading_font": "jost_n4",
+        "body_font": "jost_n4",
         "container_padding_horizontal": 0,
         "section_padding_top": 30,
         "section_padding_bottom": 0,
