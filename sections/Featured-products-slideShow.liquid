@@ -1738,3 +1738,34 @@ document.addEventListener("mouseleave", function (e) {
   img.style.transform = "scale(1)";
 }, true);
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Loop through each carousel on the page
+  document.querySelectorAll(".product-gallery__carousel-with-arrows").forEach(function (gallery) {
+    const carousel = gallery.querySelector("scroll-carousel"); // the scrollable container
+    const prevBtn = gallery.querySelector(".mar-arow1");
+    const nextBtn = gallery.querySelector(".mar-arow2");
+
+    if (carousel && prevBtn && nextBtn) {
+      const slide = carousel.querySelector(".product-gallery__media");
+
+      // Get slide width dynamically (first slide)
+      const slideWidth = slide ? slide.offsetWidth : 300; // fallback 300px
+
+      prevBtn.addEventListener("click", function () {
+        carousel.scrollBy({
+          left: -slideWidth,
+          behavior: "smooth"
+        });
+      });
+
+      nextBtn.addEventListener("click", function () {
+        carousel.scrollBy({
+          left: slideWidth,
+          behavior: "smooth"
+        });
+      });
+    }
+  });
+});
+</script>
