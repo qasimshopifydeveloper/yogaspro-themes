@@ -72,7 +72,7 @@
         "body_font": "assistant_n4",
         "container_padding_horizontal": 0,
         "section_padding_top": 30,
-        "section_padding_bottom": 30,
+        "section_padding_bottom": 0,
         "grid_columns": 4,
         "mobile_grid_columns": 1,
         "grid_gap": 30,
