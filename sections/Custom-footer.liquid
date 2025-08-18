@@ -115,7 +115,7 @@
     }
     .grid-manue-links li a{
         text-decoration: none;
-        color: {{ section.settings.link_text_color | default: 'rgba(255, 255, 255, 0.4)' }};
+        color: {{ section.settings.link_text_color | default: 'rgba(255, 255, 255, 0.5)' }};
         font-size: {{ section.settings.link_font_size | default: 16 }}px;
         font-family: {{ section.settings.body_font.family | default: 'jost, sans-serif' }};
         font-weight: {{ section.settings.link_font_weight | default: 500 }};
@@ -721,7 +721,7 @@
             "type": "color",
             "id": "link_text_color",
             "label": "Link Text Color",
-            "default": "rgba(255, 255, 255, 0.4)"
+            "default": "rgba(255, 255, 255, 0.5)"
         },
         {
             "type": "color",
