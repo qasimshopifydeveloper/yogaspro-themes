@@ -6,7 +6,7 @@
         align-items: center;
         background-color: {{ section.settings.footer_bg_color | default: '#72866D' }};
         padding-top: {{ section.settings.section_padding_top | default: 30 }}px;
-        padding-bottom: {{ section.settings.section_padding_bottom | default: 30 }}px;
+        padding-bottom: {{ section.settings.section_padding_bottom | default: 0 }}px;
     }
     .custom-footer-container_d1{
         width: 100%;
@@ -466,7 +466,7 @@
             "min": 0,
             "max": 100,
             "step": 5,
-            "default": 30
+            "default": 0
         },
         {
             "type": "header",
