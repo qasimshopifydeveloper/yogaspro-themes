@@ -68,7 +68,7 @@ Supported variables
 
   
   {%- assign discount = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price -%}
-  <span class="discount-badge-mar" style="display: none">Save {{ discount | round }}%</span>
+  <span class="discount-badge-mar">Save {{ discount | round }}%</span>
 
 {%- endif -%}
 
