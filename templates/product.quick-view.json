@@ -29,10 +29,6 @@
             "show_taxes_notice": false
           }
         },
-        "separator": {
-          "type": "separator",
-          "settings": {}
-        },
         "description": {
           "type": "description",
           "settings": {
@@ -64,44 +60,16 @@
             "payment_button_background": "",
             "payment_button_text_color": ""
           }
-        },
-        "complementary_products": {
-          "type": "complementary_products",
-          "settings": {
-            "title": "Pairs well with",
-            "products_count": 2,
-            "show_below_gallery": true,
-            "stack_products": false,
-            "show_quick_buy": true
-          }
-        },
-        "wishlist_hero_custom_product_button_rHATYn": {
-          "type": "shopify://apps/wishlist-hero/blocks/custom-product-button/a9a5079b-59e8-47cb-b659-ecf1c60b9b72",
-          "disabled": true,
-          "settings": {
-            "displayButtonMode": "~",
-            "contentAlignment": "center",
-            "buttonAlignment": "center",
-            "buttonFullwidth": true,
-            "removeBoxShadowAndBorder": false,
-            "horizontalPadding": 20,
-            "iconTopOffset": 0,
-            "addedCssClassNames": "",
-            "addedContainerStyles": ""
-          }
         }
       },
       "block_order": [
         "vendor",
         "title",
         "price",
-        "separator",
         "description",
         "variant_picker",
         "quantity_selector",
-        "buy_buttons",
-        "complementary_products",
-        "wishlist_hero_custom_product_button_rHATYn"
+        "buy_buttons"
       ],
       "settings": {
         "color_scheme": "",
