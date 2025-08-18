@@ -1694,8 +1694,8 @@ padding-bottom: 2rem;
 
 
 
-  <style>
-        /* === Zoom Effect Styles === */
+ <style>
+/* === Zoom Effect Styles === */
 .product-gallery__media {
   position: relative;
   overflow: hidden;
@@ -1708,6 +1708,33 @@ padding-bottom: 2rem;
   transform-origin: center center;
 }
 </style>
-<script>
 
+<script>
+/* === Zoom Effect Script (Works in Quick View too) === */
+document.addEventListener("mousemove", function (e) {
+  // Check if cursor is over a gallery
+  const gallery = e.target.closest(".product-gallery__media");
+  if (!gallery) return;
+
+  const img = gallery.querySelector("img");
+  if (!img) return;
+
+  const rect = gallery.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width) * 100;
+  const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+  img.style.transformOrigin = `${x}% ${y}%`;
+  img.style.transform = "scale(2)"; // zoom level
+});
+
+document.addEventListener("mouseleave", function (e) {
+  const gallery = e.target.closest(".product-gallery__media");
+  if (!gallery) return;
+
+  const img = gallery.querySelector("img");
+  if (!img) return;
+
+  img.style.transformOrigin = "center center";
+  img.style.transform = "scale(1)";
+}, true);
 </script>
