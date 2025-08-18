@@ -392,7 +392,7 @@
         "subtitle_color": "#72866d",
         "title_font_size": 42,
         "title_color": "#000000",
-        "b_block_gap": 10,
+        "b_block_gap": 0,
         "b_header_gap": 0,
         "b_header_padding_bottom": 10,
         "separator_image": "shopify://shop_images/Seprator.avif",
