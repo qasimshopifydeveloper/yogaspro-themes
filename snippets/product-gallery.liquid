@@ -259,13 +259,13 @@ only way to do it on Shopify right now.
       <carousel-navigation class="page-dots align-self-center {% unless mobile_controls == 'dots' %}md-max:hidden{% endunless %} {% unless desktop_layout == 'carousel_dots' %}md:hidden{% endunless %}" aria-controls="{{ product_gallery_carousel_id }}">
         {%- if product != blank -%}
           {%- for media in product.media -%}
-            <button type="button" class="tap-area" {% if filtered_indexes contains media.position %}hidden{% endif %} aria-current="{% if media == default_media %}true{% else %}false{% endif %}">
+            <button type="button" class="tap-area mar-arow1" {% if filtered_indexes contains media.position %}hidden{% endif %} aria-current="{% if media == default_media %}true{% else %}false{% endif %}">
               <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: media.position }}</span>
             </button>
           {%- endfor -%}
         {%- else -%}
           {%- for i in (1..3) -%}
-            <button type="button" class="tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+            <button type="button" class="tap-area mar-arow2" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
               <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
             </button>
           {%- endfor -%}
