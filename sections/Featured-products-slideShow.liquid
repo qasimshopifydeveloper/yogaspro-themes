@@ -1695,13 +1695,34 @@ padding-bottom: 2rem;
 <style>
 /* ===== Zoom Effect Styles ===== */
 .product-gallery__media {
-  overflow: hidden; /* Prevents zoomed image from overflowing */
+  overflow: hidden;
   position: relative;
 }
 
+/* Image zoom styling */
 .product-gallery__media img {
-  transition: transform 0.3s ease; /* Smooth zoom effect */
-  cursor: zoom-in; /* Show zoom cursor */
+  transition: transform 0.2s ease;
+  cursor: zoom-in;
+}
+
+/* Zoom icon */
+.product-gallery__media::after {
+  content: "🔍"; /* You can replace with an SVG icon if needed */
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.7);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  padding: 4px 6px;
+  pointer-events: none; /* so it won’t block mouse events */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-gallery__media:hover::after {
+  opacity: 1; /* Show icon only on hover */
 }
 </style>
 
@@ -1714,7 +1735,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const x = ((e.clientX - rect.left) / rect.width) * 100;
       const y = ((e.clientY - rect.top) / rect.height) * 100;
       this.style.transformOrigin = `${x}% ${y}%`;
-      this.style.transform = "scale(2)"; // Adjust zoom level
+      this.style.transform = "scale(2)"; // Zoom level
     });
 
     img.addEventListener('mouseleave', function() {
