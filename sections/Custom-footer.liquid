@@ -118,6 +118,7 @@
         color: {{ section.settings.link_text_color | default: 'rgba(255, 255, 255, 0.5)' }};
         color : #FFFFFF80;
 
+
         font-size: {{ section.settings.link_font_size | default: 16 }}px;
         font-family: {{ section.settings.body_font.family | default: 'jost, sans-serif' }};
         font-weight: {{ section.settings.link_font_weight | default: 500 }};
@@ -125,6 +126,7 @@
         position: relative;
         display: block;
         line-height: normal;
+        font-family: 'jost', sans-serif;
     }
     .grid-manue-links li:hover a{
         transform: translateX({{ section.settings.link_hover_transform | default: 10 }}px);
