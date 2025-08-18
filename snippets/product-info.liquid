@@ -212,7 +212,9 @@ Supported variables
                 </div>
               {%- endif -%}
             {%- endif -%}
-
+  <div class="prose">
+                  {{- product_description -}}
+                </div>
           {%- when 'variant_picker' -%}
             {%- if product != blank -%}
               {%- render 'variant-picker',
@@ -225,9 +227,7 @@ Supported variables
                   variant_image_options: block.settings.variant_image_options,
                   size_chart_page: block.settings.size_chart_page -%}
             {%- endif -%}
-            <div class="mar-quick-des">
-           {{ product.description }}
-            </div>
+           
           {%- when 'product_variations' -%}
             {%- liquid
               assign contains_product = false
