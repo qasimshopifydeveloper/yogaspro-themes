@@ -1697,58 +1697,63 @@ padding-bottom: 2rem;
 .product-gallery__media {
   overflow: hidden;
   position: relative;
-  cursor: grab; /* Drag cursor */
+  cursor: zoom-in;
 }
 
 .product-gallery__media img {
-  transition: transform 0.3s ease;
-  cursor: zoom-in;
-  user-select: none; /* Prevent image text selection */
+  transition: transform 0.2s ease;
+  user-select: none; /* Prevent highlight while dragging */
+  cursor: inherit;
 }
+
 .product-gallery__media.dragging {
   cursor: grabbing;
 }
 </style>
 
 <script>
-/* ===== Zoom & Drag Script ===== */
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('.product-gallery__media').forEach(function(media) {
     const img = media.querySelector('img');
+    let zoomed = false;
     let isDragging = false;
-    let startX, startY, moveX = 0, moveY = 0;
+    let startX, startY, currentX = 0, currentY = 0;
 
-    // Zoom on click
-    media.addEventListener("click", function () {
-      if (img.style.transform.includes("scale(2)")) {
-        img.style.transform = "scale(1)";
-        img.style.cursor = "zoom-in";
+    // Toggle zoom on click
+    media.addEventListener("click", function (e) {
+      if (!zoomed) {
+        zoomed = true;
+        img.style.transform = `scale(2) translate(0px, 0px)`;
+        media.style.cursor = "grab";
       } else {
-        img.style.transform = "scale(2)";
-        img.style.cursor = "grab";
+        zoomed = false;
+        img.style.transform = `scale(1) translate(0px, 0px)`;
+        currentX = currentY = 0;
+        media.style.cursor = "zoom-in";
       }
     });
 
     // Start dragging
-    img.addEventListener("mousedown", function(e) {
-      if (!img.style.transform.includes("scale(2)")) return; // Only drag when zoomed
+    media.addEventListener("mousedown", function (e) {
+      if (!zoomed) return; // Only drag when zoomed
       isDragging = true;
       media.classList.add("dragging");
-      startX = e.clientX - moveX;
-      startY = e.clientY - moveY;
+      startX = e.clientX - currentX;
+      startY = e.clientY - currentY;
     });
 
     // Drag move
-    window.addEventListener("mousemove", function(e) {
-      if (!isDragging) return;
+    window.addEventListener("mousemove", function (e) {
+      if (!isDragging || !zoomed) return;
       e.preventDefault();
-      moveX = e.clientX - startX;
-      moveY = e.clientY - startY;
-      img.style.transform = `scale(2) translate(${moveX / 2}px, ${moveY / 2}px)`; // Divide by 2 for smoother drag
+      currentX = e.clientX - startX;
+      currentY = e.clientY - startY;
+      img.style.transform = `scale(2) translate(${currentX / 2}px, ${currentY / 2}px)`;
     });
 
     // Stop dragging
     window.addEventListener("mouseup", function () {
+      if (!zoomed) return;
       isDragging = false;
       media.classList.remove("dragging");
     });
