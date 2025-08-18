@@ -361,7 +361,7 @@
         "section_padding_block": 30,
         "section_padding_top": 50,
         "section_background_color": "#ffffff",
-        "container_gap": 50,
+        "container_gap": 30,
         "container_padding_inline": 0,
         "left_image": "shopify://shop_images/Yoga_1.webp",
         "left_image_padding_inline": 0,
