@@ -43,6 +43,7 @@
         },
         "inventory_KkdQ3E": {
           "type": "inventory",
+          "disabled": true,
           "settings": {
             "show_in_stock_quantity": true,
             "low_inventory_threshold": 0,
