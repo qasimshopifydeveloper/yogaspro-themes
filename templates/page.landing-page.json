@@ -404,7 +404,7 @@
         "mobile_section_padding_top": 0,
         "mobile_container_gap": 20,
         "mobile_container_padding_inline": 15,
-        "mobile_left_image_padding_inline": 10,
+        "mobile_left_image_padding_inline": 0,
         "mobile_a_block_gap": 15,
         "mobile_a_footer_gap": 15,
         "mobile_right_image_padding_inline": 10,
