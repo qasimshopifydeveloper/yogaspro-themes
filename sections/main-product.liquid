@@ -75,7 +75,7 @@
               {%- case block.type -%}
                 {%- when 'description-quick-view' -%}
                    <div class="quick-des">
-                        aaa
+                        {{- product.description -}} 
                       </div>
                 {%- when 'description' -%}
                   {%- if product.description != blank -%}
