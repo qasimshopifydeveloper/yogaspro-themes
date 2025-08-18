@@ -293,14 +293,14 @@
 {% if block.settings.phone %}
     <div class="logo-footer-info">
         <p>{{ block.settings.phone_label | default: 'Phone:' }}</p>
-        <span><a href="tel:{{ block.settings.phone | remove: ' ' }}">{{ block.settings.phone }}</a></span>
+         <span> <a href="tel:{{ block.settings.phone | remove: ' ' }}">{{ block.settings.phone }}</a></span>
     </div>
 {% endif %}
                                
 {% if block.settings.email %}
     <div class="logo-footer-info">
         <p>{{ block.settings.email_label | default: 'E-mail:' }}</p>
-        <span><a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a></span>
+         <span> <a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a></span>
     </div>
 {% endif %}
 
@@ -308,7 +308,7 @@
     <div class="logo-footer-info">
         <p>{{ block.settings.address_label | default: 'Address:' }}</p>
         {% if block.settings.address_link %}
-            <span><a href="{{ block.settings.address_link }}" target="_blank">{{ block.settings.address }}</a></span>
+             <span> <a href="{{ block.settings.address_link }}" target="_blank">{{ block.settings.address }}</a></span>
         {% else %}
             <span>{{ block.settings.address }}</span>
         {% endif %}
@@ -319,7 +319,7 @@
     <div class="logo-footer-info">
         <p>{{ block.settings.opening_hours_label | default: 'Opening Hours:' }}</p>
         {% if block.settings.opening_hours_link %}
-            <span><a href="{{ block.settings.opening_hours_link }}" target="_blank">
+             <span> <a href="{{ block.settings.opening_hours_link }}" target="_blank">
                 {{ block.settings.opening_hours | newline_to_br }}
             </a></span>
         {% else %}
