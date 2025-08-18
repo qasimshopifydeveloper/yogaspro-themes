@@ -272,7 +272,7 @@
   },
   "platform_customizations": {
     "custom_css": [
-      "#shopify-pc__banner,#shopify-pc__prefs__dialog,#shopify-pc__prefs__dialog h3 {direction: rtl; text-align: right;}"
+      "body {overflow-x: hidden !important;}"
     ]
   }
 }
