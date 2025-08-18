@@ -87,7 +87,7 @@
         "info_label_color": "#ffffff66",
         "info_text_color": "#ffffff",
         "info_font_size": 16,
-        "info_item_spacing": 10,
+        "info_item_spacing": 8,
         "info_label_spacing": 10,
         "logo_info_gap": 0,
         "link_title_color": "#ffffff",
