@@ -1707,26 +1707,22 @@ padding-bottom: 2rem;
   will-change: transform;
   transform-origin: center center;
 }
-/* Carousel container */
-.quick-gally-slider {
+/* The scrolling container (your <scroll-carousel> already has these classes) */
+.quick-gally-slider,
+.product-gallery__carousels,
+.scroll-areas {
   display: flex;
   overflow-x: auto;
-  scroll-snap-type: x mandatory; /* enables snap scrolling */
-  -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
-  scroll-behavior: smooth; /* optional: smooth scroll */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
-/* Hide scrollbar if you want */
-.quick-gally-slider::-webkit-scrollbar {
-  display: none;
-}
-
-/* Each media item */
+/* Each slide */
 .product-gallery__media {
-  flex: 0 0 auto; /* prevent shrinking */
-  scroll-snap-align: center; /* snaps to the center */
-  scroll-snap-stop: always; /* forces stop at snap point */
-  width: 100%; /* each item takes full width */
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 
 </style>
@@ -1764,22 +1760,49 @@ document.addEventListener("mouseleave", function (e) {
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-  const carousel = document.querySelector(".quick-gally-slider");
-  const prevBtn = document.querySelector(".mar-arow1");
-  const nextBtn = document.querySelector(".mar-arow2");
+(() => {
+  // Find the scroller using the aria-controls id or nearest known container
+  function getScrollerByControls(el) {
+    const wrapper = el.closest('[aria-controls]');
+    const id = wrapper && wrapper.getAttribute('aria-controls');
+    return (id && document.getElementById(id))
+        || el.closest('scroll-carousel, .product-gallery__carousels, .quick-gally-slider, .scroll-areas');
+  }
 
-  // How much to scroll each time (one item width)
-  const scrollAmount = carousel.querySelector(".product-gallery__media").offsetWidth;
+  // Get the index of the currently snapped/nearest slide (robust for gaps/margins)
+  function getNearestIndex(scroller, items) {
+    const scrollLeft = scroller.scrollLeft;
+    let nearest = 0;
+    let best = Infinity;
+    items.forEach((item, i) => {
+      const left = item.offsetLeft;
+      const dist = Math.abs(left - scrollLeft);
+      if (dist < best) { best = dist; nearest = i; }
+    });
+    return nearest;
+  }
 
-  nextBtn.addEventListener("click", function () {
-    carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  // Event delegation so it works for all .mar-arow1/.mar-arow2 present or added later
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.mar-arow1, .mar-arow2');
+    if (!btn) return;
+
+    const scroller = getScrollerByControls(btn);
+    if (!scroller) return;
+
+    const items = scroller.querySelectorAll('.product-gallery__media');
+    if (!items.length) return;
+
+    e.preventDefault();
+
+    const current = getNearestIndex(scroller, items);
+    const dir = btn.classList.contains('mar-arow2') ? 1 : -1; // right = next, left = prev
+    const next = Math.max(0, Math.min(items.length - 1, current + dir));
+    const targetLeft = items[next].offsetLeft;
+
+    scroller.scrollTo({ left: targetLeft, behavior: 'smooth' });
   });
-
-  prevBtn.addEventListener("click", function () {
-    carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-  });
-});
-
+})();
 </script>
+
 
