@@ -3228,7 +3228,36 @@ if (!window.customElements.get("product-rerender")) {
   window.customElements.define("product-rerender", ProductRerender);
 }
 
-
+// js/common/product/quick-buy-modal.js
+var _QuickBuyModal_instances, onAfterHide_fn;
+var QuickBuyModal = class extends Modal {
+  constructor() {
+    super();
+    __privateAdd(this, _QuickBuyModal_instances);
+    if (window.themeVariables.settings.cartType === "drawer") {
+      document.addEventListener("variant:add", this.hide.bind(this));
+    }
+    this.addEventListener("dialog:after-hide", __privateMethod(this, _QuickBuyModal_instances, onAfterHide_fn).bind(this));
+  }
+  async show() {
+    document.documentElement.dispatchEvent(new CustomEvent("theme:loading:start", { bubbles: true }));
+    const responseContent = await (await cachedFetch(`${window.Shopify.routes.root}products/${this.getAttribute("handle")}`)).text();
+    document.documentElement.dispatchEvent(new CustomEvent("theme:loading:end", { bubbles: true }));
+    const tempDoc = new DOMParser().parseFromString(responseContent, "text/html");
+    const quickBuyContent = tempDoc.getElementById("quick-buy-content").content;
+    Array.from(quickBuyContent.querySelectorAll("noscript")).forEach((noScript) => noScript.remove());
+    this.replaceChildren(quickBuyContent);
+    Shopify?.PaymentButton?.init();
+    return super.show();
+  }
+};
+_QuickBuyModal_instances = new WeakSet();
+onAfterHide_fn = function() {
+  this.innerHTML = "";
+};
+if (!window.customElements.get("quick-buy-modal")) {
+  window.customElements.define("quick-buy-modal", QuickBuyModal);
+}
 
 // js/common/product/variant-picker.js
 import { Delegate as Delegate5 } from "vendor";
