@@ -1575,9 +1575,13 @@ span.discount-badge-mar
 .mar-quick-des li {
     list-style: none;
 }
-.mar-quick-des
- {
+.mar-quick-des{
     padding-top: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 </style>
 
