@@ -107,6 +107,7 @@
         "complementary_products",
         "wishlist_hero_custom_product_button_rHATYn"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "",
         "container_size": "lg",
@@ -124,6 +125,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
@@ -138,10 +140,37 @@
         "title": "Related products",
         "content": ""
       }
+    },
+    "featured_collection_products_ULxqnK": {
+      "type": "Featured-collection-products",
+      "name": "Featured Products",
+      "settings": {
+        "Add-collection": "",
+        "section_heading": "Signature Product",
+        "section_subheading": "NEW COLLECTIONS",
+        "products_per_row_desktop": 4,
+        "products_per_row_tablet": 3,
+        "products_per_row_mobile": 1,
+        "background_color": "#ffffff",
+        "heading_color": "#000000",
+        "subheading_color": "#969696",
+        "accent_color": "#728669",
+        "sale_badge_color": "#e12c43",
+        "price_color": "#76826D",
+        "section_padding_top": 30,
+        "section_padding_bottom": 30,
+        "heading_size": 36,
+        "product_image_height": 330,
+        "show_sale_badge": true,
+        "show_color_swatches": true,
+        "show_compare_price": true,
+        "enable_hover_effects": true
+      }
     }
   },
   "order": [
     "main",
-    "related-products"
+    "related-products",
+    "featured_collection_products_ULxqnK"
   ]
 }
