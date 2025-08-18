@@ -1577,11 +1577,12 @@ span.discount-badge-mar
 }
 .mar-quick-des{
     padding-top: 10px;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+display: -webkit-box;
+  -webkit-line-clamp: 4; /* limit to 4 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 6em; /* optional: fallback for browsers not supporting line-clamp */
 }
 </style>
 
