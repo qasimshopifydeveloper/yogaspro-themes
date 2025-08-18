@@ -1694,16 +1694,17 @@ padding-bottom: 2rem;
 
 
 
+
 <style>
 .mar-quick-model .product-gallery__media {
   position: relative;
-  overflow: hidden; /* keep zoom inside */
+  overflow: hidden;
 }
 
 .mar-quick-model .product-gallery__media img {
   transition: transform 0.2s ease;
   will-change: transform;
-  transform-origin: center center; /* default */
+  transform-origin: center center;
   cursor: zoom-in;
 }
 </style>
@@ -1720,7 +1721,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const x = ((e.clientX - rect.left) / rect.width) * 100;
       const y = ((e.clientY - rect.top) / rect.height) * 100;
 
-      // zoom + follow cursor
       img.style.transformOrigin = `${x}% ${y}%`;
       img.style.transform = "scale(1.5)";
     });
