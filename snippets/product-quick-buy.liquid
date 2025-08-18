@@ -54,7 +54,7 @@ Supported variables
       </div>
 
       <div class="quick-buy-modal__info-wrapper">
-        {%- render 'product-info', product: product, product_form_id: product_form_id, context: 'quick_buy' -%}
+        {%- render 'quick-info-mar', product: product, product_form_id: product_form_id, context: 'quick_buy' -%}
         {% comment %} <a href="{{ product.url }}" class="quick-buy-modal__view-more link sm-max:hidden">{{ 'product.general.view_details' | t }}</a> {% endcomment %}
       </div>
     </product-rerender>
