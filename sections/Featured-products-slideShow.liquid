@@ -1692,3 +1692,35 @@ padding-bottom: 2rem;
 
 
 
+<style>
+/* ===== Zoom Effect Styles ===== */
+.product-gallery__media {
+  overflow: hidden; /* Prevents zoomed image from overflowing */
+  position: relative;
+}
+
+.product-gallery__media img {
+  transition: transform 0.3s ease; /* Smooth zoom effect */
+  cursor: zoom-in; /* Show zoom cursor */
+}
+</style>
+
+<script>
+/* ===== Zoom Effect Script ===== */
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('.product-gallery__media img').forEach(function(img) {
+    img.addEventListener('mousemove', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      this.style.transformOrigin = `${x}% ${y}%`;
+      this.style.transform = "scale(2)"; // Adjust zoom level
+    });
+
+    img.addEventListener('mouseleave', function() {
+      this.style.transformOrigin = "center center";
+      this.style.transform = "scale(1)";
+    });
+  });
+});
+</script>
