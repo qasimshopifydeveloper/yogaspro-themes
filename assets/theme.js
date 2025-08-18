@@ -3255,7 +3255,7 @@ _QuickBuyModal_instances = new WeakSet();
 onAfterHide_fn = function() {
   this.innerHTML = "";
 };
-if (!window.customElements.get("quick-buy-modal")) {
+if (!window.customElements.get("quick-buy-modals")) {
   window.customElements.define("quick-buy-modal", QuickBuyModal);
 }
 
