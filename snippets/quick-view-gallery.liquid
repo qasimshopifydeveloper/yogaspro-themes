@@ -110,14 +110,14 @@ only way to do it on Shopify right now.
     {%- endcomment -%}
 
     <div class="{% if mobile_controls == 'arrows' %}product-gallery__carousel-with-arrows{% else %}contents{% endif %}">
-      {% comment %} {%- if mobile_controls == 'arrows' -%}
+      {%- if mobile_controls == 'arrows' -%}
         <carousel-prev-button aria-controls="{{ product_gallery_carousel_id }}" class="contents">
           <button type="button" class="tap-area sm:hidden mar-arow1">
             <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
             {%- render 'icon' with 'arrow-left', direction_aware: true -%}
           </button>
         </carousel-prev-button>
-      {%- endif -%} {% endcomment %}
+      {%- endif -%} 
 
       <scroll-carousel adaptive-height id="{{ product_gallery_carousel_id }}" class="product-gallery__carousels quick-gally-slider scroll-areas {% unless mobile_controls == 'arrows' %}full-bleed md:unbleed{% endunless %}" role="region">
         {%- if product != blank -%}
@@ -173,14 +173,14 @@ only way to do it on Shopify right now.
         {%- endif -%}
       </scroll-carousel>
 
-      {% comment %} {%- if mobile_controls == 'arrows' -%}
+     {%- if mobile_controls == 'arrows' -%}
         <carousel-next-button aria-controls="{{ product_gallery_carousel_id }}" class="contents">
           <button type="button" class="tap-area sm:hidden mar-arow2">
             <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
             {%- render 'icon' with 'arrow-right', direction_aware: true -%}
           </button>
         </carousel-next-button>
-      {%- endif -%} {% endcomment %}
+      {%- endif -%} 
     </div>
 
     {%- comment -%}

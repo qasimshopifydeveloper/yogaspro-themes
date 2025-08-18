@@ -1707,6 +1707,28 @@ padding-bottom: 2rem;
   will-change: transform;
   transform-origin: center center;
 }
+/* Carousel container */
+.quick-gally-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; /* enables snap scrolling */
+  -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+  scroll-behavior: smooth; /* optional: smooth scroll */
+}
+
+/* Hide scrollbar if you want */
+.quick-gally-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Each media item */
+.product-gallery__media {
+  flex: 0 0 auto; /* prevent shrinking */
+  scroll-snap-align: center; /* snaps to the center */
+  scroll-snap-stop: always; /* forces stop at snap point */
+  width: 100%; /* each item takes full width */
+}
+
 </style>
 
 <script>
@@ -1737,19 +1759,26 @@ document.addEventListener("mouseleave", function (e) {
   img.style.transformOrigin = "center center";
   img.style.transform = "scale(1)";
 }, true);
-</script>
 
 
-<script>
 
-  $(document).ready(function () {
-    $('.quick-gally-slider').slick({
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      dots: false,
-      arrows: false
-    });
+document.addEventListener("DOMContentLoaded", function () {
+  const carousel = document.querySelector(".quick-gally-slider");
+  const prevBtn = document.querySelector(".mar-arow1");
+  const nextBtn = document.querySelector(".mar-arow2");
+
+  // How much to scroll each time (one item width)
+  const scrollAmount = carousel.querySelector(".product-gallery__media").offsetWidth;
+
+  nextBtn.addEventListener("click", function () {
+    carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
   });
 
+  prevBtn.addEventListener("click", function () {
+    carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+});
+
 </script>
+
+
