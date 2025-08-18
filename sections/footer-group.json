@@ -80,7 +80,7 @@
         "grid_padding_top": 30,
         "grid_padding_bottom": 30,
         "logo_max_width": 140,
-        "logo_margin_bottom": 20,
+        "logo_margin_bottom": 24,
         "description_text_color": "#ffffff66",
         "description_font_size": 16,
         "description_margin_bottom": 16,
