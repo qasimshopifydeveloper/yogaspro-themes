@@ -617,7 +617,7 @@
                                     </svg>
                                 </button>
 
-                                <quick-buy-modal handle="{{ product.handle }}?variant={{ product.selected_or_first_available_variant.id }}" class="quick-buy-modal modal" id="{{ quick_buy_id }}">
+                                <quick-buy-modal handle="{{ product.handle }}?variant={{ product.selected_or_first_available_variant.id }}" class="quick-buy-modal modal mar-quick-model" id="{{ quick_buy_id }}">
                                 </quick-buy-modal>
                                 <div class="button-banner">
                                     <div class="button-banner-inner">
@@ -1437,5 +1437,8 @@
 .Featured_product_card .product-card__quick-add-button
  {
     transform: translateY(0px);
+}
+.mar-quick-model .modal::part(content){
+    max-width: 80%;
 }
 </style>
