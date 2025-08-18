@@ -38,7 +38,7 @@
     .logo-block-footer{
         display: flex;
         flex-direction: column;
-        gap: {{ section.settings.logo_info_gap | default: 5 }}px;
+        gap: {{ section.settings.logo_info_gap | default: 0 }}px;
     }
     .logo-footer-description{
         color: {{ section.settings.description_text_color | default: 'rgba(255, 255, 255, 0.4)' }};
@@ -615,7 +615,7 @@
             "min": 0,
             "max": 20,
             "step": 1,
-            "default": 5
+            "default": 0
         },
         {
             "type": "header",
