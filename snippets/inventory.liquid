@@ -69,16 +69,16 @@ Supported variables
       endif
     -%}
 
-    <span>{{- inventory_text -}}</span>
+    <span>{{- inventory_text -}}</span> ff
   {%- endif -%}
 {%- endcapture -%}
 
 {%- if inventory_for_variant != blank -%}
   <variant-inventory class="inventory text-{{ inventory_status }}">
-    {{- inventory_for_variant -}} ggg
+    {{- inventory_for_variant -}}
 
     {%- if show_progress_bar -%}
-      <progress-bar class="progress-bar vvv" animate-on-scroll aria-valuenow="{{ inventory_quantity }}" aria-valuemax="{{ progress_bar_max_value | default: 50 }}"></progress-bar>
+      <progress-bar class="progress-bar" animate-on-scroll aria-valuenow="{{ inventory_quantity }}" aria-valuemax="{{ progress_bar_max_value | default: 50 }}"></progress-bar>
     {%- endif -%}
   </variant-inventory>
 {%- endif -%}
