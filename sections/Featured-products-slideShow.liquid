@@ -1716,7 +1716,10 @@ padding-bottom: 2rem;
   scroll-behavior: smooth; /* optional: smooth scroll */
 }
 
-
+/* Hide scrollbar if you want */
+.quick-gally-slider::-webkit-scrollbar {
+  display: none;
+}
 
 /* Each media item */
 .product-gallery__media {
@@ -1757,9 +1760,11 @@ document.addEventListener("mouseleave", function (e) {
   img.style.transform = "scale(1)";
 }, true);
 
+</script>
 
 
-document.addEventListener("DOMContentLoaded", function () {
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
   const carousel = document.querySelector(".quick-gally-slider");
   const prevBtn = document.querySelector(".mar-arow1");
   const nextBtn = document.querySelector(".mar-arow2");
@@ -1777,5 +1782,4 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
-
 
