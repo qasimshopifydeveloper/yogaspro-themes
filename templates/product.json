@@ -39,7 +39,7 @@
         "description": {
           "type": "description",
           "settings": {
-            "collapse_content": false,
+            "collapse_content": true,
             "show_below_gallery": false
           }
         },
@@ -60,8 +60,8 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_payment_button": true,
-            "show_gift_card_recipient": true,
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
             "atc_button_background": "",
             "atc_button_text_color": "",
             "payment_button_background": "",
