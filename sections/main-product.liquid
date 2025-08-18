@@ -73,6 +73,10 @@
               {%- endunless -%}
 
               {%- case block.type -%}
+                {%- when 'description-quick-view' -%}
+                   <div class="product-content-below-gallery__description prose">
+                        {{- product.description -}}
+                      </div>
                 {%- when 'description' -%}
                   {%- if product.description != blank -%}
                     {%- if block.settings.collapse_content -%}
@@ -456,6 +460,14 @@ quick buy information in a template, that will be extracted in JS, which ensures
     {
       "type": "separator",
       "name": "t:sections.main_product.blocks.separator.name"
+    },
+      {
+      "type": "description-quick-view",
+      "name": "Description Quick View",
+      "limit": 1,
+      "settings": [
+       
+      ]
     },
     {
       "type": "description",
