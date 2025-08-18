@@ -1494,10 +1494,20 @@
             transition: .3s;
 }
 button.mar-arow2 {
-    right: 1.2rem;
+    right: -3.2rem;
+    opacity: 0;
 }
 button.mar-arow1 {
+    left: -3.2rem;
+    opacity: 0;
+}
+.product-gallery__carousel-with-arrows:hover button.mar-arow2 {
+    right: 1.2rem;
+    opacity: 1;
+}
+.product-gallery__carousel-with-arrows:hover button.mar-arow1 {
     left: 1.2rem;
+    opacity: 1;
 }
 .mar-quick-model .tap-area svg path {
     stroke: black;
