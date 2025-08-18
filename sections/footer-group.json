@@ -99,7 +99,7 @@
         "show_underline": true,
         "underline_color": "#ffffff66",
         "underline_width": 35,
-        "underline_height": 1,
+        "underline_height": 0.1,
         "underline_spacing": 20,
         "link_text_color": "#ffffff66",
         "link_hover_color": "#ffffff",
