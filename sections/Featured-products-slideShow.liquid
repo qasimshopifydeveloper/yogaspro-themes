@@ -693,7 +693,7 @@
             </div><!--swipper-->
             </div><!--slider-conatiner-->
            
-          <div class="advertise-products-container">
+  <div class="advertise-products-container">
   <div class="advertise-banner-title">
     <h2>{{ section.settings.deals_title }}</h2>
   </div>
@@ -726,7 +726,12 @@
                 <div class="custom-icon-box">
                   {% if feture_product.variants.size > 1 %}
                     <button class="icon-button" onclick="location.href='{{ feture_product.url }}'">
-                      <!-- your SVG for More Options -->
+                      <!-- More Options SVG -->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="5" cy="12" r="1"></circle>
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="19" cy="12" r="1"></circle>
+                      </svg>
                     </button>
                     <div class="button-banner">
                       <div class="button-banner-inner">
@@ -754,7 +759,11 @@
                 <!-- Quick View -->
                 <div class="custom-icon-box">
                   <button type="button" aria-controls="{{ quick_buy_id }}" class="icon-button">
-                    <!-- your SVG for Quick View -->
+                    <!-- Quick View SVG (Eye) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
                   </button>
                   <div class="button-banner">
                     <div class="button-banner-inner">
@@ -773,7 +782,10 @@
                 <!-- Wishlist -->
                 <div class="custom-icon-box">
                   <button class="icon-button" onclick="addToWishlist('{{ feture_product.id }}')">
-                    <!-- your SVG for Wishlist -->
+                    <!-- Wishlist SVG (Heart) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20.8 4.6c-1.6-1.6-4.2-1.6-5.8 0L12 7.6l-3-3c-1.6-1.6-4.2-1.6-5.8 0s-1.6 4.2 0 5.8l3 3L12 20l5.8-5.8 3-3c1.6-1.6 1.6-4.2 0-5.8z"></path>
+                    </svg>
                   </button>
                   <div class="button-banner">
                     <div class="button-banner-inner">
@@ -843,6 +855,7 @@
     {% endfor %}
   </div>
 </div><!--advertise-products-->
+
 
         </div>
     </section>
