@@ -411,7 +411,7 @@
         "mobile_b_block_gap": 15,
         "mobile_b_header_gap": 15,
         "mobile_b_header_padding_bottom": 0,
-        "mobile_icon_margin_top": 15,
+        "mobile_icon_margin_top": 30,
         "mobile_icon_width": 60,
         "mobile_icon_height": 60,
         "mobile_testimonial_font_size": 18,
