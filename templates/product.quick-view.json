@@ -29,12 +29,9 @@
             "show_taxes_notice": false
           }
         },
-        "description": {
-          "type": "description",
-          "settings": {
-            "collapse_content": false,
-            "show_below_gallery": false
-          }
+        "description_quick_view_K98mVj": {
+          "type": "description-quick-view",
+          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -66,7 +63,7 @@
         "vendor",
         "title",
         "price",
-        "description",
+        "description_quick_view_K98mVj",
         "variant_picker",
         "quantity_selector",
         "buy_buttons"
