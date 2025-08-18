@@ -8142,7 +8142,7 @@ header.mar-bg-clr {
 .sidebar {
   position: fixed;
   top: 0;
-  right: -350px; /* hidden */
+  left: -350px; /* hidden */
   width: 300px;
   height: 100vh;
   background: #fff;
@@ -8217,7 +8217,7 @@ li.mar-child {
 .submenu-drawer {
   position: fixed;
   top: 0;
-  right: -300px; /* hidden off screen */
+  left: -300px; /* hidden off screen */
   width: 300px;
   height: 100vh;
   background: #fff;
@@ -8227,7 +8227,7 @@ li.mar-child {
 }
 
 .submenu-drawer.active {
-  right: 0; /* slide in */
+  left: 0; /* slide in */
 }
 
 .submenu-toggle {
