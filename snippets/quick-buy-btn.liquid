@@ -80,7 +80,7 @@ Supported variables
         {%- endif -%}
 
   <buy-buttons class="buy-buttons {% if show_payment_button %}buy-buttons--has-dynamic{% endif %}" form="{{ form_id }}">
-  
+
   <!-- ✅ Terms & Conditions Checkbox -->
   <div class="terms-wrapper">
     <label>
@@ -89,7 +89,8 @@ Supported variables
     </label>
   </div>
 
-  {%- if product.selected_or_first_available_variant.available == false or show_payment_button and atc_button_background == blank and atc_button_text_color == blank -%}
+  {%- if product.selected_or_first_available_variant.available == false 
+        or show_payment_button and atc_button_background == blank and atc_button_text_color == blank -%}
     {%- assign atc_button_style = 'outline' -%}
   {%- else -%}
     {%- assign atc_button_style = 'solid' -%}
@@ -126,13 +127,17 @@ Supported variables
       </div>
     </div>
 
+    <!-- ✅ Add to Cart -->
     <div class="mar-atc">
       {%- render 'button', content: button_content, type: 'submit', disabled: true, style: atc_button_style, background: atc_button_background, text_color: atc_button_text_color, stretch: true -%}
     </div>
   </div>
 
+  <!-- ✅ Buy Now -->
   {%- if show_payment_button -%}
-    {{- form | payment_button -}}
+    <div class="mar-buy-now shopify-payment-button-wrapper">
+      {{- form | payment_button -}}
+    </div>
 
     <style>
       #{{ form_id }} .shopify-payment-button {
@@ -157,18 +162,19 @@ Supported variables
 document.addEventListener("DOMContentLoaded", function () {
   const termsCheckbox = document.getElementById("terms-checkbox");
   const buyButtonsWrapper = document.querySelector(".buy-buttons");
-  const allButtons = buyButtonsWrapper.querySelectorAll("button, .shopify-payment-button button");
+
+  // Select Add to Cart + Dynamic Checkout buttons
+  const addToCartBtn = buyButtonsWrapper.querySelector("button[type='submit']");
+  const buyNowBtn = buyButtonsWrapper.querySelector(".shopify-payment-button button");
 
   function toggleButtons() {
-    allButtons.forEach(btn => {
-      if (termsCheckbox.checked) {
-        btn.disabled = false;
-        btn.style.cursor = "pointer";
-        btn.style.opacity = "1";
-      } else {
-        btn.disabled = true;
-        btn.style.cursor = "not-allowed";
-        btn.style.opacity = "0.6";
+    const enabled = termsCheckbox.checked;
+
+    [addToCartBtn, buyNowBtn].forEach(btn => {
+      if (btn) {
+        btn.disabled = !enabled;
+        btn.style.cursor = enabled ? "pointer" : "not-allowed";
+        btn.style.opacity = enabled ? "1" : "0.6";
       }
     });
   }
