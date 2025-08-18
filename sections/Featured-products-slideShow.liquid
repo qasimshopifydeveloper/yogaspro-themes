@@ -1551,3 +1551,28 @@ span.discount-badge-mar
     display: block !important;
 }
 </style>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+  const carousel = document.querySelector("scroll-carousel"); // your scrollable container
+  const prevBtn = document.querySelector("button.mar-arow1");
+  const nextBtn = document.querySelector("button.mar-arow2");
+
+  if (carousel && prevBtn && nextBtn) {
+    // Width of one slide (all slides are snap-center)
+    const slide = carousel.querySelector(".product-gallery__media");
+    const slideWidth = slide ? slide.offsetWidth : 300; // fallback
+
+    prevBtn.addEventListener("click", () => {
+      carousel.scrollBy({ left: -slideWidth, behavior: "smooth" });
+    });
+
+    nextBtn.addEventListener("click", () => {
+      carousel.scrollBy({ left: slideWidth, behavior: "smooth" });
+    });
+  }
+});
+
+</script>
