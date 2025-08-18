@@ -1473,9 +1473,7 @@
     gap: 0;
     align-items: flex-start;
 }
-.mar-quick-model .page-dots{
-    display: none;
-}
+
 .mar-quick-model .product-gallery__media>*{
     height: 90vh;
         object-fit: cover;
@@ -1554,24 +1552,3 @@ span.discount-badge-mar
 
 
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const carousel = document.querySelector("scroll-carousel"); // your scrollable container
-  const prevBtn = document.querySelector("carousel-prev-button button.mar-arow1");
-  const nextBtn = document.querySelector("carousel-next-button button.mar-arow2");
-
-  if (carousel && prevBtn && nextBtn) {
-    prevBtn.addEventListener("click", () => {
-      const slide = carousel.querySelector(".product-gallery__media");
-      const slideWidth = slide ? slide.offsetWidth : 300; // fallback
-      carousel.scrollBy({ left: -slideWidth, behavior: "smooth" });
-    });
-
-    nextBtn.addEventListener("click", () => {
-      const slide = carousel.querySelector(".product-gallery__media");
-      const slideWidth = slide ? slide.offsetWidth : 300; // fallback
-      carousel.scrollBy({ left: slideWidth, behavior: "smooth" });
-    });
-  }
-});
-</script>
