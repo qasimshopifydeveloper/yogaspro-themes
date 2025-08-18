@@ -5872,21 +5872,7 @@ export {
 
 
 // Mar Js
-function toggleHeaderClass() {
-  const header = document.querySelector('.header');
 
-  if (window.scrollY === 0) {
-    header.classList.add('mar-no-bg');
-  } else {
-    header.classList.remove('mar-no-bg');
-  }
-}
-
-// Run on load
-toggleHeaderClass();
-
-// Run on scroll
-window.addEventListener('scroll', toggleHeaderClass);
 
 
 
