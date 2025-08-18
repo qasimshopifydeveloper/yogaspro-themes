@@ -1590,6 +1590,24 @@ span.mar-flx {
     align-items: center;
     gap: 10px;
 }
+@keyframes progress-bar {
+  0% {
+    background-position: 2rem 0px;
+  }
+  100% {
+    background-position: 0px 0px;
+  }
+}
+.progress-bar {
+    height: 3px;
+    display: block;
+    position: relative;
+    background-color: rgba(var(--color-foreground));
+    transition: .5s;
+    animation: progress-bar 1s linear infinite;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .3) 75%, transparent 75%, transparent);
+    background-size: 2rem 2rem;
+}
 </style>
 
 
