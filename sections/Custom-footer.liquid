@@ -299,31 +299,31 @@
                                
 {% if block.settings.email %}
     <div class="logo-footer-info">
-        <p>{{ block.settings.email_label | default: 'E-mail:' }}</p>
-         <span> <a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a></span>
+        <p> {{ block.settings.email_label | default: 'E-mail:' }} </p>
+         <span> <a href="mailto:{{ block.settings.email }}"> {{ block.settings.email }} </a></span>
     </div>
 {% endif %}
 
 {% if block.settings.address %}
     <div class="logo-footer-info">
-        <p>{{ block.settings.address_label | default: 'Address:' }}</p>
+        <p> {{ block.settings.address_label | default: 'Address:' }} </p>
         {% if block.settings.address_link %}
              <span> <a href="{{ block.settings.address_link }}" target="_blank">{{ block.settings.address }}</a></span>
         {% else %}
-            <span>{{ block.settings.address }}</span>
+            <span> {{ block.settings.address }}</span>
         {% endif %}
     </div>
 {% endif %}
 
 {% if block.settings.opening_hours %}
     <div class="logo-footer-info">
-        <p>{{ block.settings.opening_hours_label | default: 'Opening Hours:' }}</p>
+        <p> {{ block.settings.opening_hours_label | default: 'Opening Hours:' }} </p>
         {% if block.settings.opening_hours_link %}
              <span> <a href="{{ block.settings.opening_hours_link }}" target="_blank">
-                {{ block.settings.opening_hours | newline_to_br }}
-            </a></span>
+                 {{ block.settings.opening_hours | newline_to_br }}
+            </a> </span>
         {% else %}
-            <span>{{ block.settings.opening_hours | newline_to_br }}</span>
+            <span> {{ block.settings.opening_hours | newline_to_br }}</span>
         {% endif %}
     </div>
 {% endif %}
