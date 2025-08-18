@@ -4944,7 +4944,7 @@ cart-dot.header__cart-dot {
 
 @media screen and (min-width: 700px) {
   .header__secondary-nav {
-    column-gap: 1.25rem;
+    column-gap: 1.12rem;
   }
 
 }
