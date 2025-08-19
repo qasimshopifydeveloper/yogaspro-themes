@@ -423,6 +423,32 @@
         "sub_font_size_mobile": 10
       }
     },
+    "featured_collection_products_cBnnNw": {
+      "type": "Featured-collection-products",
+      "name": "Featured  Products",
+      "settings": {
+        "Add-collection": "all-products",
+        "section_heading": "Signature Product",
+        "section_subheading": "NEW COLLECTIONS",
+        "products_per_row_desktop": 4,
+        "products_per_row_tablet": 3,
+        "products_per_row_mobile": 1,
+        "background_color": "#ffffff",
+        "heading_color": "#000000",
+        "subheading_color": "#969696",
+        "accent_color": "#728669",
+        "sale_badge_color": "#ea1a34",
+        "price_color": "#76826d",
+        "section_padding_top": 30,
+        "section_padding_bottom": 35,
+        "heading_size": 36,
+        "product_image_height": 330,
+        "show_sale_badge": true,
+        "show_color_swatches": true,
+        "show_compare_price": true,
+        "enable_hover_effects": true
+      }
+    },
     "custom_text_image_block_4rgywd": {
       "type": "Custom-text-image-block",
       "disabled": true,
@@ -544,6 +570,7 @@
     "custom_collections_banner_xfhRBb",
     "featured_products_slide_show_wDmpyK",
     "collections_with_name_fFefFW",
+    "featured_collection_products_cBnnNw",
     "custom_text_image_block_4rgywd",
     "custom_icon_with_text_KGw6CL"
   ]
