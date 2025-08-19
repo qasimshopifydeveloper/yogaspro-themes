@@ -92,17 +92,17 @@ Supported variables
             </div>
           </div>
           <div class="mar-atc">
-            {%- render 'button', 
-              content: button_content, 
-              type: 'submit', 
-              disabled: button_disabled, 
-              style: atc_button_style, 
-              background: atc_button_background, 
-              text_color: atc_button_text_color, 
-              stretch: true, 
-              class: 'mar-disable' 
-            -%}
-          </div>
+  {%- render 'button', 
+    content: button_content, 
+    type: 'submit', 
+    disabled: button_disabled, 
+    style: atc_button_style, 
+    background: atc_button_background, 
+    text_color: atc_button_text_color, 
+    stretch: true 
+  -%}
+</div>
+
         </div>
 
         {%- if show_payment_button -%}
@@ -141,23 +141,24 @@ Supported variables
           }
         </style>
 
-        <script>
-          document.addEventListener("DOMContentLoaded", function() {
-            const checkbox = document.getElementById("agreeCheckbox");
-            const atcBtn = document.querySelector(".mar-atc button");
+      <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const checkbox = document.getElementById("agreeCheckbox");
+    const atcBtn = document.querySelector(".mar-atc button");
 
-            // By default keep mar-disable
-            atcBtn.classList.add("mar-disable");
+    // Start disabled
+    atcBtn.classList.add("mar-disable");
 
-            checkbox.addEventListener("change", function() {
-              if (checkbox.checked) {
-                atcBtn.classList.remove("mar-disable");
-              } else {
-                atcBtn.classList.add("mar-disable");
-              }
-            });
-          });
-        </script>
+    checkbox.addEventListener("change", function() {
+      if (checkbox.checked) {
+        atcBtn.classList.remove("mar-disable");
+      } else {
+        atcBtn.classList.add("mar-disable");
+      }
+    });
+  });
+</script>
+
       </buy-buttons>
     </div>
   {%- endform -%}
