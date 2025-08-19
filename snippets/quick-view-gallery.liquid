@@ -278,30 +278,47 @@ only way to do it on Shopify right now.
 
 
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-     <script src="{{ 'slick.js' | asset_url }}"></script>
-     {{ 'slick.css' | asset_url | stylesheet_tag }}
-     {{ 'slick-theme.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'slick.js' | asset_url }}"></script>
+{{ 'slick.css' | asset_url | stylesheet_tag }}
+{{ 'slick-theme.css' | asset_url | stylesheet_tag }}
+
 <script>
-$(document).ready(function () {
-  $('.quick-gally-slider').slick({
-    infinite: false,
-    slidesToShow: 1,  // default for desktop
-    slidesToScroll: 1,
-    dots: false,
-    arrows: true,
-    prevArrow: "<img class='prev slick-prev mar_same_wd mar-prev' src='https://cdn.shopify.com/s/files/1/0748/6311/6520/files/iconamoon--arrow-right-2-light_25c01315-4fb0-43b9-b8c8-56632ee24323.png?v=1755525090'>",
-    nextArrow: "<img class='next slick-next mar_same_wd mar-nxt' src='https://cdn.shopify.com/s/files/1/0748/6311/6520/files/iconamoon--arrow-right-2-light.png?v=1755525025'>",
-    responsive: [
-      {
-        breakpoint: 768, // Mobile breakpoint
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: false, // optional: show/hide arrows
-          dots: false
+function initQuickGallySlider() {
+  if (!$('.quick-gally-slider').hasClass('slick-initialized')) {
+    $('.quick-gally-slider').slick({
+      infinite: false,
+      slidesToShow: 1,  // default for desktop
+      slidesToScroll: 1,
+      dots: false,
+      arrows: true,
+      prevArrow: "<img class='prev slick-prev mar_same_wd mar-prev' src='https://cdn.shopify.com/s/files/1/0748/6311/6520/files/iconamoon--arrow-right-2-light_25c01315-4fb0-43b9-b8c8-56632ee24323.png?v=1755525090'>",
+      nextArrow: "<img class='next slick-next mar_same_wd mar-nxt' src='https://cdn.shopify.com/s/files/1/0748/6311/6520/files/iconamoon--arrow-right-2-light.png?v=1755525025'>",
+      responsive: [
+        {
+          breakpoint: 768, // Mobile breakpoint
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false, 
+            dots: false
+          }
         }
-      }
-    ]
+      ]
+    });
+  }
+}
+
+$(document).ready(function () {
+  // Initialize once DOM is ready
+  initQuickGallySlider();
+
+  // Re-check after all assets/images load
+  $(window).on('load', function () {
+    initQuickGallySlider();
   });
+
+  // Extra safeguard: reinit if needed after short delay
+  setTimeout(initQuickGallySlider, 1000);
 });
 </script>
+
