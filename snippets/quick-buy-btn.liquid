@@ -53,6 +53,7 @@ Supported variables
     %}
 
     <div class="v-stack gap-4">
+
       <buy-buttons class="buy-buttons {% if show_payment_button %}buy-buttons--has-dynamic{% endif %}" form="{{ form_id }}">
         
         {%- if product.selected_or_first_available_variant.available == false or show_payment_button and atc_button_background == blank and atc_button_text_color == blank -%}
@@ -92,57 +93,67 @@ Supported variables
             </div>
           </div>
           <div class="mar-atc">
-            {%- render 'button', content: button_content, type: 'submit', disabled: true, style: atc_button_style, background: atc_button_background, text_color: atc_button_text_color, stretch: true, class: 'main-atc-btn' -%}
+            {%- render 'button', content: button_content, type: 'submit', style: atc_button_style, background: atc_button_background, text_color: atc_button_text_color, stretch: true, class: 'main-atc-btn gated-btn' -%}
           </div>
         </div>
 
         {%- if show_payment_button -%}
-          <div class="buy-now-btn-wrapper">
+          <div class="buy-now-btn-wrapper gated-btn-wrapper">
             {{- form | payment_button -}}
           </div>
         {%- endif -%}
 
-        <!-- ✅ Checkbox Section -->
+        <!-- ✅ Required checkbox -->
         <div class="atc-checkbox-wrapper">
           <label>
-            <input type="checkbox" id="agreeCheckbox" required>
+            <input type="checkbox" id="agreeCheckbox">
             I agree to the terms & conditions
           </label>
         </div>
+
+        <style>
+          /* Default disabled look */
+          .gated-disabled {
+            opacity: 0.5 !important;
+            pointer-events: none !important;
+            cursor: not-allowed !important;
+          }
+        </style>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            const checkbox = document.getElementById("agreeCheckbox");
+            const atcBtn = document.querySelector(".main-atc-btn");
+            const buyNowWrapper = document.querySelector(".gated-btn-wrapper");
+
+            // disable by default
+            atcBtn?.classList.add("gated-disabled");
+            buyNowWrapper?.classList.add("gated-disabled");
+
+            checkbox.addEventListener("change", function() {
+              if (checkbox.checked) {
+                atcBtn?.classList.remove("gated-disabled");
+                buyNowWrapper?.classList.remove("gated-disabled");
+              } else {
+                atcBtn?.classList.add("gated-disabled");
+                buyNowWrapper?.classList.add("gated-disabled");
+              }
+            });
+
+            // extra safety: prevent submit if not checked
+            const form = document.getElementById("{{ form_id }}");
+            form.addEventListener("submit", function(e) {
+              if (!checkbox.checked) {
+                e.preventDefault();
+                alert("Please agree to the terms & conditions before continuing.");
+              }
+            });
+          });
+        </script>
       </buy-buttons>
     </div>
   {%- endform -%}
 </product-form>
-
-<style>
-  .main-atc-btn[disabled],
-  #{{ form_id }} .shopify-payment-button button[disabled] {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-</style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const checkbox = document.getElementById("agreeCheckbox");
-    const atcBtn = document.querySelector(".main-atc-btn");
-    const buyNowBtn = document.querySelector("#{{ form_id }} .shopify-payment-button button");
-
-    function toggleButtons() {
-      if (checkbox.checked) {
-        atcBtn.removeAttribute("disabled");
-        if (buyNowBtn) buyNowBtn.removeAttribute("disabled");
-      } else {
-        atcBtn.setAttribute("disabled", true);
-        if (buyNowBtn) buyNowBtn.setAttribute("disabled", true);
-      }
-    }
-
-    checkbox.addEventListener("change", toggleButtons);
-    toggleButtons();
-  });
-</script>
 
 {%- else -%}
   <buy-buttons class="buy-buttons" template="{{ product.template_suffix | escape }}" form="{{ form_id }}">
