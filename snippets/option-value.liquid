@@ -170,9 +170,8 @@ Thumbnail specific parameters:
   </{{ option_value_tag }}>
 
 {%- when 'swatch' -%}
-  {%- comment -%} Detect Hebrew language reliably {%- endcomment -%}
-  {%- assign html_lang = content_for_header | split: 'lang="' | last | split: '"' | first -%}
-  {%- if html_lang == 'he' -%}
+  {%- assign html_lang = content_for_header | split: 'lang="he"' | size -%}
+  {%- if html_lang > 1 -%}
     {%- assign white_label = 'general.label.white' | t | downcase -%}
 
     <{{ option_value_tag }} class="color-swatch 
