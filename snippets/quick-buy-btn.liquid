@@ -31,130 +31,118 @@ Supported variables
   -%}
 
   <product-form>
-  {%- form 'product', product, id: form_id -%}
-    <input type="hidden" {% if variant_picker_block != blank %}disabled{% endif %} name="id" value="{{ product.selected_or_first_available_variant.id }}">
+    {%- form 'product', product, id: form_id -%}
+      <input type="hidden" {% if variant_picker_block != blank %}disabled{% endif %} name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
-    {% liquid
-      assign button_disabled = false
+      {% liquid
+        assign button_disabled = false
 
-      if product.selected_or_first_available_variant == nil
-        assign button_disabled = true
-        assign button_content = 'product.general.unavailable_button' | t
-      elsif product.selected_or_first_available_variant.available == false
-        assign button_disabled = true
-        assign button_content = 'product.general.sold_out_button' | t
-      else
-        if product.template_suffix contains 'pre-order'
-          assign button_content = 'product.general.pre_order_button' | t
+        if product.selected_or_first_available_variant == nil
+          assign button_disabled = true
+          assign button_content = 'product.general.unavailable_button' | t
+        elsif product.selected_or_first_available_variant.available == false
+          assign button_disabled = true
+          assign button_content = 'product.general.sold_out_button' | t
         else
-          assign button_content = 'product.general.add_to_cart_button' | t
+          if product.template_suffix contains 'pre-order'
+            assign button_content = 'product.general.pre_order_button' | t
+          else
+            assign button_content = 'product.general.add_to_cart_button' | t
+          endif
         endif
-      endif
-    %}
+      %}
 
-    <div class="v-stack gap-4">
+      <div class="v-stack gap-4">
+        {%- if recipient_feature_active -%}
+          <gift-card-recipient class="gift-card-recipient v-stack gap-3">
+            {%- assign checkbox_label = 'gift_card.recipient.checkbox' | t -%}
+            {%- render 'checkbox', label: checkbox_label, name: 'properties[__shopify_send_gift_card_to_recipient]' -%}
 
-      <buy-buttons class="buy-buttons {% if show_payment_button %}buy-buttons--has-dynamic{% endif %}" form="{{ form_id }}">
-        
-        {%- if product.selected_or_first_available_variant.available == false or show_payment_button and atc_button_background == blank and atc_button_text_color == blank -%}
-          {%- assign atc_button_style = 'outline' -%}
-        {%- else -%}
-          {%- assign atc_button_style = 'solid' -%}
-        {%- endif -%}
+            <div class="gift-card-recipient__fields" hidden>
+              <div class="fieldset">
+                {%- liquid
+                  assign recipient_email_label = 'gift_card.recipient.email_label' | t
+                  render 'input', type: 'email', label: recipient_email_label, name: 'properties[Recipient email]', value: form.email, required: true, maxlength: 138
 
-        <div class="mar-flx-atc">
-          <div class="mar-quantity">
-            <div class="v-stack gap-1 justify-items-start">
-              {%- liquid
-                assign variant = product.selected_or_first_available_variant
-                assign quantity_rules = ''
+                  assign recipient_name_label = 'gift_card.recipient.name_label' | t
+                  render 'input', label: recipient_name_label, name: 'properties[Recipient name]', value: form.name
 
-                render 'quantity-selector', variant: variant, form: product_form_id
+                  assign send_on_label = 'gift_card.recipient.send_on_label' | t
+                  render 'input', type: 'date', label: send_on_label, name: 'properties[Send on]', value: form.send_on, pattern: '\d{4}-\d{2}-\d{2}'
+                  render 'input', type: 'hidden', name: 'properties[__shopify_offset]'
 
-                if variant.quantity_rule.min > 1
-                  assign rule = 'product.quantity.minimum_of' | t: min: variant.quantity_rule.min
-                  assign quantity_rules = quantity_rules | append: ' / ' | append: rule
-                endif
-
-                if variant.quantity_rule.max != nil
-                  assign rule = 'product.quantity.maximum_of' | t: max: variant.quantity_rule.max
-                  assign quantity_rules = quantity_rules | append: ' / ' | append: rule
-                endif
-
-                if variant.quantity_rule.increment > 1
-                  assign rule = 'product.quantity.increment_of' | t: step: variant.quantity_rule.increment
-                  assign quantity_rules = quantity_rules | append: ' / ' | append: rule
-                endif
-              -%}
-
-              {%- if quantity_rules != blank -%}
-                <p class="text-subdued text-sm">{{ quantity_rules | remove_first: ' / ' | capitalize }}</p>
-              {%- endif -%}
+                  assign message_label = 'gift_card.recipient.message_label' | t
+                  render 'input', label: message_label, name: 'properties[Message]', value: form.message, multiline: 3, maxlength: 200, show_max_characters_count: true
+                -%}
+              </div>
             </div>
-          </div>
-          <div class="mar-atc">
-            {%- render 'button', content: button_content, type: 'submit', style: atc_button_style, background: atc_button_background, text_color: atc_button_text_color, stretch: true, class: 'main-atc-btn gated-btn' -%}
-          </div>
-        </div>
-
-        {%- if show_payment_button -%}
-          <div class="buy-now-btn-wrapper gated-btn-wrapper">
-            {{- form | payment_button -}}
-          </div>
+          </gift-card-recipient>
         {%- endif -%}
 
-        <!-- ✅ Required checkbox -->
-        <div class="atc-checkbox-wrapper">
-          <label>
-            <input type="checkbox" id="agreeCheckbox">
-            I agree to the terms & conditions
-          </label>
+        <buy-buttons class="buy-buttons {% if show_payment_button %}buy-buttons--has-dynamic{% endif %}" form="{{ form_id }}">
+          
+          {%- if product.selected_or_first_available_variant.available == false or show_payment_button and atc_button_background == blank and atc_button_text_color == blank -%}
+            {%- assign atc_button_style = 'outline' -%}
+          {%- else -%}
+            {%- assign atc_button_style = 'solid' -%}
+          {%- endif -%}
+<div class="mar-flx-atc">
+    <div class="mar-quantity">
+          <div class="v-stack gap-1 justify-items-start">
+                {%- liquid
+                  assign variant = product.selected_or_first_available_variant
+                  assign quantity_rules = ''
+
+                  render 'quantity-selector', variant: variant, form: product_form_id
+
+                  if variant.quantity_rule.min > 1
+                    assign rule = 'product.quantity.minimum_of' | t: min: variant.quantity_rule.min
+                    assign quantity_rules = quantity_rules | append: ' / ' | append: rule
+                  endif
+
+                  if variant.quantity_rule.max != nil
+                    assign rule = 'product.quantity.maximum_of' | t: max: variant.quantity_rule.max
+                    assign quantity_rules = quantity_rules | append: ' / ' | append: rule
+                  endif
+
+                  if variant.quantity_rule.increment > 1
+                    assign rule = 'product.quantity.increment_of' | t: step: variant.quantity_rule.increment
+                    assign quantity_rules = quantity_rules | append: ' / ' | append: rule
+                  endif
+                -%}
+
+                {%- if quantity_rules != blank -%}
+                  <p class="text-subdued text-sm">{{ quantity_rules | remove_first: ' / ' | capitalize }}</p>
+                {%- endif -%}
+              </div>
         </div>
+        <div class="mar-atc">
+          {%- render 'button', content: button_content, type: 'submit', disabled: button_disabled, style: atc_button_style, background: atc_button_background, text_color: atc_button_text_color, stretch: true -%}
+</div>
+</div>
+          {%- if show_payment_button -%}
+            {{- form | payment_button -}}
 
-        <style>
-          /* Default disabled look */
-          .gated-disabled {
-            opacity: 0.5 !important;
-            pointer-events: none !important;
-            cursor: not-allowed !important;
-          }
-        </style>
+            <style>
+              #{{ form_id }} .shopify-payment-button {
+                {%- if payment_button_background != blank and payment_button_background != 'rgba(0,0,0,0)' -%}
+                  --button-background: {{ payment_button_background.rgb }};
+                {%- endif -%}
 
-        <script>
-          document.addEventListener("DOMContentLoaded", function() {
-            const checkbox = document.getElementById("agreeCheckbox");
-            const atcBtn = document.querySelector(".main-atc-btn");
-            const buyNowWrapper = document.querySelector(".gated-btn-wrapper");
+                {%- if payment_button_text_color != blank and payment_button_text_color != 'rgba(0,0,0,0)' -%}
+                  --button-text-color: {{ payment_button_text_color.rgb }};
+                {%- endif -%}
 
-            // disable by default
-            atcBtn?.classList.add("gated-disabled");
-            buyNowWrapper?.classList.add("gated-disabled");
-
-            checkbox.addEventListener("change", function() {
-              if (checkbox.checked) {
-                atcBtn?.classList.remove("gated-disabled");
-                buyNowWrapper?.classList.remove("gated-disabled");
-              } else {
-                atcBtn?.classList.add("gated-disabled");
-                buyNowWrapper?.classList.add("gated-disabled");
+                {%- unless product.selected_or_first_available_variant.available -%}
+                  display: none;
+                {%- endunless -%}
               }
-            });
-
-            // extra safety: prevent submit if not checked
-            const form = document.getElementById("{{ form_id }}");
-            form.addEventListener("submit", function(e) {
-              if (!checkbox.checked) {
-                e.preventDefault();
-                alert("Please agree to the terms & conditions before continuing.");
-              }
-            });
-          });
-        </script>
-      </buy-buttons>
-    </div>
-  {%- endform -%}
-</product-form>
-
+            </style>
+          {%- endif -%}
+        </buy-buttons>
+      </div>
+    {%- endform -%}
+  </product-form>
 {%- else -%}
   <buy-buttons class="buy-buttons" template="{{ product.template_suffix | escape }}" form="{{ form_id }}">
     {%- assign button_content = 'product.general.add_to_cart_button' | t -%}
