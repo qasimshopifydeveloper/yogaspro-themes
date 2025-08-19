@@ -171,8 +171,7 @@ Thumbnail specific parameters:
 
 {%- when 'swatch' -%}
   {%- comment -%} Only show swatch if HTML lang is Hebrew {%- endcomment -%}
-  {%- assign is_hebrew = content_for_header contains 'html lang="he"' -%}
-  {%- if is_hebrew -%}
+  {%- if content_for_header contains 'html lang="he"' -%}
     {%- assign white_label = 'general.label.white' | t | downcase -%}
 
     <{{ option_value_tag }} class="color-swatch 
