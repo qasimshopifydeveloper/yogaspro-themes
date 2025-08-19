@@ -308,15 +308,8 @@ function initQuickGallySlider() {
   }
 }
 
-$(document).ready(function () {
-  // Initialize once DOM is ready
-  initQuickGallySlider();
-
-  // Re-check after all assets/images load
-  $(window).on('load', function () {
-    initQuickGallySlider();
-  });
-});
+// ✅ Just call directly
+initQuickGallySlider();
 </script>
 
 
