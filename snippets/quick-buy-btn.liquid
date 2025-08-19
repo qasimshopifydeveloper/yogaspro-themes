@@ -92,17 +92,17 @@ Supported variables
             </div>
           </div>
           <div class="mar-atc">
-  {%- render 'button', 
-    content: button_content, 
-    type: 'submit', 
-    disabled: button_disabled, 
-    style: atc_button_style, 
-    background: atc_button_background, 
-    text_color: atc_button_text_color, 
-    stretch: true 
-  -%}
-</div>
-
+            {%- render 'button', 
+              content: button_content, 
+              type: 'submit', 
+              disabled: button_disabled, 
+              style: atc_button_style, 
+              background: atc_button_background, 
+              text_color: atc_button_text_color, 
+              stretch: true, 
+              class: 'mar-disable' 
+            -%}
+          </div>
         </div>
 
         {%- if show_payment_button -%}
@@ -141,32 +141,23 @@ Supported variables
           }
         </style>
 
-      <script>
-  document.addEventListener("DOMContentLoaded", function () {
-  const checkbox = document.getElementById("mar-check");
-  const wrapper = document.querySelector(".mar-wrapper");
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            const checkbox = document.getElementById("agreeCheckbox");
+            const atcBtn = document.querySelector(".mar-atc button");
 
-  if (!checkbox || !wrapper) return;
+            // By default keep mar-disable
+            atcBtn.classList.add("mar-disable");
 
-  // Run once on load
-  toggleDisable(checkbox, wrapper);
-
-  // Run when checkbox changes
-  checkbox.addEventListener("change", function () {
-    toggleDisable(checkbox, wrapper);
-  });
-
-  function toggleDisable(cb, wrap) {
-    if (cb.checked) {
-      wrap.classList.add("mar-disable");
-    } else {
-      wrap.classList.remove("mar-disable");
-    }
-  }
-});
-
-</script>
-
+            checkbox.addEventListener("change", function() {
+              if (checkbox.checked) {
+                atcBtn.classList.remove("mar-disable");
+              } else {
+                atcBtn.classList.add("mar-disable");
+              }
+            });
+          });
+        </script>
       </buy-buttons>
     </div>
   {%- endform -%}
