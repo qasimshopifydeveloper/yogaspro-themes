@@ -142,30 +142,31 @@ Supported variables
         </style>
 
         <script>
-          document.addEventListener("DOMContentLoaded", function() {
-  const checkbox = document.querySelector(".mar-check");
-  const target = document.querySelector(".marquee");
+  document.addEventListener("DOMContentLoaded", function() {
+    const checkbox = document.querySelector("#agreeCheckbox"); // your checkbox
+    const target = document.querySelector(".marquee"); // your marquee
 
-  if (checkbox && target) {
-    // Set initial state on load
-    if (checkbox.checked) {
-      target.classList.remove("mar-disable");
-    } else {
-      target.classList.add("mar-disable");
-    }
-
-    // Listen for changes
-    checkbox.addEventListener("change", function() {
-      if (this.checked) {
+    if (checkbox && target) {
+      // Set initial state on load
+      if (checkbox.checked) {
         target.classList.remove("mar-disable");
       } else {
         target.classList.add("mar-disable");
       }
-    });
-  }
-});
 
-        </script>
+      // Listen for changes
+      checkbox.addEventListener("change", function() {
+        if (this.checked) {
+          target.classList.remove("mar-disable");
+        } else {
+          target.classList.add("mar-disable");
+        }
+      });
+    }
+  });
+</script>
+
+
       </buy-buttons>
     </div>
   {%- endform -%}
