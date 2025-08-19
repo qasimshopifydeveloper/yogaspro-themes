@@ -142,21 +142,29 @@ Supported variables
         </style>
 
       <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const checkbox = document.getElementById("agreeCheckbox");
-    const atcBtn = document.querySelector(".mar-atc button");
+  document.addEventListener("DOMContentLoaded", function () {
+  const checkbox = document.getElementById("mar-check");
+  const wrapper = document.querySelector(".mar-wrapper");
 
-    // Start disabled
-    atcBtn.classList.add("mar-disable");
+  if (!checkbox || !wrapper) return;
 
-    checkbox.addEventListener("change", function() {
-      if (checkbox.checked) {
-        atcBtn.classList.remove("mar-disable");
-      } else {
-        atcBtn.classList.add("mar-disable");
-      }
-    });
+  // Run once on load
+  toggleDisable(checkbox, wrapper);
+
+  // Run when checkbox changes
+  checkbox.addEventListener("change", function () {
+    toggleDisable(checkbox, wrapper);
   });
+
+  function toggleDisable(cb, wrap) {
+    if (cb.checked) {
+      wrap.classList.add("mar-disable");
+    } else {
+      wrap.classList.remove("mar-disable");
+    }
+  }
+});
+
 </script>
 
       </buy-buttons>
