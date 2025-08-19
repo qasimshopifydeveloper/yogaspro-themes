@@ -53,6 +53,32 @@ Supported variables
     %}
 
     <div class="v-stack gap-4">
+      {%- if recipient_feature_active -%}
+        <gift-card-recipient class="gift-card-recipient v-stack gap-3">
+          {%- assign checkbox_label = 'gift_card.recipient.checkbox' | t -%}
+          {%- render 'checkbox', label: checkbox_label, name: 'properties[__shopify_send_gift_card_to_recipient]' -%}
+
+          <div class="gift-card-recipient__fields" hidden>
+            <div class="fieldset">
+              {%- liquid
+                assign recipient_email_label = 'gift_card.recipient.email_label' | t
+                render 'input', type: 'email', label: recipient_email_label, name: 'properties[Recipient email]', value: form.email, required: true, maxlength: 138
+
+                assign recipient_name_label = 'gift_card.recipient.name_label' | t
+                render 'input', label: recipient_name_label, name: 'properties[Recipient name]', value: form.name
+
+                assign send_on_label = 'gift_card.recipient.send_on_label' | t
+                render 'input', type: 'date', label: send_on_label, name: 'properties[Send on]', value: form.send_on, pattern: '\d{4}-\d{2}-\d{2}'
+                render 'input', type: 'hidden', name: 'properties[__shopify_offset]'
+
+                assign message_label = 'gift_card.recipient.message_label' | t
+                render 'input', label: message_label, name: 'properties[Message]', value: form.message, multiline: 3, maxlength: 200, show_max_characters_count: true
+              -%}
+            </div>
+          </div>
+        </gift-card-recipient>
+      {%- endif -%}
+
       <buy-buttons class="buy-buttons {% if show_payment_button %}buy-buttons--has-dynamic{% endif %}" form="{{ form_id }}">
         
         {%- if product.selected_or_first_available_variant.available == false or show_payment_button and atc_button_background == blank and atc_button_text_color == blank -%}
@@ -91,17 +117,10 @@ Supported variables
               {%- endif -%}
             </div>
           </div>
-          <div class="mar-atc">
-            {%- render 'button', 
-              content: button_content, 
-              type: 'submit', 
-              disabled: button_disabled, 
-              style: atc_button_style, 
-              background: atc_button_background, 
-              text_color: atc_button_text_color, 
-              stretch: true, 
-              class: 'mar-disable' 
-            -%}
+
+          <!-- Apply mar-disable to the whole .mar-atc -->
+          <div class="mar-atc mar-disable">
+            {%- render 'button', content: button_content, type: 'submit', disabled: button_disabled, style: atc_button_style, background: atc_button_background, text_color: atc_button_text_color, stretch: true -%}
           </div>
         </div>
 
@@ -125,43 +144,34 @@ Supported variables
           </style>
         {%- endif -%}
 
-        <!-- ✅ Checkbox below Buy it now -->
-        <div class="atc-checkbox-wrapper">
+        <!-- New checkbox -->
+        <div class="mar-consent-checkbox mt-4">
           <label>
-            <input type="checkbox" id="agreeCheckbox">
-            I agree to the terms & conditions
+            <input type="checkbox" id="mar-consent-toggle">
+            I agree to enable Add to Cart
           </label>
         </div>
-
-        <style>
-          .mar-disable {
-            opacity: 0.5;
-            pointer-events: none;
-            cursor: not-allowed;
-          }
-        </style>
-
-        <script>
-          document.addEventListener("DOMContentLoaded", function() {
-            const checkbox = document.getElementById("agreeCheckbox");
-            const atcBtn = document.querySelector(".mar-atc button");
-
-            // By default keep mar-disable
-            atcBtn.classList.add("mar-disable");
-
-            checkbox.addEventListener("change", function() {
-              if (checkbox.checked) {
-                atcBtn.classList.remove("mar-disable");
-              } else {
-                atcBtn.classList.add("mar-disable");
-              }
-            });
-          });
-        </script>
       </buy-buttons>
     </div>
   {%- endform -%}
 </product-form>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const checkbox = document.getElementById("mar-consent-toggle");
+  const atcContainer = document.querySelector(".mar-atc");
+
+  if (checkbox && atcContainer) {
+    checkbox.addEventListener("change", function() {
+      if (this.checked) {
+        atcContainer.classList.remove("mar-disable");
+      } else {
+        atcContainer.classList.add("mar-disable");
+      }
+    });
+  }
+});
+</script>
 
 {%- else -%}
   <buy-buttons class="buy-buttons" template="{{ product.template_suffix | escape }}" form="{{ form_id }}">
