@@ -141,23 +141,34 @@ Supported variables
           }
         </style>
 
-        <script>
-          document.addEventListener("DOMContentLoaded", function() {
-            const checkbox = document.getElementById("agreeCheckbox");
-            const atcBtn = document.querySelector(".mar-atc button");
+       <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const checkboxes = document.querySelectorAll(".atc-checkbox-wrapper input[type='checkbox']");
+    const atcBtn = document.querySelector(".mar-atc button");
 
-            // By default keep mar-disable
-            atcBtn.classList.add("mar-disable");
+    if (!atcBtn || checkboxes.length === 0) return;
 
-            checkbox.addEventListener("change", function() {
-              if (checkbox.checked) {
-                atcBtn.classList.remove("mar-disable");
-              } else {
-                atcBtn.classList.add("mar-disable");
-              }
-            });
-          });
-        </script>
+    // disable by default
+    atcBtn.classList.add("mar-disable");
+
+    function toggleButton() {
+      // check only the last checkbox
+      const lastCheckbox = checkboxes[checkboxes.length - 1];
+      if (lastCheckbox.checked) {
+        atcBtn.classList.remove("mar-disable");
+      } else {
+        atcBtn.classList.add("mar-disable");
+      }
+    }
+
+    // run once on load
+    toggleButton();
+
+    // run whenever any checkbox changes
+    checkboxes.forEach(cb => cb.addEventListener("change", toggleButton));
+  });
+</script>
+
       </buy-buttons>
     </div>
   {%- endform -%}
