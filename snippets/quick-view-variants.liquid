@@ -65,8 +65,7 @@ Supported variables
       <fieldset class="variant-picker__option v-stack gap-2">
         <div class="variant-picker__option-info h-stack justify-between gap-2">
           <div class="h-stack gap-1">
-            {%- assign first_selected = option.values | where: "id", option.selected_value_id | first -%}
-      <legend>Color: {{ first_selected | default: option.selected_value }}</legend>
+            <legend>{{ option.name }}:{%- if type == 'block' -%} arslan {%endif %}</legend>
 
             {%- if resolved_option_selector_style == 'swatch' or resolved_option_selector_style == 'variant_image' -%}
               <span>{{ option.selected_value }}</span>
