@@ -24,7 +24,7 @@ Supported variables
       assign current_block_group_name = ''
 
       if context == 'quick_buy'
-        assign allow_blocks = '@app vendor title price quantity_selector payment_terms separator variant_picker product_variations line_item_property buy_buttons' | split: ' '
+        assign allow_blocks = '@app vendor title rating price quantity_selector payment_terms separator variant_picker product_variations line_item_property description inventory buy_buttons' | split: ' '
       endif
 
       if allow_blocks != blank
@@ -207,7 +207,7 @@ Supported variables
                 {%- assign accordion_title = 'product.general.description' | t -%}
                 {%- render 'accordion', title: accordion_title, content: product_description, prose_content: true, block: block -%}
               {%- else -%}
-                <div class="prose">
+                <div class="prose mar-quick-des">
                   {{- product_description -}}
                 </div>
               {%- endif -%}
@@ -225,7 +225,7 @@ Supported variables
                   variant_image_options: block.settings.variant_image_options,
                   size_chart_page: block.settings.size_chart_page -%}
             {%- endif -%}
-
+           
           {%- when 'product_variations' -%}
             {%- liquid
               assign contains_product = false

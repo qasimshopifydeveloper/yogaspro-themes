@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="{{ request.locale.iso_code }}" dir="{% render 'direction' %}">
+<html lang="{{ request.locale.iso_code }}" >
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=5.0">
@@ -101,6 +101,26 @@
     </main>
   </body>
   {% render 'back-to-top' %}
+
+  {% if page.template_suffix == 'landing-page' %}
+    <script>
+      function toggleHeaderClass() {
+  const header = document.querySelector('.header');
+
+  if (window.scrollY === 0) {
+    header.classList.add('mar-no-bg');
+  } else {
+    header.classList.remove('mar-no-bg');
+  }
+}
+
+// Run on load
+toggleHeaderClass();
+
+// Run on scroll
+window.addEventListener('scroll', toggleHeaderClass);
+    </script>
+  {% endif %}
 </html>
 
 <style>
