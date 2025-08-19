@@ -161,7 +161,7 @@ Thumbnail specific parameters:
   {%- when 'block' -%}
    {%- assign white_label = 'general.label.white' | t | downcase -%}
 
-{%- if type == 'swatch' or type == 'block' -%}
+{%- if type == 'block' -%}
   {%- liquid
     if swatch.image != blank
       assign swatch_image = swatch.image | image_url: width: 72
