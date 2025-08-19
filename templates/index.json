@@ -346,6 +346,83 @@
         "timer_circle_font_size": 12
       }
     },
+    "collections_with_name_fFefFW": {
+      "type": "Collections-With-Name",
+      "blocks": {
+        "block_9ryrXj": {
+          "type": "block",
+          "settings": {
+            "title-text": "Hot Yoga Essentials",
+            "collection_image": "shopify://shop_images/fade-image_3.webp",
+            "add_collection": "",
+            "sub_text": "Text"
+          }
+        },
+        "block_MGKhYb": {
+          "type": "block",
+          "settings": {
+            "title-text": "Organic yoga clothing",
+            "collection_image": "shopify://shop_images/fade-image.webp",
+            "add_collection": "",
+            "sub_text": "Text"
+          }
+        },
+        "block_zWx4Tc": {
+          "type": "block",
+          "settings": {
+            "title-text": "Divin mats",
+            "collection_image": "shopify://shop_images/fade-image_1.webp",
+            "add_collection": "",
+            "sub_text": "Text"
+          }
+        },
+        "block_VCdTem": {
+          "type": "block",
+          "settings": {
+            "title-text": "Flex & flow",
+            "collection_image": "shopify://shop_images/fade-image.jpg",
+            "add_collection": "",
+            "sub_text": "Text"
+          }
+        },
+        "block_xkLmLW": {
+          "type": "block",
+          "settings": {
+            "title-text": "beginner's yoga gear",
+            "collection_image": "shopify://shop_images/fade-image_3.webp",
+            "add_collection": "",
+            "sub_text": "Text"
+          }
+        }
+      },
+      "block_order": [
+        "block_9ryrXj",
+        "block_MGKhYb",
+        "block_zWx4Tc",
+        "block_VCdTem",
+        "block_xkLmLW"
+      ],
+      "name": "Collections With Name",
+      "settings": {
+        "bg_color": "#72866d",
+        "padding_block_desktop": 200,
+        "padding_inline_desktop": 20,
+        "column_gap_desktop": 40,
+        "heading_font_size_desktop": 55,
+        "sub_font_size_desktop": 12,
+        "heading_margin_bottom": 10,
+        "sub_margin_vertical": 10,
+        "line_color": "#ffffff",
+        "mobile_show_image": true,
+        "mobile_show_underline": true,
+        "mobile_show_subtitle": true,
+        "padding_block_mobile": 100,
+        "padding_inline_mobile": 20,
+        "column_gap_mobile": 20,
+        "heading_font_size_mobile": 32,
+        "sub_font_size_mobile": 10
+      }
+    },
     "custom_text_image_block_4rgywd": {
       "type": "Custom-text-image-block",
       "disabled": true,
@@ -466,6 +543,7 @@
     "slideshow",
     "custom_collections_banner_xfhRBb",
     "featured_products_slide_show_wDmpyK",
+    "collections_with_name_fFefFW",
     "custom_text_image_block_4rgywd",
     "custom_icon_with_text_KGw6CL"
   ]
