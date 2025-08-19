@@ -141,30 +141,41 @@ Supported variables
           }
         </style>
 
-        <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const checkbox = document.querySelector("#agreeCheckbox"); // your checkbox
-    const target = document.querySelector(".marquee"); // your marquee
+      <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const checkbox = document.getElementById("agreeCheckbox"); // ✅ use id
+  const target = document.querySelector(".marquee");
 
-    if (checkbox && target) {
-      // Set initial state on load
-      if (checkbox.checked) {
+  if (checkbox && target) {
+    // Set initial state on load
+    if (checkbox.checked) {
+      target.classList.remove("mar-disable");
+    } else {
+      target.classList.add("mar-disable");
+    }
+
+    // Listen for changes
+    checkbox.addEventListener("change", function() {
+      if (this.checked) {
         target.classList.remove("mar-disable");
       } else {
         target.classList.add("mar-disable");
       }
-
-      // Listen for changes
-      checkbox.addEventListener("change", function() {
-        if (this.checked) {
-          target.classList.remove("mar-disable");
-        } else {
-          target.classList.add("mar-disable");
-        }
-      });
-    }
-  });
+    });
+  }
+});
 </script>
+
+<div class="atc-checkbox-wrapper">
+  <label>
+    <input type="checkbox" id="agreeCheckbox">
+    I agree to the terms & conditions
+  </label>
+</div>
+
+<div class="marquee mar-disable">
+  This is the marquee text
+</div>
 
 
       </buy-buttons>
