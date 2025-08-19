@@ -75,20 +75,14 @@ Thumbnail specific parameters:
 {%- capture id -%}option-value-{{ id_prefix }}-{{ section.id }}-{{ param_name }}-{{ value | handle }}{%- endcapture -%}
 
 {%- liquid
-  # Only generate swatch style if it's a swatch or block and swatches are shown
-  if (type == 'swatch' or type == 'block') and show_swatch
-
-    # 1️⃣ Use the swatch image if available
+  if type == 'swatch' or type == 'block' and show_swatch
     if swatch.image != blank
       assign swatch_image = swatch.image | image_url: width: 72
       assign swatch_style = '--swatch-background: url(' | append: swatch_image | append: ')'
-
-    # 2️⃣ Use swatch color if available
     elsif swatch.color != blank
       assign swatch_style = '--swatch-background: linear-gradient(to right, ' | append: swatch.color | append: ', ' | append: swatch.color | append: ')'
-
-    # 3️⃣ Fallback: parse color config from settings
     else
+      # When color or image is not explicitly passed, we parse the config
       assign swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />'
       assign swatch_style = '--swatch-background: linear-gradient(to right, ' | append: downcase_label | append: ', ' | append: downcase_label | append: ')'
 
@@ -99,15 +93,10 @@ Thumbnail specific parameters:
         if downcase_label == swatch_name
           assign swatch_value = swatch_parts.last | strip
 
-          # If it's a hex color
           if swatch_value contains '#'
             assign swatch_style = '--swatch-background: linear-gradient(to right, ' | append: swatch_value | append: ', ' | append: swatch_value | append: ')'
-
-          # If it's a linear-gradient string
           elsif swatch_value contains 'linear-gradient('
             assign swatch_style = '--swatch-background: ' | append: swatch_value
-
-          # If it's an image name in images object
           elsif images[swatch_value] != blank
             assign swatch_image = images[swatch_value] | image_url: width: 72
             assign swatch_style = '--swatch-background: url(' | append: swatch_image | append: ')'
@@ -117,10 +106,8 @@ Thumbnail specific parameters:
         endif
       endfor
     endif
-
   endif
 -%}
-
 
 {%- capture attributes -%}
   {%- if url == blank -%}
@@ -172,21 +159,15 @@ Thumbnail specific parameters:
     {%- endif -%}
 
   {%- when 'block' -%}
-  {%- assign white_label = 'general.label.white' | t | downcase -%}
-{%- assign option_label_downcase = label | default: value | t | downcase -%}
+    {%- assign white_label = 'general.label.white' | t | downcase -%}
 
-<{{ option_value_tag }} 
-  class="color-swatch 
-    {% if disabled %}is-disabled{% endif %} 
-    {% if selected and option_value_tag == 'a' %}is-selected{% endif %} 
-    {% if settings.round_color_swatches %}rounded-full{% endif %} 
-    {% if white_label == option_label_downcase %}border{% endif %}" 
-  {{ attributes }} 
-  {% if show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %} 
-  style="--swatch-background: {{ swatch_style }};">
-  <span class="sr-only">{{ label | default: value }}</span>
-</{{ option_value_tag }}>
+    <{{ option_value_tag }} class="block-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %}" {{ attributes }}>
+      {%- if show_swatch -%}
+        <span class="block-swatch__color {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label %}border{% endif %}" style="{{ swatch_style }}"></span>
+      {%- endif -%}
 
+      <span>{{ label | default: value }}</span>
+    </{{ option_value_tag }}>
 
   {%- when 'swatch' -%}
     {%- assign white_label = 'general.label.white' | t | downcase -%}
