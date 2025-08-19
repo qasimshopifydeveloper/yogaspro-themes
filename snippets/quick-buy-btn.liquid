@@ -141,34 +141,31 @@ Supported variables
           }
         </style>
 
-       <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const checkboxes = document.querySelectorAll(".atc-checkbox-wrapper input[type='checkbox']");
-    const atcBtn = document.querySelector(".mar-atc button");
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+  const checkbox = document.querySelector(".mar-check");
+  const target = document.querySelector(".marquee");
 
-    if (!atcBtn || checkboxes.length === 0) return;
-
-    // disable by default
-    atcBtn.classList.add("mar-disable");
-
-    function toggleButton() {
-      // check only the last checkbox
-      const lastCheckbox = checkboxes[checkboxes.length - 1];
-      if (lastCheckbox.checked) {
-        atcBtn.classList.remove("mar-disable");
-      } else {
-        atcBtn.classList.add("mar-disable");
-      }
+  if (checkbox && target) {
+    // Set initial state on load
+    if (checkbox.checked) {
+      target.classList.remove("mar-disable");
+    } else {
+      target.classList.add("mar-disable");
     }
 
-    // run once on load
-    toggleButton();
+    // Listen for changes
+    checkbox.addEventListener("change", function() {
+      if (this.checked) {
+        target.classList.remove("mar-disable");
+      } else {
+        target.classList.add("mar-disable");
+      }
+    });
+  }
+});
 
-    // run whenever any checkbox changes
-    checkboxes.forEach(cb => cb.addEventListener("change", toggleButton));
-  });
-</script>
-
+        </script>
       </buy-buttons>
     </div>
   {%- endform -%}
