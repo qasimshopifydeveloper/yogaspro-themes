@@ -160,12 +160,14 @@ Thumbnail specific parameters:
 
   {%- assign white_label = 'general.label.white' | t | downcase -%}
 
-{%- comment -%}
-  List all language variations of "Color" here.
-  Example: English = Color, Colour; Hebrew = צבע
-{%- endcomment -%}
 {%- assign color_option_names = 'Color,Colour,צבע' | split: ',' -%}
-{%- assign is_color_option = color_option_names contains option.name -%}
+{%- assign is_color_option = false -%}
+
+{%- for color_name in color_option_names -%}
+  {%- if option.name == color_name -%}
+    {%- assign is_color_option = true -%}
+  {%- endif -%}
+{%- endfor -%}
 
 {%- if is_color_option -%}
   {%- comment -%} Render color swatch for color options {%- endcomment -%}
