@@ -199,7 +199,6 @@ Thumbnail specific parameters:
     {%- if type == 'block' or show_swatch -%}
       <span class="{% if type == 'swatch' %}sr-only{% else %}block-swatch__color{% endif %} {% if settings.round_color_swatches %}rounded-full{% endif %}" style="{{ swatch_style }}"></span>
     {%- endif -%}
-    <span>{{ label | default: value }}</span>
   </{{ option_value_tag }}>
 {%- endif -%}
 
