@@ -214,17 +214,32 @@ Supported variables
             {%- endif -%}
 
           {%- when 'variant_picker' -%}
-            {%- if product != blank -%}
-              {%- render 'variant-picker',
-                  product: product,
-                  form_id: product_form_id,
-                  context: context,
-                  hide_sold_out_variants: block.settings.hide_sold_out_variants,
-                  selector_style: block.settings.selector_style,
-                  swatch_selector_style: block.settings.swatch_selector_style,
-                  variant_image_options: block.settings.variant_image_options,
-                  size_chart_page: block.settings.size_chart_page -%}
-            {%- endif -%}
+            <div class="custom-swatches-container">
+                {% assign color_option_index = 0 %}
+                {% for option in feture_product.options_with_values %}
+                  {% if option.name == 'Color' or option.name == 'colour' %}
+                    {% assign color_option_index = forloop.index0 %}
+                  {% endif %}
+                {% endfor %}
+
+                {% assign processed_colors = '' %}
+                {% for variant in feture_product.variants %}
+                  {% assign color = variant.options[color_option_index] %}
+                  {% unless processed_colors contains color %}
+                    {% if variant.image %}
+                      <div
+                        class="color-swatch"
+                        style="background-color: {{ color | downcase }};"
+                        data-variant-id="{{ variant.id }}"
+                        data-variant-image="{{ variant.image.src | img_url: 'master' }}"
+                        data-product-id="{{ feture_product.id }}"
+                        onclick="switchVariantImage(this)">
+                      </div>
+                      {% assign processed_colors = processed_colors | append: color | append: ',' %}
+                    {% endif %}
+                  {% endunless %}
+                {% endfor %}
+              </div><!--swatches-->
            
           {%- when 'product_variations' -%}
             {%- liquid
