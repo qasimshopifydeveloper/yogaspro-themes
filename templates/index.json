@@ -258,6 +258,94 @@
         "slanted_edge_width": 16
       }
     },
+    "featured_products_slide_show_wDmpyK": {
+      "type": "Featured-products-slideShow",
+      "blocks": {
+        "block_yQTLDF": {
+          "type": "block",
+          "settings": {
+            "select_featured_product": "books",
+            "show_sale_badge": true,
+            "sale_badge_text": "Sale",
+            "timer_main_text": "Hurry up!",
+            "timer_sub_text": "Offer ends soon",
+            "countdown_end_date": "2025-12-31 23:10:10"
+          }
+        },
+        "block_K8KmEB": {
+          "type": "block",
+          "settings": {
+            "select_featured_product": "shoes",
+            "show_sale_badge": true,
+            "sale_badge_text": "Sale",
+            "timer_main_text": "Hurry up!",
+            "timer_sub_text": "Offer ends soon",
+            "countdown_end_date": "2025-12-31 23:10:10"
+          }
+        }
+      },
+      "block_order": [
+        "block_yQTLDF",
+        "block_K8KmEB"
+      ],
+      "name": "Prodcts slideshow & Deals",
+      "settings": {
+        "section_background_color": "#ffffff",
+        "section_padding_top": 100,
+        "section_padding_bottom": 45,
+        "section_margin_top": 0,
+        "section_margin_bottom": 0,
+        "container_padding": 20,
+        "container_gap": 35,
+        "Add-collection": "all-products",
+        "slider_title": "Best Sellers",
+        "slider_title_font_size": 16,
+        "slider_title_color": "#000000",
+        "slider_border_color": "#000000",
+        "slider_button_hover_color": "#72866d",
+        "slides_per_view": 2,
+        "slides_per_group": 2,
+        "slides_spacing": 10,
+        "enable_loop": false,
+        "show_sale_badge": true,
+        "sale_badge_text": "Sale",
+        "sale_badge_font_size": 14,
+        "sale_badge_text_color": "#ffffff",
+        "sale_badge_bg_color": "#e12c43",
+        "icon_button_bg_color": "#ffffff",
+        "icon_button_hover_bg_color": "#72866d",
+        "icon_button_hover_color": "#ffffff",
+        "tooltip_bg_color": "#333333",
+        "tooltip_text_color": "#ffffff",
+        "tooltip_font_size": 12,
+        "product_title_font_size": 16,
+        "product_title_color": "#000000",
+        "product_price_font_size": 16,
+        "product_price_color": "#000000",
+        "product_compare_price_font_size": 14,
+        "product_compare_price_color": "#999999",
+        "deals_title": "Deals Of The Day",
+        "deals_title_font_size": 22,
+        "deals_title_color": "#ffffff",
+        "deals_title_bg_color": "#72866d",
+        "deals_title_padding_tb": 8,
+        "deals_title_padding_lr": 30,
+        "deals_background_color": "#f8f8f8",
+        "deals_border_color": "#72866d",
+        "deals_padding": 30,
+        "deals_grid_gap": 25,
+        "deals_grid_margin_top": 35,
+        "timer_bg_color": "rgba(0,0,0,0)",
+        "timer_label_font_size": 18,
+        "timer_label_color": "#333333",
+        "timer_sublabel_font_size": 13,
+        "timer_sublabel_color": "#666666",
+        "timer_circle_bg_color": "#72866d",
+        "timer_circle_text_color": "#ffffff",
+        "timer_circle_size": 40,
+        "timer_circle_font_size": 12
+      }
+    },
     "custom_text_image_block_4rgywd": {
       "type": "Custom-text-image-block",
       "disabled": true,
@@ -377,6 +465,7 @@
     "slideshow_BqVK99",
     "slideshow",
     "custom_collections_banner_xfhRBb",
+    "featured_products_slide_show_wDmpyK",
     "custom_text_image_block_4rgywd",
     "custom_icon_with_text_KGw6CL"
   ]
