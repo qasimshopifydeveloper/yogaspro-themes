@@ -60,10 +60,6 @@
             "payment_button_background": "",
             "payment_button_text_color": ""
           }
-        },
-        "payment_terms_LzqQLY": {
-          "type": "payment_terms",
-          "settings": {}
         }
       },
       "block_order": [
@@ -72,8 +68,7 @@
         "variant_picker",
         "description_NpPmkT",
         "inventory_KkdQ3E",
-        "buy_buttons",
-        "payment_terms_LzqQLY"
+        "buy_buttons"
       ],
       "settings": {
         "color_scheme": "",
