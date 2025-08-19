@@ -100,7 +100,7 @@ Supported variables
               background: atc_button_background, 
               text_color: atc_button_text_color, 
               stretch: true, 
-              class: 'mar-disable' 
+              class: 'mar-disables' 
             -%}
           </div>
         </div>
@@ -125,50 +125,7 @@ Supported variables
           </style>
         {%- endif -%}
 
-     
-
-        <style>
-          .mar-disable {
-            opacity: 0.5;
-            pointer-events: none;
-            cursor: not-allowed;
-          }
-        </style>
-
-      <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const checkbox = document.getElementById("agreeCheckbox"); // ✅ use id
-  const target = document.querySelector(".marquee");
-
-  if (checkbox && target) {
-    // Set initial state on load
-    if (checkbox.checked) {
-      target.classList.remove("mar-disable");
-    } else {
-      target.classList.add("mar-disable");
-    }
-
-    // Listen for changes
-    checkbox.addEventListener("change", function() {
-      if (this.checked) {
-        target.classList.remove("mar-disable");
-      } else {
-        target.classList.add("mar-disable");
-      }
-    });
-  }
-});
-</script>
-
-<div class="atc-checkbox-wrapper">
-  <label>
-    <input type="checkbox" id="agreeCheckbox">
-    I agree to the terms & conditions
-  </label>
-</div>
-
-
-
+       
       </buy-buttons>
     </div>
   {%- endform -%}
