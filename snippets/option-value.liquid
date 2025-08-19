@@ -163,8 +163,11 @@ Thumbnail specific parameters:
 {%- assign color_option_names = 'Color,Colour,צבע' | split: ',' -%}
 {%- assign is_color_option = false -%}
 
+{%- assign option_name_clean = option.name | strip | downcase -%}
+
 {%- for color_name in color_option_names -%}
-  {%- if option.name | strip | downcase == color_name | strip | downcase -%}
+  {%- assign color_name_clean = color_name | strip | downcase -%}
+  {%- if option_name_clean == color_name_clean -%}
     {%- assign is_color_option = true -%}
   {%- endif -%}
 {%- endfor -%}
