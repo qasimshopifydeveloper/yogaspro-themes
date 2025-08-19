@@ -62,105 +62,118 @@ Supported variables
         endif
       %}
 
- <fieldset class="variant-picker__option v-stack gap-2">
-  <div class="variant-picker__option-info h-stack justify-between gap-2">
-    <div class="h-stack gap-1">
-      <legend>{{ option.name | t }}:</legend>
+      <fieldset class="variant-picker__option v-stack gap-2">
+        <div class="variant-picker__option-info h-stack justify-between gap-2">
+          <div class="h-stack gap-1">
+            <legend>{{ option.name }}:</legend>
 
-      {%- if resolved_option_selector_style == 'swatch' or resolved_option_selector_style == 'variant_image' -%}
-        <span>{{ option.selected_value }}</span>
-      {%- endif -%}
-    </div>
-
-    {%- assign raw_option_name = option.name | downcase -%}
-    {%- if size_chart_page != blank and raw_option_name == 'size' -%}
-      {%- capture id -%}size-chart-{{ option.position }}-{{ form_id }}{%- endcapture -%}
-      <button type="button" class="link" aria-controls="{{ id | escape }}" aria-expanded="false">
-        {{ 'product.general.size_chart' | t }}
-      </button>
-
-      <x-modal id="{{ id | escape }}" class="modal modal--lg color-scheme color-scheme--dialog">
-        <span class="h5" slot="header">{{ size_chart_page.title }}</span>
-        <div class="prose">{{ size_chart_page.content }}</div>
-      </x-modal>
-    {%- endif -%}
-  </div>
-
-  {%- assign name = 'option' | append: option.position -%}
-
-  {%- if resolved_option_selector_style == 'dropdown' -%}
-    <div class="relative">
-      {%- capture popover_id -%}popover-variant-dropdown-{{ section.id }}-{{ product.id }}-{{ option.position }}{%- endcapture -%}
-
-      <button type="button" class="select" aria-controls="{{ popover_id }}" aria-expanded="false">
-        <span id="{{ popover_id }}-selected-value">{{ option.selected_value }}</span>
-        {%- render 'icon' with 'dropdown-chevron' -%}
-      </button>
-
-      <x-popover id="{{ popover_id }}" class="popover popover--bottom-start color-scheme color-scheme--dialog" close-on-listbox-change>
-        <p class="h5" slot="header">{{ option.name | t }}</p>
-        <div class="popover__value-list">
-          {%- assign param_name = form_id | append: '-option' | append: option.position -%}
-
-          {%- for option_value in option.values -%}
-            {%- capture option_markup -%}
-              <span>{{ option_value }}</span>
-              {%- if option_value.available == false -%}
-                <span>
-                  {%- if option_value.variant == nil -%}
-                    {{ 'product.general.unavailable_button' | t }}
-                  {%- else -%}
-                    {{ 'product.general.sold_out_badge' | t }}
-                  {%- endif -%}
-                </span>
-              {%- endif -%}
-            {%- endcapture -%}
-
-            {%- if hide_sold_out_variants == false or option_value.available or option_value.selected -%}
-              {%- if is_main_product and option_value.product_url != blank -%}
-                <div class="popover__value-option">
-                  {%- if option_value.selected -%}
-                    <input class="sr-only" type="radio" id="{{ param_name }}-{{ option_value.id }}" form="{{ form_id }}" name="{{ param_name }}" data-option-position="{{ option.position }}" value="{{ option_value.id }}" checked>
-                  {%- endif -%}
-                  <a href="{{ option_value.variant.url | default: option_value.product_url }}" class="h-stack justify-between gap-2">
-                    {{ option_markup }}
-                  </a>
-                </div>
-              {%- else -%}
-                <label class="popover__value-option h-stack justify-between gap-2" for="{{ param_name }}-{{ option_value.id }}">
-                  <input class="sr-only" form="{{ form_id }}" type="radio" id="{{ param_name }}-{{ option_value.id }}" name="{{ param_name }}" {% if option_value.product_url != blank %}data-product-url="{{ option_value.product_url | escape }}"{% endif %} data-option-position="{{ option.position }}" value="{{ option_value.id }}" {% if option_value.selected %}checked{% endif %}>
-                  {{ option_markup }}
-                </label>
-              {%- endif -%}
+            {%- if resolved_option_selector_style == 'swatch' or resolved_option_selector_style == 'variant_image' -%}
+              <span>{{ option.selected_value }}</span>
             {%- endif -%}
-          {%- endfor -%}
+          </div>
+
+          {%- if size_chart_page != blank and size_label_list contains option_downcase -%}
+            {%- capture id -%}size-chart-{{ option.position }}-{{ form_id }}{%- endcapture -%}
+
+            <button type="button" class="link" aria-controls="{{ id | escape }}" aria-expanded="false">
+              {{- 'product.general.size_chart' | t -}}
+            </button>
+
+            <x-modal id="{{ id | escape }}" class="modal modal--lg color-scheme color-scheme--dialog">
+              <span class="h5" slot="header">{{ size_chart_page.title }}</span>
+
+              <div class="prose">
+                {{- size_chart_page.content -}}
+              </div>
+            </x-modal>
+          {%- endif -%}
         </div>
-      </x-popover>
-    </div>
-  {%- else -%}
-    {%- assign list_classes = '' -%}
-    {% if resolved_option_selector_style == 'swatch' or resolved_option_selector_style == 'variant_image' or resolved_option_selector_style == 'block' or resolved_option_selector_style == 'block_swatch' %}
-      {% assign list_classes = 'h-stack gap-2.5 wrap' %}
-    {% endif %}
 
-    <div class="variant-picker__option-values {{ list_classes }}">
-      {% assign name = form_id | append: '-option' | append: option.position %}
-      {% for option_value in option.values %}
-        {% case resolved_option_selector_style %}
-          {% when 'variant_image' %}
-            {% render 'option-value', type: 'thumbnail', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index %}
-          {% when 'swatch' %}
-            {% render 'option-value', type: 'swatch', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index %}
-          {% when 'block' %}
-            {% render 'option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index %}
-          {% when 'block_swatch' %}
-            {% render 'option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, show_swatch: true, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index %}
-        {% endcase %}
-      {% endfor %}
-    </div>
-  {%- endif -%}
-</fieldset>
+        {%- assign name = 'option' | append: option.position -%}
 
+        {%- if resolved_option_selector_style == 'dropdown' -%}
+          <div class="relative">
+            {%- capture popover_id -%}popover-variant-dropdown-{{ section.id }}-{{ product.id }}-{{ option.position }}{%- endcapture -%}
+
+            <button type="button" class="select" aria-controls="{{ popover_id }}" aria-expanded="false">
+              <span id="{{ popover_id }}-selected-value">{{- option.selected_value -}}</span>
+              {%- render 'icon' with 'dropdown-chevron' -%}
+            </button>
+
+            <x-popover id="{{ popover_id }}" class="popover popover--bottom-start color-scheme color-scheme--dialog" close-on-listbox-change>
+              <p class="h5" slot="header">{{ option.name }}</p>
+
+              <div class="popover__value-list">
+                {%- assign param_name = form_id | append: '-option' | append: option.position -%}
+
+                {%- for option_value in option.values -%}
+                  {%- capture option_markup -%}
+                    <span>{{- option_value -}}</span>
+
+                    {%- if option_value.available == false -%}
+                      <span>
+                        {%- if option_value.variant == nil -%}
+                          {{- 'product.general.unavailable_button' | t -}}
+                        {%- else -%}
+                          {{- 'product.general.sold_out_badge' | t -}}
+                        {%- endif -%}
+                      </span>
+                    {%- endif -%}
+                  {%- endcapture -%}
+
+                  {%- if hide_sold_out_variants == false or option_value.available or option_value.selected -%}
+                    {%- if is_main_product and option_value.product_url != blank -%}
+                      <div class="popover__value-option">
+                        {%- if option_value.selected -%}
+                          <input class="sr-only" type="radio" id="{{ param_name }}-{{ option_value.id }}" form="{{ form_id }}" name="{{ param_name }}" data-option-position="{{ option.position }}" value="{{ option_value.id }}" checked>
+                        {%- endif -%}
+
+                        <a href="{{ option_value.variant.url | default: option_value.product_url }}" class="h-stack justify-between gap-2">
+                          {{- option_markup -}}
+                        </a>
+                      </div>
+                    {%- else -%}
+                      <label class="popover__value-option h-stack justify-between gap-2" for="{{ param_name }}-{{ option_value.id }}">
+                        <input class="sr-only" form="{{ form_id }}" type="radio" id="{{ param_name }}-{{ option_value.id }}" name="{{ param_name }}" {% if option_value.product_url != blank %}data-product-url="{{ option_value.product_url | escape }}"{% endif %} data-option-position="{{ option.position }}" value="{{ option_value.id }}" {% if option_value.selected %}checked{% endif %}>
+                        {{- option_markup -}}
+                      </label>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </x-popover>
+          </div>
+        {%- else -%}
+          {%- liquid
+            case resolved_option_selector_style
+              when 'swatch' or 'variant_image' or 'block' or 'block_swatch'
+                assign list_classes = 'h-stack gap-2.5 wrap'
+
+              else
+                assign list_classes = ''
+            endcase
+          -%}
+
+          <div class="variant-picker__option-values {{ list_classes }}">
+            {% liquid
+              assign name = form_id | append: '-option' | append: option.position
+
+              for option_value in option.values
+                case resolved_option_selector_style
+                  when 'variant_image'
+                    render 'option-value', type: 'thumbnail', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
+                  when 'swatch'
+                    render 'option-value', type: 'swatch', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
+                  when 'block'
+                    render 'option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
+                  when 'block_swatch'
+                    render 'option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, show_swatch: true, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index
+                endcase
+              endfor
+            %}
+          </div>
+        {%- endif -%}
+      </fieldset>
     {%- endfor -%}
 
     {%- unless request.design_mode -%}
