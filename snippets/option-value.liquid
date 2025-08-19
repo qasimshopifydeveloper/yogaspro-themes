@@ -164,13 +164,12 @@ Thumbnail specific parameters:
 {%- assign is_color_option = false -%}
 
 {%- for color_name in color_option_names -%}
-  {%- if option.name == color_name -%}
+  {%- if option.name | strip | downcase == color_name | strip | downcase -%}
     {%- assign is_color_option = true -%}
   {%- endif -%}
 {%- endfor -%}
 
 {%- if is_color_option -%}
-  {%- comment -%} Render color swatch for color options {%- endcomment -%}
   <{{ option_value_tag }} class="color-swatch 
       {% if disabled %}is-disabled{% endif %} 
       {% if selected and option_value_tag == 'a' %}is-selected{% endif %} 
@@ -182,7 +181,6 @@ Thumbnail specific parameters:
     <span class="sr-only">{{ label | default: value }}</span>
   </{{ option_value_tag }}>
 {%- else -%}
-  {%- comment -%} Render block style for non-color options {%- endcomment -%}
   <{{ option_value_tag }} class="block-swatch 
       {% if disabled %}is-disabled{% endif %} 
       {% if selected and option_value_tag == 'a' %}is-selected{% endif %}" 
