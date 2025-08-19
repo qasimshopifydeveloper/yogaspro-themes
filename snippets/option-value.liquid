@@ -158,45 +158,23 @@ Thumbnail specific parameters:
       </{{ option_value_tag }}>
     {%- endif -%}
 
-  {%- assign white_label = 'general.label.white' | t | downcase -%}
+  {%- when 'block' -%}
+    {%- assign white_label = 'general.label.white' | t | downcase -%}
 
-{%- assign color_option_names = 'Color,Colour,צבע' | split: ',' -%}
-{%- assign is_color_option = false -%}
+    <{{ option_value_tag }} class="block-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %}" {{ attributes }}>
+      {%- if show_swatch -%}
+        <span class="block-swatch__color {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label %}border{% endif %}" style="{{ swatch_style }}"></span>
+      {%- endif -%}
 
-{%- assign option_name_clean = option.name | strip | downcase -%}
+      <span>{{ label | default: value }}</span>
+    </{{ option_value_tag }}>
 
-{%- for color_name in color_option_names -%}
-  {%- assign color_name_clean = color_name | strip | downcase -%}
-  {%- if option_name_clean == color_name_clean -%}
-    {%- assign is_color_option = true -%}
-  {%- endif -%}
-{%- endfor -%}
+  {%- when 'swatch' -%}
+    {%- assign white_label = 'general.label.white' | t | downcase -%}
 
-{%- if is_color_option -%}
-  <{{ option_value_tag }} class="color-swatch 
-      {% if disabled %}is-disabled{% endif %} 
-      {% if selected and option_value_tag == 'a' %}is-selected{% endif %} 
-      {% if settings.round_color_swatches %}rounded-full{% endif %} 
-      {% if white_label == downcase_label %}border{% endif %}" 
-      {{ attributes }} 
-      {% if show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %} 
-      style="{{ swatch_style }}">
-    <span class="sr-only">{{ label | default: value }}</span>
-  </{{ option_value_tag }}>
-{%- else -%}
-  <{{ option_value_tag }} class="block-swatch 
-      {% if disabled %}is-disabled{% endif %} 
-      {% if selected and option_value_tag == 'a' %}is-selected{% endif %}" 
-      {{ attributes }}>
-    {%- if show_swatch -%}
-      <span class="block-swatch__color 
-          {% if settings.round_color_swatches %}rounded-full{% endif %} 
-          {% if white_label == downcase_label %}border{% endif %}" 
-          style="{{ swatch_style }}"></span>
-    {%- endif -%}
-    <span>{{ label | default: value }}</span>
-  </{{ option_value_tag }}>
-{%- endif -%}
+    <{{ option_value_tag }} class="color-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %} {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label %}border{% endif %}" {{ attributes }} {% if show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %} style="{{ swatch_style }}">
+      <span class="sr-only">{{ label | default: value }}</span>
+    </{{ option_value_tag }}>
 
   {%- when 'image_filter' -%}
     <label class="image-filter {% if disabled %}is-disabled{% endif %}" for="{{ id | escape }}">
