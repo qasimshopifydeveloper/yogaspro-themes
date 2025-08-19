@@ -6,7 +6,7 @@
         align-items: center;
         background-color: {{ section.settings.footer_bg_color | default: '#72866D' }};
         padding-top: {{ section.settings.section_padding_top | default: 30 }}px;
-        padding-bottom: {{ section.settings.section_padding_bottom | default: 30 }}px;
+        padding-bottom: {{ section.settings.section_padding_bottom | default: 0 }}px;
     }
     .custom-footer-container_d1{
         width: 100%;
@@ -28,7 +28,7 @@
         width: 100%;
         display: flex;
         justify-content: flex-start;
-        margin-bottom: {{ section.settings.logo_margin_bottom | default: 20 }}px;
+        margin-bottom: {{ section.settings.logo_margin_bottom | default: 24 }}px;
     }
     .logo-block-image img{
         width: 100%;
@@ -38,13 +38,16 @@
     .logo-block-footer{
         display: flex;
         flex-direction: column;
-        gap: {{ section.settings.logo_info_gap | default: 5 }}px;
+        gap: {{ section.settings.logo_info_gap | default: 0 }}px;
     }
     .logo-footer-description{
         color: {{ section.settings.description_text_color | default: 'rgba(255, 255, 255, 0.4)' }};
         font-size: {{ section.settings.description_font_size | default: 16 }}px;
         font-family: {{ section.settings.body_font.family | default: 'jost, sans-serif' }};
         margin-bottom: {{ section.settings.description_margin_bottom | default: 10 }}px;
+        width: 80%;
+        line-height: 1.9;
+        font-weight: 400;
     }
     .logo-footer-info{
         display: flex;
@@ -84,21 +87,24 @@
         font-weight: {{ section.settings.link_title_font_weight | default: 500 }};
     }
     {% if section.settings.show_underline %}
-    .grid-link-title h2::after {
+    .grid-link-title h2::before {
         content: '';
         position: absolute;
         bottom: -{{ section.settings.underline_spacing | default: 5 }}px;
         left: 0;
         width: {{ section.settings.underline_width | default: 60 }}px;
         height: {{ section.settings.underline_height | default: 1 }}px;
-        background-color: {{ section.settings.underline_color | default: 'rgba(255, 255, 255, 0.4)' }};
+        
+        background-color: {{ section.settings.underline_color | default: '#ffffff26' }};
+         background-color: rgb(255, 255, 255, .15);
+
     }
     {% endif %}
     .grid-manue-links{
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: {{ section.settings.link_spacing | default: 4 }}px;
+        gap: {{ section.settings.link_spacing | default: 0 }}px;
         margin-left: 0;
         padding-left: 0;
     }
@@ -109,13 +115,19 @@
     }
     .grid-manue-links li a{
         text-decoration: none;
-        color: {{ section.settings.link_text_color | default: 'rgba(255, 255, 255, 0.4)' }};
+        color: {{ section.settings.link_text_color | default: 'rgba(255, 255, 255, 0.5)' }};
+        color : #FFFFFF80;
+
+
         font-size: {{ section.settings.link_font_size | default: 16 }}px;
         font-family: {{ section.settings.body_font.family | default: 'jost, sans-serif' }};
         font-weight: {{ section.settings.link_font_weight | default: 500 }};
         transition: all {{ section.settings.link_transition_duration | default: 0.5 }}s ease;
         position: relative;
         display: block;
+        line-height: normal;
+        font-family: 'jost', sans-serif;
+        font-style : 500;
     }
     .grid-manue-links li:hover a{
         transform: translateX({{ section.settings.link_hover_transform | default: 10 }}px);
@@ -128,7 +140,7 @@
         width: 100%;
         display: grid;
         grid-template-columns: repeat({{ section.settings.media_grid_columns | default: 3 }}, 1fr);
-        gap: {{ section.settings.media_grid_gap | default: 10 }}px;
+        gap: {{ section.settings.media_grid_gap | default: 14 }}px;
     }
     .media-block-container .block-media{ 
         width: 100%;
@@ -240,13 +252,14 @@
     transition: all {{ section.settings.link_transition_duration | default: 0.5 }}s ease;
     position: relative;
     display: inline-block;
+    cursor : Text;
 }
 
 /* Hover effects matching grid-manue-links */
-.logo-footer-info a:hover {
+{% comment %} .logo-footer-info a:hover {
     transform: translateX({{ section.settings.link_hover_transform | default: 10 }}px);
     color: {{ section.settings.link_hover_color | default: 'white' }} !important;
-}
+} {% endcomment %}
 
 /* Fix for address link if it's wrapped in a span */
 .logo-footer-info span a {
@@ -287,37 +300,37 @@
 {% if block.settings.phone %}
     <div class="logo-footer-info">
         <p>{{ block.settings.phone_label | default: 'Phone:' }}</p>
-        <span><a href="tel:{{ block.settings.phone | remove: ' ' }}">{{ block.settings.phone }}</a></span>
+         <span> <a href="tel:{{ block.settings.phone | remove: ' ' }}">{{ block.settings.phone }}</a></span>
     </div>
 {% endif %}
                                
 {% if block.settings.email %}
     <div class="logo-footer-info">
-        <p>{{ block.settings.email_label | default: 'E-mail:' }}</p>
-        <span><a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a></span>
+        <p> {{ block.settings.email_label | default: 'E-mail:' }} </p>
+         <span> <a href="mailto:{{ block.settings.email }}"> {{ block.settings.email }} </a></span>
     </div>
 {% endif %}
 
 {% if block.settings.address %}
     <div class="logo-footer-info">
-        <p>{{ block.settings.address_label | default: 'Address:' }}</p>
+        <p> {{ block.settings.address_label | default: 'Address:' }} </p>
         {% if block.settings.address_link %}
-            <span><a href="{{ block.settings.address_link }}" target="_blank">{{ block.settings.address }}</a></span>
+             <span> <a href="{{ block.settings.address_link }}" target="_blank">{{ block.settings.address }}</a></span>
         {% else %}
-            <span>{{ block.settings.address }}</span>
+            <span> {{ block.settings.address }}</span>
         {% endif %}
     </div>
 {% endif %}
 
 {% if block.settings.opening_hours %}
     <div class="logo-footer-info">
-        <p>{{ block.settings.opening_hours_label | default: 'Opening Hours:' }}</p>
+        <p> {{ block.settings.opening_hours_label | default: 'Opening Hours:' }} </p>
         {% if block.settings.opening_hours_link %}
-            <span><a href="{{ block.settings.opening_hours_link }}" target="_blank">
-                {{ block.settings.opening_hours | newline_to_br }}
-            </a></span>
+             <span> <a href="{{ block.settings.opening_hours_link }}" target="_blank">
+                 {{ block.settings.opening_hours | newline_to_br }}
+            </a> </span>
         {% else %}
-            <span>{{ block.settings.opening_hours | newline_to_br }}</span>
+            <span> {{ block.settings.opening_hours | newline_to_br }}</span>
         {% endif %}
     </div>
 {% endif %}
@@ -463,7 +476,7 @@
             "min": 0,
             "max": 100,
             "step": 5,
-            "default": 30
+            "default": 0
         },
         {
             "type": "header",
@@ -542,8 +555,8 @@
             "label": "Logo Bottom Margin (px)",
             "min": 0,
             "max": 50,
-            "step": 5,
-            "default": 20
+            "step": 1,
+            "default": 24
         },
         {
             "type": "color",
@@ -606,7 +619,7 @@
             "min": 0,
             "max": 20,
             "step": 1,
-            "default": 8
+            "default": 0
         },
         {
             "type": "range",
@@ -615,7 +628,7 @@
             "min": 0,
             "max": 20,
             "step": 1,
-            "default": 5
+            "default": 0
         },
         {
             "type": "header",
@@ -660,7 +673,7 @@
             "label": "Title Bottom Padding (px)",
             "min": 0,
             "max": 30,
-            "step": 2,
+            "step": 1,
             "default": 10
         },
         {
@@ -682,7 +695,7 @@
             "type": "color",
             "id": "underline_color",
             "label": "Underline Color",
-            "default": "rgba(255, 255, 255, 0.4)"
+            "default":" #ffffff26"
         },
         {
             "type": "range",
@@ -697,9 +710,9 @@
             "type": "range",
             "id": "underline_height",
             "label": "Underline Height (px)",
-            "min": 1,
+            "min": 0,
             "max": 5,
-            "step": 1,
+            "step": 0.1,
             "default": 1
         },
         {
@@ -715,7 +728,7 @@
             "type": "color",
             "id": "link_text_color",
             "label": "Link Text Color",
-            "default": "rgba(255, 255, 255, 0.4)"
+            "default": "rgba(255, 255, 255, 0.5)"
         },
         {
             "type": "color",
@@ -748,7 +761,7 @@
             "min": 0,
             "max": 20,
             "step": 1,
-            "default": 4
+            "default": 0
         },
         {
             "type": "range",
@@ -797,7 +810,7 @@
             "min": 5,
             "max": 30,
             "step": 1,
-            "default": 10
+            "default": 14
         },
         {
             "type": "range",
