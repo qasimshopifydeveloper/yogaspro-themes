@@ -195,7 +195,7 @@ Thumbnail specific parameters:
     endif
   -%}
 
-  <{{ option_value_tag }} class="mar-pd {% if type == 'swatch' %}color-swatch{% else %}block-swatch{% endif %} {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %} {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label %}border{% endif %}" {{ attributes }} {% if type == 'swatch' and show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %} style="{{ swatch_style }}">
+  <{{ option_value_tag }} class="mar-pd color-swatch {% if type == 'swatch' %}  color-swatch{% else %}block-swatch{% endif %} {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %} {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label %}border{% endif %}" {{ attributes }} {% if type == 'swatch' and show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %} style="{{ swatch_style }}">
     {%- if type == 'block' or show_swatch -%}
       <span class="{% if type == 'swatch' %}sr-only{% else %}block-swatch__color{% endif %} {% if settings.round_color_swatches %}rounded-full{% endif %}" style="{{ swatch_style }}"></span>
     {%- endif -%}
