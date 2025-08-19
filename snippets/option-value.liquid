@@ -161,17 +161,31 @@ Thumbnail specific parameters:
   {%- when 'block' -%}
     {%- assign white_label = 'general.label.white' | t | downcase -%}
 
- <{{ option_value_tag }} 
-  class="color-swatch {% if disabled %}is-disabled{% endif %} {% if selected %}is-selected{% endif %} {% if settings.round_color_swatches %}rounded-full{% endif %}" 
-  {{ attributes }} 
-  {% if show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %}>
+ <div class="variant-picker__option-values h-stack gap-2.5 wrap">
+  {%- for option_value in option.values -%}
+    {%- assign value_id = 'option-value-' | append: forloop.index0 | append: '-' | append: section.id -%}
 
-  {%- if show_swatch -%}
-    <span class="color-swatch__color" style="background-color: {{ value | escape }};"></span>
-  {%- endif -%}
+    <input 
+      class="sr-only" 
+      type="radio" 
+      name="{{ form_id }}-{{ option.position }}" 
+      id="{{ value_id }}" 
+      value="{{ option_value | escape }}" 
+      form="{{ form_id }}" 
+      {% if option_value == option.selected_value %}checked{% endif %} 
+      data-option-position="{{ option.position }}" 
+      {% if disabled_values contains option_value %}disabled{% endif %}
+    >
 
-  <span class="sr-only">{{ label | default: value }}</span>
-</{{ option_value_tag }}>
+    <label 
+      class="color-swatch {% if disabled_values contains option_value %}is-disabled{% endif %} {% if settings.round_color_swatches %}rounded-full{% endif %}" 
+      for="{{ value_id }}" 
+      style="--swatch-background: linear-gradient(to right, {{ option_value | escape }}, {{ option_value | escape }});"
+    >
+      <span class="sr-only">{{ option_value }}</span>
+    </label>
+  {%- endfor -%}
+</div>
 
 
   {%- when 'swatch' -%}
