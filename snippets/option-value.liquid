@@ -161,10 +161,9 @@ Thumbnail specific parameters:
   {%- when 'block' -%}
     {%- assign white_label = 'general.label.white' | t | downcase -%}
 
-    <{{ option_value_tag }} class="block-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %}" {{ attributes }}>
-      {%- if show_swatch -%}
-        <span class="block-swatch__color {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label %}border{% endif %}" style="{{ swatch_style }}"></span>
-      {%- endif -%}
+   <{{ option_value_tag }} class="color-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %} {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label %}border{% endif %}" {{ attributes }} {% if show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %} style="{{ swatch_style }}">
+      <span class="sr-only">{{ label | default: value }}</span>
+    </{{ option_value_tag }}>
 
       <span>{{ label | default: value }}</span>
     </{{ option_value_tag }}>
@@ -172,20 +171,9 @@ Thumbnail specific parameters:
   {%- when 'swatch' -%}
     {%- assign white_label = 'general.label.white' | t | downcase -%}
 
-<{{ option_value_tag }} 
-  class="color-swatch 
-    {% if disabled %}is-disabled{% endif %} 
-    {% if selected and option_value_tag == 'a' %}is-selected{% endif %} 
-    {% if settings.round_color_swatches %}rounded-full{% endif %} 
-    {% if white_label == downcase_label %}border{% endif %}" 
-  {{ attributes }} 
-  {% if show_tooltip %}data-tooltip="{{ 'color.' | append: value | t }}"{% endif %} 
-  style="{{ swatch_style }}">
-  
-  <!-- Screen reader text -->
-  <span class="sr-only">{{ 'color.' | append: value | t }}</span>
-</{{ option_value_tag }}>
-
+    <{{ option_value_tag }} class="color-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %} {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label %}border{% endif %}" {{ attributes }} {% if show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %} style="{{ swatch_style }}">
+      <span class="sr-only">{{ label | default: value }}</span>
+    </{{ option_value_tag }}>
 
   {%- when 'image_filter' -%}
     <label class="image-filter {% if disabled %}is-disabled{% endif %}" for="{{ id | escape }}">
