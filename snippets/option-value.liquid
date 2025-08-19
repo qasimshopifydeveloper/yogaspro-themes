@@ -170,12 +170,20 @@ Thumbnail specific parameters:
   </{{ option_value_tag }}>
 
 {%- when 'swatch' -%}
-  {%- assign current_locale = request.locale | default: shop.locale -%}
-  {%- if current_locale == 'he' or current_locale == 'he-IL' -%}
+  {%- comment -%} Check if the HTML lang attribute is "he" {%- endcomment -%}
+  {%- assign is_hebrew = content_for_header contains 'lang="he"' -%}
+  {%- if is_hebrew -%}
     {%- assign white_label = 'general.label.white' | t | downcase -%}
 
-    <{{ option_value_tag }} class="color-swatch {% if disabled %}is-disabled{% endif %} {% if selected and option_value_tag == 'a' %}is-selected{% endif %} {% if settings.round_color_swatches %}rounded-full{% endif %} {% if white_label == downcase_label %}border{% endif %}" {{ attributes }} {% if show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %} style="{{ swatch_style }}">
-      <span class="sr-only">{{ label | default: value }}</span>
+    <{{ option_value_tag }} class="color-swatch 
+      {% if disabled %}is-disabled{% endif %} 
+      {% if selected and option_value_tag == 'a' %}is-selected{% endif %} 
+      {% if settings.round_color_swatches %}rounded-full{% endif %} 
+      {% if white_label == downcase_label %}border{% endif %}" 
+      {{ attributes }} 
+      {% if show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %} 
+      style="{{ swatch_style }}">
+        <span class="sr-only">{{ label | default: value }}</span>
     </{{ option_value_tag }}>
   {%- endif -%}
 
