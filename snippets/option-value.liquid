@@ -172,6 +172,19 @@ Thumbnail specific parameters:
   {%- when 'swatch' -%}
     {%- assign white_label = 'general.label.white' | t | downcase -%}
 
+<{{ option_value_tag }} 
+  class="color-swatch 
+    {% if disabled %}is-disabled{% endif %} 
+    {% if selected and option_value_tag == 'a' %}is-selected{% endif %} 
+    {% if settings.round_color_swatches %}rounded-full{% endif %} 
+    {% if white_label == downcase_label %}border{% endif %}" 
+  {{ attributes }} 
+  {% if show_tooltip %}data-tooltip="{{ 'colors.' | append: value | t }}"{% endif %} 
+  style="{{ swatch_style }}">
+  
+  <!-- Screen reader text -->
+  <span class="sr-only">{{ 'colors.' | append: value | t }}</span>
+</{{ option_value_tag }}>
 
 
   {%- when 'image_filter' -%}
