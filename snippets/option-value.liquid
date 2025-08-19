@@ -179,11 +179,11 @@ Thumbnail specific parameters:
     {% if settings.round_color_swatches %}rounded-full{% endif %} 
     {% if white_label == downcase_label %}border{% endif %}" 
   {{ attributes }} 
-  {% if show_tooltip %}data-tooltip="{{ 'colors.' | append: value | t }}"{% endif %} 
+  {% if show_tooltip %}data-tooltip="{{ 'color.' | append: value | t }}"{% endif %} 
   style="{{ swatch_style }}">
   
   <!-- Screen reader text -->
-  <span class="sr-only">{{ 'colors.' | append: value | t }}</span>
+  <span class="sr-only">{{ 'color.' | append: value | t }}</span>
 </{{ option_value_tag }}>
 
 
