@@ -210,7 +210,7 @@
         "slider_button_hover_color": "#72866d",
         "slides_per_view": 2,
         "slides_per_group": 2,
-        "slides_spacing": 10,
+        "slides_spacing": 20,
         "enable_loop": false,
         "show_sale_badge": true,
         "sale_badge_text": "Sale",
