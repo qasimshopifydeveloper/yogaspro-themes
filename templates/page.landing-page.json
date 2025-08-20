@@ -242,7 +242,7 @@
         "deals_grid_margin_top": 35,
         "timer_bg_color": "rgba(0,0,0,0)",
         "timer_label_font_size": 18,
-        "timer_label_color": "#333333",
+        "timer_label_color": "#000000",
         "timer_sublabel_font_size": 13,
         "timer_sublabel_color": "#666666",
         "timer_circle_bg_color": "#72866d",
