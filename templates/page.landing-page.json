@@ -238,7 +238,7 @@
         "deals_background_color": "#f8f8f8",
         "deals_border_color": "#72866d",
         "deals_padding": 30,
-        "deals_grid_gap": 25,
+        "deals_grid_gap": 30,
         "deals_grid_margin_top": 35,
         "timer_bg_color": "rgba(0,0,0,0)",
         "timer_label_font_size": 15,
