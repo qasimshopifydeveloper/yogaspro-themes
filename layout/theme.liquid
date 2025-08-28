@@ -118,9 +118,12 @@
      <!-- AOS JS -->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-  AOS.init({
-    once: true,      // run only once
-  });
+ AOS.init({
+  duration: 500, // default duration
+  easing: 'cubic-bezier(0, 0, 0.3, 1)', // smooth easing
+  once: true
+});
+
 </script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
