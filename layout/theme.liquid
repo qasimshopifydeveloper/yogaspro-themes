@@ -167,3 +167,84 @@ window.addEventListener('scroll', toggleHeaderClass);
 
 
 </style>
+
+<script>
+(function () {
+  // helpers
+  function readVar(el, name) {
+    return getComputedStyle(el).getPropertyValue(name).trim() || null;
+  }
+
+  // normalize var value to milliseconds number (AOS expects numeric ms)
+  function toMsNumber(val) {
+    if (!val) return null;
+    val = val.trim();
+    // pure number -> treat as ms
+    if (/^-?\d+(\.\d+)?$/.test(val)) return Math.round(Number(val));
+    // seconds -> convert to ms
+    if (val.endsWith('s')) return Math.round(parseFloat(val) * 1000);
+    // ms -> strip ms
+    if (val.endsWith('ms')) return Math.round(parseFloat(val.replace('ms','')));
+    return null;
+  }
+
+  function applyXoToAos() {
+    const els = document.querySelectorAll('.xo-animate, [data-aos], .xo-product-card');
+
+    els.forEach((el, fallbackIndex) => {
+      // set a default AOS animation if none
+      if (!el.getAttribute('data-aos')) el.setAttribute('data-aos', 'fade-up');
+
+      // duration: prefer --xo-duration, fallback to 1000ms
+      const durationNum = toMsNumber(readVar(el, '--xo-duration')) || 1000;
+      el.setAttribute('data-aos-duration', String(durationNum)); // AOS expects number in ms
+
+      // easing: prefer --xo-easing
+      const easing = readVar(el, '--xo-easing') || 'cubic-bezier(0, 0, 0.3, 1)';
+      el.setAttribute('data-aos-easing', easing);
+
+      // compute delay using --xo-order and --xo-constant:
+      // delay = order * constant. fallback order = index in NodeList, fallback constant = 75
+      const order = Number(readVar(el, '--xo-order')) || fallbackIndex;
+      const constant = Number(readVar(el, '--xo-constant')) || 75;
+      const delay = Math.round(order * constant);
+      el.setAttribute('data-aos-delay', String(delay));
+
+      // optional: you can set data-aos-once per element if you want element to animate only once:
+      // el.setAttribute('data-aos-once', 'true');
+    });
+  }
+
+  // run once immediately
+  applyXoToAos();
+
+  // init AOS with global fallback values (these will be used when per-element attr not present)
+  AOS.init({
+    duration: 1000, // fallback
+    easing: 'cubic-bezier(0, 0, 0.3, 1)',
+    once: true
+  });
+
+  // If new slides/elements are added (carousel lazy load), re-apply and refresh AOS
+  const mo = new MutationObserver((mutations) => {
+    let found = false;
+    for (const m of mutations) {
+      for (const n of m.addedNodes) {
+        if (n.nodeType !== 1) continue;
+        if (n.matches && (n.matches('.xo-animate') || n.querySelector('.xo-animate') || n.matches('[data-aos]') || n.querySelector('[data-aos]'))) {
+          found = true;
+          break;
+        }
+      }
+      if (found) break;
+    }
+    if (found) {
+      applyXoToAos();
+      AOS.refresh(); // recalc positions & reinit
+    }
+  });
+
+  mo.observe(document.body, { childList: true, subtree: true });
+
+})();
+</script>
