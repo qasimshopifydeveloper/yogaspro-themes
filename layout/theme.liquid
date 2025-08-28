@@ -194,3 +194,18 @@ AOS.init({
 });
 
 </script>
+<style>
+  .xo-animate {
+  opacity: 0;
+  transform: translateY(calc(var(--xo-strength, 1) * 20px));
+  transition:
+    opacity var(--xo-duration, 1000ms) var(--xo-easing, cubic-bezier(0,0,0.3,1)),
+    transform var(--xo-duration, 1000ms) var(--xo-easing, cubic-bezier(0,0,0.3,1));
+}
+
+.xo-animate.aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
