@@ -538,11 +538,11 @@
             </div><!--slider-header-->
             <div class="products-swipper-slider">
                  <div class="featurec-collection-product mySwiper">
-                <div class="swiper-wrapper"  data-aos="fade-up"
-     data-aos-anchor-placement="top-center">
+                <div class="swiper-wrapper">
                     {% assign collection = collections[section.settings.Add-collection] %}
                     {% for product in collection.products %}
-                <div class="swiper-slide">
+                <div class="swiper-slide" data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                       <div class="Featured_product_card">
                 <div class="Featured_product_card_header">
                     <div class="Featured_product_image">
