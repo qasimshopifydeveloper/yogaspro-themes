@@ -126,13 +126,14 @@
         height: {{ section.settings.product_image_height | default: 330 }}px;
         object-fit: cover;
         opacity: 0;
-        transition : all 0.1s !important;
+        transition : all 0.5s !important;
+        
     }
     
     {% if section.settings.enable_hover_effects %}
     .Featured_product_card:hover .product-image-secondary {
         opacity: 1;
-        transition : all 0.1s !important;
+        transition : all 0.5s !important;
     }
     {% endif %}
     
