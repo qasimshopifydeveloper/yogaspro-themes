@@ -231,31 +231,40 @@ width: 100%;
     <section class="custom-blocks-section_d1-{{ section.id }} ">
         <div class="custom-blocks-container-{{ section.id }} xo-container-width">
          <div class="custom-A-block-{{ section.id }}">
-            <div class="custom-A-block-image-{{ section.id }}">
+            <div class="custom-A-block-image-{{ section.id }}" data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                 <img src="{{ section.settings.left_image | img_url: 'master' }}" alt="{{ section.settings.left_image.alt }}">
             </div>
             <div class="A-block-footer-{{ section.id }}">
-                <div class="A-block-icon-{{ section.id }}">
+                <div class="A-block-icon-{{ section.id }}" data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                     <img src="{{ section.settings.icon_image | img_url: 'master' }}" alt="{{ section.settings.icon_image.alt }}">
                 </div>
-                <div class="A-block-description-{{ section.id }}">
+                <div class="A-block-description-{{ section.id }}" data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                     <p>{{ section.settings.testimonial_text }}</p>
-                    <div class="author-name-{{ section.id }}">
+                    <div class="author-name-{{ section.id }}" data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                         <span></span>
                         <h3>{{ section.settings.author_name }}</h3>
                         <span></span>
                     </div>
-                    <div class="author-job-{{ section.id }}">{{ section.settings.author_job }}</div>
+                    <div class="author-job-{{ section.id }}" data-aos="fade-up"
+     data-aos-anchor-placement="top-center">{{ section.settings.author_job }}</div>
                 </div>
             </div>
          </div> <!--A-block--> 
          <div class="custom-B-block-{{ section.id }}">
-            <div class="B-block-header-{{ section.id }}">
-                <div class="B-block-subtitle-{{ section.id }}">{{ section.settings.subtitle }}</div>
+            <div class="B-block-header-{{ section.id }}" data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
+                <div class="B-block-subtitle-{{ section.id }}" data-aos="fade-up"
+     data-aos-anchor-placement="top-center">{{ section.settings.subtitle }}</div>
                 <h2>{{ section.settings.title }}</h2>
-                <div class="B-header-image-{{ section.id }}"><img src="{{ section.settings.separator_image | img_url: 'master' }}" alt="{{ section.settings.separator_image.alt }}"></div>
+                <div class="B-header-image-{{ section.id }}" data-aos="fade-up"
+     data-aos-anchor-placement="top-center"><img src="{{ section.settings.separator_image | img_url: 'master' }}" alt="{{ section.settings.separator_image.alt }}"></div>
             </div>
-            <div class="B-block-image-{{ section.id }}">
+            <div class="B-block-image-{{ section.id }}" data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                 <img src="{{ section.settings.right_image | img_url: 'master' }}" alt="{{ section.settings.right_image.alt }}">
             </div>
          </div>
