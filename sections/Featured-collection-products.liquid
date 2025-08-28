@@ -143,6 +143,7 @@
         align-items: center;
         position: absolute;
         bottom: 10%;
+        pointer-events: none;
     }
     .custom-icons-container{
         width: 100%;
@@ -154,6 +155,7 @@
         justify-content: center;
         align-items: center;
         opacity: 0;
+        pointer-events: auto;
     }
     {% if section.settings.enable_hover_effects %}
     .Featured_product_card:hover .custom-icons-container{
