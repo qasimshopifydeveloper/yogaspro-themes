@@ -117,17 +117,15 @@
     {% comment %} aos here code  {% endcomment %}
      <!-- AOS JS -->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
- AOS.init({
+   AOS.init({
   duration: 50000, // default duration
   easing: 'cubic-bezier(0, 0, 0.3, 1)', // smooth easing
   once: true
 });
-
-</script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
+  
 </script>
   </body>
   {% render 'back-to-top' %}
