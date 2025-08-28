@@ -171,12 +171,8 @@
             <ul class="custom-collections-list_ul">
             {% for block in section.blocks %}
                 {% assign collection = collections[block.settings.add_collection] %}
-                <li class="xo-animate xo-product-card"
-     style="--xo-order: 2;
-            --xo-strength: 1;
-            --xo-constant: 75;
-            --xo-duration: 1000;
-            --xo-easing: cubic-bezier(0, 0, 0.3, 1);">
+                <li data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                     <a href="{{ collection.url }}">
                         <div class="custom-collection-data_d1">
                             <div class="custom-collection-title_d1"
