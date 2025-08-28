@@ -356,7 +356,8 @@
         <div class="Featured_products_container_d1">
             {% assign collection = collections[section.settings.Add-collection] %}
             {% for product in collection.products %}
-            <div class="Featured_product_card">
+            <div class="Featured_product_card" data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                 <div class="Featured_product_card_header">
                     <div class="Featured_product_image">
                         <a href="{{ product.url }}">
