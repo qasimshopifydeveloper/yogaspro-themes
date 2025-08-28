@@ -706,7 +706,8 @@
       {% assign feture_product = all_products[block.settings.select_featured_product] %}
       {%- capture quick_buy_id -%}product-quick-buy-{{ section.id }}-{{ feture_product.id }}{%- endcapture -%}
 
-      <div class="select_featured_product">
+      <div class="select_featured_product" data-aos="fade-up"
+     data-aos-anchor-placement="center-bottom">
         <div class="Featured_product_card">
 
           <div class="Featured_product_card_header">
