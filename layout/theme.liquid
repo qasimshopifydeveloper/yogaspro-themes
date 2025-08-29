@@ -183,5 +183,19 @@ window.addEventListener('scroll', toggleHeaderClass);
   transform: translateX(0);
 }
 
+html[dir="rtl"] #rebuy-cart,
+html[dir="rtl"] #rebuy-cart .rebuy-cart__flyout {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Optional: if in LTR, keep normal */
+html[dir="ltr"] #rebuy-cart,
+html[dir="ltr"] #rebuy-cart .rebuy-cart__flyout {
+  direction: ltr;
+  text-align: left;
+}
+
+
 
 </style>
