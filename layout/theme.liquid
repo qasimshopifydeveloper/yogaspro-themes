@@ -196,4 +196,13 @@ window.addEventListener('scroll', toggleHeaderClass);
 
 
 
+
+
+
 </style>
+<script>
+  document.querySelector('.header__cart-link a').addEventListener('click', (e) => {
+  e.preventDefault();
+  Rebuy.SmartCart.show();
+});
+  </script>
