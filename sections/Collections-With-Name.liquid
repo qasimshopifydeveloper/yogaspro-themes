@@ -171,7 +171,8 @@
             <ul class="custom-collections-list_ul">
             {% for block in section.blocks %}
                 {% assign collection = collections[block.settings.add_collection] %}
-                <li>
+                <li data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                     <a href="{{ collection.url }}">
                         <div class="custom-collection-data_d1">
                             <div class="custom-collection-title_d1"

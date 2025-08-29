@@ -274,7 +274,8 @@
             {% for block in section.blocks %}
                 {% case block.type %}
                     {% when 'logo' %}
-                        <div class="grid-logo-block" {{ block.shopify_attributes }}>
+                        <div class="grid-logo-block" {{ block.shopify_attributes }} data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                             <div class="logo-block-image">
                                 {% if block.settings.logo %}
                                     <a href="{{ block.settings.logoImg_link }}" style="display:block;text-decoration:none">
@@ -340,7 +341,8 @@
                         </div>
                         
                     {% when 'links' %}
-                        <div class="grid-links-block" {{ block.shopify_attributes }}>
+                        <div class="grid-links-block" {{ block.shopify_attributes }} data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                             {% if block.settings.heading %}
                                 <div class="grid-link-title">
                                     <h2>{{ block.settings.heading }}</h2>
@@ -356,7 +358,8 @@
                         </div>
                         
                     {% when 'media' %}
-                        <div class="grid-media-block" {{ block.shopify_attributes }}>
+                        <div class="grid-media-block" {{ block.shopify_attributes }} data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                             {% if block.settings.heading %}
                                 <div class="grid-link-title">
                                     <h2>{{ block.settings.heading }}</h2>
@@ -378,7 +381,8 @@
                         </div>
                         
                     {% when 'custom_content' %}
-                        <div class="grid-custom-block" {{ block.shopify_attributes }}>
+                        <div class="grid-custom-block" {{ block.shopify_attributes }} data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                             {% if block.settings.heading %}
                                 <div class="grid-link-title">
                                     <h2>{{ block.settings.heading }}</h2>

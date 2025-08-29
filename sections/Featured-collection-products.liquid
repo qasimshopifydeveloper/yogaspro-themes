@@ -108,12 +108,13 @@
         display: block;
         text-decoration: none;
         position: relative;
+        z-index: 1;
     }
     .Featured_product_image a img{
         width: 100%;
         height: {{ section.settings.product_image_height | default: 330 }}px;
         object-fit: cover;
-        transition: opacity 0.3s ease;
+       
     }
     
     /* Second image hover effect */
@@ -125,12 +126,14 @@
         height: {{ section.settings.product_image_height | default: 330 }}px;
         object-fit: cover;
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition : all 0.5s !important;
+        
     }
     
     {% if section.settings.enable_hover_effects %}
     .Featured_product_card:hover .product-image-secondary {
         opacity: 1;
+        transition : all 0.5s !important;
     }
     {% endif %}
     
@@ -143,6 +146,7 @@
         align-items: center;
         position: absolute;
         bottom: 10%;
+        pointer-events: none;
     }
     .custom-icons-container{
         width: 100%;
@@ -154,6 +158,7 @@
         justify-content: center;
         align-items: center;
         opacity: 0;
+        pointer-events: auto;
     }
     {% if section.settings.enable_hover_effects %}
     .Featured_product_card:hover .custom-icons-container{
@@ -184,6 +189,7 @@
         transform: translateY(20px);
         transition: opacity 0.3s ease, transform 0.3s ease;
         height: 20px;
+         pointer-events: auto;
         {% unless section.settings.show_color_swatches %}
         display: none;
         {% endunless %}
@@ -356,7 +362,8 @@
         <div class="Featured_products_container_d1">
             {% assign collection = collections[section.settings.Add-collection] %}
             {% for product in collection.products %}
-            <div class="Featured_product_card">
+            <div class="Featured_product_card" data-aos="fade-up"
+     data-aos-anchor-placement="top-center">
                 <div class="Featured_product_card_header">
                     <div class="Featured_product_image">
                         <a href="{{ product.url }}">
