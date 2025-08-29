@@ -3,7 +3,8 @@ This file defines all the CSS variables used throughout the theme. Feel free to 
 note that this may have impact on different places.
 {%- endcomment -%}
 
-{%- assign language_code = localization.language.iso_code | split: '-' | first -%}
+{% comment %} {%- assign language_code = localization.language.iso_code | split: '-' | first -%} {% endcomment %}
+{%- assign language_code = 'ae' -%}
 
 <style>
   {%- assign heading_font_italic = settings.heading_font | font_modify: 'style', 'italic' -%}
