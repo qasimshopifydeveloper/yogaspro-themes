@@ -1,4 +1,12 @@
 {% render 'direction' %}
+
+<style>
+.grid-manue-links li:hover a {
+  transform: translateX({% if text_dir == 'rtl' %}-{{ section.settings.link_hover_transform | default: 10 }}px{% else %}{{ section.settings.link_hover_transform | default: 10 }}px{% endif %});
+  color: {{ section.settings.link_hover_color | default: 'white' }};
+}
+</style>
+
 <style>
     .custom-footer-section_d1{
         width: 100%;
