@@ -129,10 +129,10 @@
         font-family: 'jost', sans-serif;
         font-style : 500;
     }
-   .grid-manue-links li:hover a {
-        transform: translateX({% if text_dir == 'rtl' %}-{{ section.settings.link_hover_transform | default: 10 }}px{% else %}{{ section.settings.link_hover_transform | default: 10 }}px{% endif %});
+    .grid-manue-links li:hover a{
+        transform: translateX(-{{ section.settings.link_hover_transform | default: 10 }}px);
         color: {{ section.settings.link_hover_color | default: 'white' }};
-        }
+    }
     .grid-media-block{
         width: 100%;
     }
