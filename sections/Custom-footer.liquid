@@ -274,8 +274,31 @@
 .logo-footer-info span a {
     color: inherit !important;
 }
-</style>
 
+
+
+
+
+</style>
+<style>
+  /* section-level variables (distance and color come from section settings) */
+  .grid-manue-links {
+    --hover-distance: {{ section.settings.link_hover_transform | default: 10 }}px;
+    --hover-color: {{ section.settings.link_hover_color | default: 'white' }};
+  }
+
+  .grid-manue-links li a {
+    transition: transform .3s ease, color .25s ease;
+    /* reset inline transform if any */
+    transform: translateX(0);
+    display: inline-block; /* ensures transform works reliably on anchors */
+  }
+
+  .grid-manue-links li:hover a {
+    transform: translateX(calc(var(--hover-distance) * var(--dir-multiplier)));
+    color: var(--hover-color);
+  }
+</style>
 
 <section class="custom-footer-section_d1">
     <div class="custom-footer-container_d1 xo-container-width">
