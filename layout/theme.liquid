@@ -183,23 +183,64 @@ window.addEventListener('scroll', toggleHeaderClass);
   transform: translateX(0);
 }
 
+
+
+
+
+
+
+
+
+
+/* =========================
+   Rebuy Cart Drawer RTL Support
+   ========================= */
+
+/* Switch whole cart drawer to RTL when site is RTL */
 html[dir="rtl"] #rebuy-cart,
-html[dir="rtl"] #rebuy-cart .rebuy-cart__flyout {
+html[dir="rtl"] #rebuy-cart .rebuy-cart__flyout,
+html[dir="rtl"] #rebuy-cart .rebuy-cart__header,
+html[dir="rtl"] #rebuy-cart .rebuy-cart__body,
+html[dir="rtl"] #rebuy-cart .rebuy-cart__footer {
   direction: rtl;
   text-align: right;
 }
 
-/* Optional: if in LTR, keep normal */
+/* Ensure LTR languages remain normal */
 html[dir="ltr"] #rebuy-cart,
-html[dir="ltr"] #rebuy-cart .rebuy-cart__flyout {
+html[dir="ltr"] #rebuy-cart .rebuy-cart__flyout,
+html[dir="ltr"] #rebuy-cart .rebuy-cart__header,
+html[dir="ltr"] #rebuy-cart .rebuy-cart__body,
+html[dir="ltr"] #rebuy-cart .rebuy-cart__footer {
   direction: ltr;
   text-align: left;
 }
-/* Example: keep close button on the left in RTL */
+
+/* =========================
+   Fix positioning in RTL
+   ========================= */
+
+/* Close button: move to left in RTL */
 html[dir="rtl"] #rebuy-cart .rebuy-cart__flyout-close {
   right: auto;
   left: 10px;
 }
+
+/* Header title alignment */
+html[dir="rtl"] #rebuy-cart .rebuy-cart__header-title {
+  text-align: right;
+}
+
+/* Footer totals alignment */
+html[dir="rtl"] #rebuy-cart .rebuy-cart__footer {
+  text-align: right;
+}
+
+/* Optional: Flip product info rows */
+html[dir="rtl"] #rebuy-cart .rebuy-cart__line-item {
+  flex-direction: row-reverse;
+}
+
 
 
 
