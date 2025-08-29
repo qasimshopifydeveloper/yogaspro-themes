@@ -130,7 +130,7 @@
         font-style : 500;
     }
     .grid-manue-links li:hover a{
-        transform: translateX({{ section.settings.link_hover_transform | default: 10 }}px);
+        transform: translateX(-{{ section.settings.link_hover_transform | default: 10 }}px);
         color: {{ section.settings.link_hover_color | default: 'white' }};
     }
     .grid-media-block{
