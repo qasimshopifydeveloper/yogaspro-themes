@@ -130,7 +130,7 @@
         font-style : 500;
     }
     .grid-manue-links li:hover a{
-        transform: translateX({{ section.settings.link_hover_transform | default: 10 }}px);
+        transform: translateX(-{{ section.settings.link_hover_transform | default: 10 }}px);
         color: {{ section.settings.link_hover_color | default: 'white' }};
     }
     .grid-media-block{
@@ -265,6 +265,27 @@
 .logo-footer-info span a {
     color: inherit !important;
 }
+</style>
+<style>
+  /* ensure anchors behave well for transform */
+  html[dir="ltr"] .grid-manue-links li a,
+  html[dir="rtl"] .grid-manue-links li a {
+    display: inline-block;
+    transition: transform .3s ease, color .25s ease;
+    transform: translateX(0);
+  }
+
+  /* LTR -> positive translate (to the right) */
+  html[dir="ltr"] .grid-manue-links li:hover a {
+    transform: translateX({{ section.settings.link_hover_transform | default: 10 }}px) !important;
+    color: {{ section.settings.link_hover_color | default: 'white' }} !important;
+  }
+
+  /* RTL -> negative translate (to the left) */
+  html[dir="rtl"] .grid-manue-links li:hover a {
+    transform: translateX(-{{ section.settings.link_hover_transform | default: 10 }}px) !important;
+    color: {{ section.settings.link_hover_color | default: 'white' }} !important;
+  }
 </style>
 
 
